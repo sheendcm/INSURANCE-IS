@@ -1,0 +1,5 @@
+SET FOREIGN_KEY_CHECKS = 0; -- Disable foreign key checking.
+TRUNCATE TABLE forums;
+TRUNCATE TABLE dates;
+TRUNCATE TABLE remarks;
+SET FOREIGN_KEY_CHECKS = 1; -- Enable foreign key checking.

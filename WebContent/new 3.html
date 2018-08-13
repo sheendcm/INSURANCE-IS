@@ -1,0 +1,332 @@
+<div class="row">
+				  <div class="col-md-6">
+				  <label class="control-label" style="font-size:85%;">Have you:</label>
+				  </div>
+				  <div class="col-md-2" style="background-color:#e4e7ea">
+				  <label class="control-label" style="font-size:85%;">Life Insured</label>
+				  </div>
+				  <div class="col-md-2" style="background-color:#e4e7ea">
+				  <label class="control-label" style="font-size:85%;">Policy Owner</label>
+				  </div>
+				<div class="col-md-2" style="background-color:#e4e7ea">
+				<label class="control-label" style="font-size:85%;">Details of "YES" answer</label>
+				</div>
+					 </div><hr style="margin-top: 0px; margin-bottom: 30px;">
+    <script type="text/javascript">
+$(document).ready(function () {
+
+function checkradiobox(){
+    var PhLiYes1 = $("input[name='PhLi_Yes1']:checked").val();
+    var PhLiYes2 = $("input[name='PhLi_Yes2']:checked").val();
+    var PhLiYes3 = $("input[name='PhLi_Yes3']:checked").val();
+    var PhLiYes4 = $("input[name='PhLi_Yes4']:checked").val();
+    var PhLiYes5 = $("input[name='PhLi_Yes5']:checked").val();
+    var PhLiYes6 = $("input[name='PhLi_Yes6']:checked").val();
+    var PhPYes1 = $("input[name='PhP_Yes1']:checked").val();
+    var PhPYes2 = $("input[name='PhP_Yes2']:checked").val();
+    var PhPYes3 = $("input[name='PhP_Yes3']:checked").val();
+    var PhPYes4 = $("input[name='PhP_Yes4']:checked").val();
+    var PhPYes5 = $("input[name='PhP_Yes5']:checked").val();
+    var PhPYes6 = $("input[name='PhP_Yes6']:checked").val();
+    
+    if(PhLiYes1 == "Yes" || PhPYes1 == "Yes"){ $('#PH_yes1').attr('disabled',false);}
+    else if(PhLiYes1 == "No" || PhPYes1 == "No"){$('#PH_yes1').attr('disabled',true);}
+    if(PhLiYes2 == "Yes" || PhPYes2 == "Yes"){ $('#PH_yes2').attr('disabled',false);}
+    else if(PhLiYes2 == "No" || PhPYes2 == "No"){$('#PH_yes2').attr('disabled',true);}
+    if(PhLiYes3 == "Yes" || PhPYes3 == "Yes"){ $('#PH_yes3').attr('disabled',false);}
+    else if(PhLiYes3 == "No" || PhPYes3 == "No"){$('#PH_yes3').attr('disabled',true);}
+    if(PhLiYes4 == "Yes" || PhPYes4 == "Yes"){ $('#PH_yes4').attr('disabled',false);}
+    else if(PhLiYes4 == "No" || PhPYes4 == "No"){$('#PH_yes4').attr('disabled',true);}
+    if(PhLiYes5 == "Yes" || PhPYes5 == "Yes"){ $('#PH_yes5').attr('disabled',false);}
+    else if(PhLiYes5 == "No" || PhPYes5 == "No"){$('#PH_yes5').attr('disabled',true);}
+    if(PhLiYes6 == "Yes" || PhPYes6 == "Yes"){ $('#PH_yes6').attr('disabled',false);}
+    else if(PhLiYes6 == "No" || PhPYes6 == "No"){$('#PH_yes6').attr('disabled',true);}
+    
+}
+
+$("#phliyes1,#phlino1,#phpyes1,#phpno1,#phliyes2,#phlino2,#phpyes2,#phpno2,#phliyes3,#phlino3,#phpyes3,#phpno3,#phliyes4,#phlino4,#phpyes4,#phpno4,#phliyes5,#phlino5,#phpyes5,#phpno5,#phliyes6,#phlino6,#phpyes6,#phpno6").change(function () {
+    checkradiobox();
+});
+
+checkradiobox();
+
+});   
+</script>
+			<div class="row">
+				<div class="col-md-6">
+				  <label class="control-label" style="font-size:85%;">a. flown in an aircraft other than as a passenger?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="col-sm-6" style="padding:0px">
+                          <div class="rdio rdio-primary">
+                      <input type="radio" id="phliyes1" value="Yes" name="PhLi_Yes1"/>
+                      <label for="phliyes1" style="font-size:85%;">Yes</label>
+                    </div><!-- rdio -->
+                        </div>
+                        <div class="col-sm-6" style="padding:0px">
+                           <div class="rdio rdio-primary">
+                      <input type="radio" value="No" id="phlino1" name="PhLi_Yes1">
+                      <label for="phlino1" style="font-size:85%;">No</label>
+                    </div><!-- rdio -->
+                        </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="col-sm-6" style="padding:0px">
+                          <div class="rdio rdio-primary">
+                      <input type="radio" id="phpyes1" value="Yes" name="PhP_Yes1"/>
+                      <label for="phpyes1" style="font-size:85%;">Yes</label>
+                    </div><!-- rdio -->
+                        </div>
+                        <div class="col-sm-6" style="padding:0px">
+                           <div class="rdio rdio-primary">
+                      <input type="radio" value="No" id="phpno1" name="PhP_Yes1">
+                      <label for="phpno1" style="font-size:85%;">No</label>
+                    </div><!-- rdio -->
+                        </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="PH_yes1" id="PH_yes1" class="form-control input-sm mb15" style="margin-top:0px; margin-bottom:10px" disabled/>
+				</div>  
+					 </div><hr style="margin-top: 0px; margin-bottom: 30px;">
+					 <div class="row">
+				<div class="col-md-6">
+				  <label class="control-label" style="font-size:85%;">b. driven a motorcycle or engaged in scuba diving, bungee umping, or other hazardous sports?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="col-sm-6" style="padding:0px">
+                          <div class="rdio rdio-primary">
+                      <input type="radio" id="phliyes2" value="Yes" name="PhLi_Yes2"/>
+                      <label for="phliyes2" style="font-size:85%;">Yes</label>
+                    </div><!-- rdio -->
+                        </div>
+                        <div class="col-sm-6" style="padding:0px">
+                           <div class="rdio rdio-primary">
+                      <input type="radio" value="No" id="phlino2" name="PhLi_Yes2">
+                      <label for="phlino2" style="font-size:85%;">No</label>
+                    </div><!-- rdio -->
+                        </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="col-sm-6" style="padding:0px">
+                          <div class="rdio rdio-primary">
+                      <input type="radio" id="phpyes2" value="Yes" name="PhP_Yes2"/>
+                      <label for="phpyes2" style="font-size:85%;">Yes</label>
+                    </div><!-- rdio -->
+                        </div>
+                        <div class="col-sm-6" style="padding:0px">
+                           <div class="rdio rdio-primary">
+                      <input type="radio" value="No" id="phpno2" name="PhP_Yes2">
+                      <label for="phpno2" style="font-size:85%;">No</label>
+                    </div><!-- rdio -->
+                        </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="PH_yes2" id="PH_yes2" class="form-control input-sm mb15" style="margin-top:0px; margin-bottom:10px" disabled/>
+				</div>  
+					 </div><hr style="margin-top: 0px; margin-bottom: 30px;">
+					 <div class="row">
+				<div class="col-md-6">
+				  <label class="control-label" style="font-size:85%;">c. been active in politics as a candidate or in any other capacity during last five (5) years?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="col-sm-6" style="padding:0px">
+                          <div class="rdio rdio-primary">
+                      <input type="radio" id="phliyes3" value="Yes" name="PhLi_Yes3"/>
+                      <label for="phliyes3" style="font-size:85%;">Yes</label>
+                    </div><!-- rdio -->
+                        </div>
+                        <div class="col-sm-6" style="padding:0px">
+                           <div class="rdio rdio-primary">
+                      <input type="radio" value="No" id="phlino3" name="PhLi_Yes3">
+                      <label for="phlino3" style="font-size:85%;">No</label>
+                    </div><!-- rdio -->
+                        </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="col-sm-6" style="padding:0px">
+                          <div class="rdio rdio-primary">
+                      <input type="radio" id="phpyes3" value="Yes" name="PhP_Yes3"/>
+                      <label for="phpyes3" style="font-size:85%;">Yes</label>
+                    </div><!-- rdio -->
+                        </div>
+                        <div class="col-sm-6" style="padding:0px">
+                           <div class="rdio rdio-primary">
+                      <input type="radio" value="No" id="phpno3" name="PhP_Yes3">
+                      <label for="phpno3" style="font-size:85%;">No</label>
+                    </div><!-- rdio -->
+                        </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="PH_yes3" id="PH_yes3" class="form-control input-sm mb15" style="margin-top:0px; margin-bottom:10px" disabled/>
+				</div>  
+					 </div><hr style="margin-top: 0px; margin-bottom: 30px;">
+					 <div class="row">
+				<div class="col-md-6">
+				  <label class="control-label" style="font-size:85%;">d. ever made an application for life insurance or reinstatement thereof which was declined, postponed, cancelled, or modified in kind, amount, or rate?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="col-sm-6" style="padding:0px">
+                          <div class="rdio rdio-primary">
+                      <input type="radio" id="phliyes4" value="Yes" name="PhLi_Yes4"/>
+                      <label for="phliyes4" style="font-size:85%;">Yes</label>
+                    </div><!-- rdio -->
+                        </div>
+                        <div class="col-sm-6" style="padding:0px">
+                           <div class="rdio rdio-primary">
+                      <input type="radio" value="No" id="phlino4" name="PhLi_Yes4">
+                      <label for="phlino4" style="font-size:85%;">No</label>
+                    </div><!-- rdio -->
+                        </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="col-sm-6" style="padding:0px">
+                          <div class="rdio rdio-primary">
+                      <input type="radio" id="phpyes4" value="Yes" name="PhP_Yes4"/>
+                      <label for="phpyes4" style="font-size:85%;">Yes</label>
+                    </div><!-- rdio -->
+                        </div>
+                        <div class="col-sm-6" style="padding:0px">
+                           <div class="rdio rdio-primary">
+                      <input type="radio" value="No" id="phpno4" name="PhP_Yes4">
+                      <label for="phpno4" style="font-size:85%;">No</label>
+                    </div><!-- rdio -->
+                        </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="PH_yes4" id="PH_yes4" class="form-control input-sm mb15" style="margin-top:0px; margin-bottom:10px" disabled/>
+				</div>  
+					 </div><hr style="margin-top: 0px; margin-bottom: 30px;">
+					 <div class="row">
+				<div class="col-md-6">
+				  <label class="control-label" style="font-size:85%;">e. received any threat in your life, person, or safety?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="col-sm-6" style="padding:0px">
+                          <div class="rdio rdio-primary">
+                      <input type="radio" id="phliyes5" value="Yes" name="PhLi_Yes5"/>
+                      <label for="phliyes5" style="font-size:85%;">Yes</label>
+                    </div><!-- rdio -->
+                        </div>
+                        <div class="col-sm-6" style="padding:0px">
+                           <div class="rdio rdio-primary">
+                      <input type="radio" value="No" id="phlino5" name="PhLi_Yes5">
+                      <label for="phlino5" style="font-size:85%;">No</label>
+                    </div><!-- rdio -->
+                        </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="col-sm-6" style="padding:0px">
+                          <div class="rdio rdio-primary">
+                      <input type="radio" id="phpyes5" value="Yes" name="PhP_Yes5"/>
+                      <label for="phpyes5" style="font-size:85%;">Yes</label>
+                    </div><!-- rdio -->
+                        </div>
+                        <div class="col-sm-6" style="padding:0px">
+                           <div class="rdio rdio-primary">
+                      <input type="radio" value="No" id="phpno5" name="PhP_Yes5"/>
+                      <label for="phpno5" style="font-size:85%;">No</label>
+                    </div><!-- rdio -->
+                        </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="PH_yes5" id="PH_yes5" class="form-control input-sm mb15" style="margin-top:0px; margin-bottom:10px" disabled/>
+				</div>  
+					 </div><hr style="margin-top: 0px; margin-bottom: 30px;">
+					 <div class="row">
+				<div class="col-md-6">
+				  <label class="control-label" style="font-size:85%;">f. do you have any pending application with other insurance companies?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="col-sm-6" style="padding:0px">
+                          <div class="rdio rdio-primary">
+                      <input type="radio" id="phliyes6" value="Yes" name="PhLi_Yes6"/>
+                      <label for="phliyes6" style="font-size:85%;">Yes</label>
+                    </div><!-- rdio -->
+                        </div>
+                        <div class="col-sm-6" style="padding:0px">
+                           <div class="rdio rdio-primary">
+                      <input type="radio" value="No" id="phlino6" name="PhLi_Yes6">
+                      <label for="phlino6" style="font-size:85%;">No</label>
+                    </div><!-- rdio -->
+                        </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="col-sm-6" style="padding:0px">
+                          <div class="rdio rdio-primary">
+                      <input type="radio" id="phpyes6" value="Yes" name="PhP_Yes6"/>
+                      <label for="phpyes6" style="font-size:85%;">Yes</label>
+                    </div><!-- rdio -->
+                        </div>
+                        <div class="col-sm-6" style="padding:0px">
+                           <div class="rdio rdio-primary">
+                      <input type="radio" value="No" id="phpno6" name="PhP_Yes6">
+                      <label for="phpno6" style="font-size:85%;">No</label>
+                    </div><!-- rdio -->
+                        </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="PH_yes6" id="PH_yes6" class="form-control input-sm mb15" style="margin-top:0px; margin-bottom:10px" disabled/>
+				</div>  
+					 </div><hr style="margin-top: 0px; margin-bottom: 30px;">
+			<div class="row">
+				  <div class="col-md-6">
+				  <label class="control-label" style="font-size:85%;">What insuarnce(s) is/are now in force on the life of Life Insured?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <label class="col-md-12 control-label" style="font-size:85%;">Company</label>
+				  <div class="col-sm-12">
+                          <input type="text" name="LIage" class="form-control input-sm mb15"  />
+                        </div>
+				  </div>
+				  <div class="col-md-2">
+				  <label class="col-md-12 control-label" style="font-size:85%; padding-right:0px">Amount of coverage</label>
+				  <div class="col-sm-12">
+                          <input type="text" name="LIage" class="form-control input-sm mb15"  />
+                        </div>
+				  </div>
+				<div class="col-md-2">
+				<label class="col-md-12 control-label" style="font-size:85%; padding-right:0px">Rider(s)/Year Issued</label>
+				<div class="col-sm-12">
+                          <input type="text" name="LIage" class="form-control input-sm mb15"  />
+                        </div>
+				</div>
+					 </div><hr>
+			<div class="row">
+				  <div class="col-md-6">
+				  <label class="control-label" style="font-size:85%;">Has there been or will there be any charge in any existing insurance in force?</label>
+				  </div>
+				  <div class="col-md-1">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4" style="font-size:85%;">Yes</label>
+                          </div>
+				  </div>
+				  <div class="col-md-1">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4" style="font-size:85%;">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-4">
+				</div>
+					 </div><hr>
+			<div class="row">
+				  <div class="col-md-6">
+				  <label class="control-label" style="font-size:85%;">Will premiums for the insurance applied for be paid by a policy loan from any existing policy?</label>
+				  </div>
+				  <div class="col-md-1">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4" style="font-size:85%;">Yes</label>
+                          </div>
+				  </div>
+				  <div class="col-md-1">
+				                   <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4" style="font-size:85%;">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-4">
+				</div>
+					 </div>
+			 </div>

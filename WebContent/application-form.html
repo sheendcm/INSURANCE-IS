@@ -1,0 +1,3735 @@
+<%@page import="java.sql.*"%>
+<%@page import="db.Conn" %>
+<%@page import="java.sql.DriverManager" %>
+
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script
+  src="http://code.jquery.com/jquery-3.3.1.js"
+  integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
+  crossorigin="anonymous"></script>
+<!--  <script type="text/javascript" src="js/jquery-1.10.0.min.js"></script> -->
+	<meta charset="ISO-8859-1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+
+  <title>Application for Life Insurance</title>
+
+  <link href="css/style.default.css" rel="stylesheet">
+
+  <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="js/html5shiv.js"></script>
+  <script src="js/respond.min.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+
+
+<section>
+  
+  <div class="leftpanel">
+    
+    <div class="logopanel">
+        <h1><span>[</span> bracket <span>]</span></h1>
+    </div><!-- logopanel -->
+    
+    <div class="leftpanelinner">
+        
+        <!-- This is only visible to small devices -->
+        <div class="visible-xs hidden-sm hidden-md hidden-lg">   
+            <div class="media userlogged">
+                <img alt="" src="images/photos/loggeduser.png" class="media-object">
+                <div class="media-body">
+                    <h4>John Doe</h4>
+                    <span>"Life is so..."</span>
+                </div>
+            </div>
+          
+            <h5 class="sidebartitle actitle">Account</h5>
+            <ul class="nav nav-pills nav-stacked nav-bracket mb30">
+              <li><a href="profile.html"><i class="fa fa-user"></i> <span>Profile</span></a></li>
+              <li><a href=""><i class="fa fa-cog"></i> <span>Account Settings</span></a></li>
+              <li><a href=""><i class="fa fa-question-circle"></i> <span>Help</span></a></li>
+              <li><a href="signout.html"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
+            </ul>
+        </div>
+      
+      <ul class="nav nav-pills nav-stacked nav-bracket">
+        <li><a href="index.html"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+        <li><a href="email.html"><span class="pull-right badge badge-success">2</span><i class="fa fa-envelope-o"></i> <span>Email</span></a></li>
+        <li class="nav-parent nav-active active"><a href=""><i class="fa fa-edit"></i> <span>Forms</span></a>
+          <ul class="children" style="display: block;">
+            <li><a href="general-forms.html"><i class="fa fa-caret-right"></i> General Forms</a></li>
+            <li><a href="form-layouts.html"><i class="fa fa-caret-right"></i> Form Layouts</a></li>
+            <li><a href="form-validation.html"><i class="fa fa-caret-right"></i> Form Validation</a></li>
+            <li class="active"><a href="form-wizards.html"><i class="fa fa-caret-right"></i> Form Wizards</a></li>
+            <li><a href="wysiwyg.html"><i class="fa fa-caret-right"></i> Text Editor</a></li>
+            <li><a href="code-editor.html"><i class="fa fa-caret-right"></i> Code Editor</a></li>
+                                <li><a href="x-editable.html"><i class="fa fa-caret-right"></i> X-Editable</a></li>
+          </ul>
+        </li>
+        <li class="nav-parent"><a href=""><i class="fa fa-suitcase"></i> <span>UI Elements</span></a>
+          <ul class="children">
+            <li><a href="buttons.html"><i class="fa fa-caret-right"></i> Buttons</a></li>
+            <li><a href="icons.html"><span class="pull-right badge badge-danger">updated</span><i class="fa fa-caret-right"></i> Icons</a></li>
+            <li><a href="typography.html"><i class="fa fa-caret-right"></i> Typography</a></li>
+            <li><a href="alerts.html"><i class="fa fa-caret-right"></i> Alerts &amp; Notifications</a></li>
+            <li><a href="modals.html"><i class="fa fa-caret-right"></i> Modals</a></li>
+            <li><a href="tabs-accordions.html"><i class="fa fa-caret-right"></i> Tabs &amp; Accordions</a></li>
+            <li><a href="sliders.html"><i class="fa fa-caret-right"></i> Sliders</a></li>
+            <li><a href="graphs.html"><i class="fa fa-caret-right"></i> Graphs &amp; Charts</a></li>
+            <li><a href="widgets.html"><i class="fa fa-caret-right"></i> Panels &amp; Widgets</a></li>
+            <li><a href="extras.html"><i class="fa fa-caret-right"></i> Extras</a></li>
+          </ul>
+        </li>
+        <li><a href="tables.html"><i class="fa fa-th-list"></i> <span>Tables</span></a></li>
+        <li class="nav-parent"><a href=""><i class="fa fa-bug"></i> <span>Bug Tracker</span></a>
+            <ul class="children">
+                <li><a href="bug-tracker.html"><i class="fa fa-caret-right"></i> Summary</a></li>
+                <li><a href="bug-issues.html"><i class="fa fa-caret-right"></i> Issues</a></li>
+                <li><a href="view-issue.html"><i class="fa fa-caret-right"></i> View Issue</a></li>
+            </ul>
+        </li>
+        <li><a href="maps.html"><i class="fa fa-map-marker"></i> <span>Maps</span></a></li>
+        <li class="nav-parent"><a href=""><i class="fa fa-file-text"></i> <span>Pages</span></a>
+          <ul class="children">
+            <li><a href="calendar.html"><i class="fa fa-caret-right"></i> Calendar</a></li>
+            <li><a href="media-manager.html"><i class="fa fa-caret-right"></i> Media Manager</a></li>
+            <li><a href="timeline.html"><i class="fa fa-caret-right"></i> Timeline</a></li>
+            <li><a href="blog-list.html"><i class="fa fa-caret-right"></i> Blog List</a></li>
+            <li><a href="blog-single.html"><i class="fa fa-caret-right"></i> Blog Single</a></li>
+            <li><a href="people-directory.html"><i class="fa fa-caret-right"></i> People Directory</a></li>
+            <li><a href="profile.html"><i class="fa fa-caret-right"></i> Profile</a></li>
+            <li><a href="invoice.html"><i class="fa fa-caret-right"></i> Invoice</a></li>
+            <li><a href="search-results.html"><i class="fa fa-caret-right"></i> Search Results</a></li>
+            <li><a href="blank.html"><i class="fa fa-caret-right"></i> Blank Page</a></li>
+            <li><a href="notfound.html"><i class="fa fa-caret-right"></i> 404 Page</a></li>
+            <li><a href="locked.html"><i class="fa fa-caret-right"></i> Locked Screen</a></li>
+            <li><a href="signin.html"><i class="fa fa-caret-right"></i> Sign In</a></li>
+            <li><a href="signup.html"><i class="fa fa-caret-right"></i> Sign Up</a></li>
+          </ul>
+        </li>
+        <li class="nav-parent"><a href="layouts.html"><i class="fa fa-laptop"></i> <span>Skins &amp; Layouts</span></a>
+            <ul class="children">
+                <li><a href="layouts.html"><i class="fa fa-caret-right"></i> General Layouts</a></li>
+                <li><a href="horizontal-menu.html"><i class="fa fa-caret-right"></i> Top Menu</a></li>
+                <li><a href="horizontal-menu2.html"><i class="fa fa-caret-right"></i> Top Menu w/ Sidebar</a></li>
+                <li><a href="fixed-width.html"><i class="fa fa-caret-right"></i> Fixed Width Page</a></li>
+                <li><a href="fixed-width2.html"><i class="fa fa-caret-right"></i> Fixed Width w/ Menu</a></li>
+            </ul>
+        </li>
+      </ul>
+
+      
+    </div><!-- leftpanelinner -->
+  </div><!-- leftpanel -->
+  
+  <div class="mainpanel">
+    
+    <div class="headerbar">
+      
+      <div class="header-right">
+        <ul class="headermenu">
+          <li>
+            <div class="btn-group">
+              <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                <img src="images/photos/loggeduser.png" alt="" />
+                John Doe
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
+                <li><a href="profile.html"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Account Settings</a></li>
+                <li><a href="#"><i class="glyphicon glyphicon-question-sign"></i> Help</a></li>
+                <li><a href="signin.html"><i class="glyphicon glyphicon-log-out"></i> Log Out</a></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div><!-- header-right -->
+      
+    </div><!-- headerbar -->
+    <div class="contentpanel">
+      
+      <div class="row">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">Application for Life Insurance</h4>
+            </div>
+			<div class="panel-body">
+			<div class="row">
+              <div class="col-md-4">
+			  </div>
+			  <div class="col-md-4">
+			  <div class="form-group">
+                        <label class="col-sm-4 control-label">Client Number</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="clientnumber" class="form-control"  />
+                        </div>
+                      </div>
+			  </div>
+			  <div class="col-md-4">
+			  <div class="form-group">
+                        <label class="col-sm-4 control-label">Application Number</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="applicationnumber" class="form-control" value = "0123456" disabled="" />
+                        </div>
+                      </div>
+			  </div>
+			  </div><hr>
+            </div>
+            <div class="panel-body panel-body-nopadding">
+              
+              <!-- BASIC WIZARD -->
+              <div id="validationWizard" class="basic-wizard">
+                
+                <ul class="nav nav-pills nav-justified">
+                  <li><a href="#agentinformation" data-toggle="tab"> Agent Information</a></li>
+                  <li><a href="#lifeinsured" data-toggle="tab"> Life Insured</a></li>
+                  <li><a href="#policyowner" data-toggle="tab"> Policyowner</a></li>
+				  <li><a href="#beneficialowner" data-toggle="tab"> Beneficial Owner</a></li>
+				  <li><a href="#beneficiaries" data-toggle="tab"> Beneficiaries</a></li>
+				  <li><a href="#policyinfo" data-toggle="tab"> Policy Information</a></li>
+				  <li><a href="#personalhistory" data-toggle="tab"> Personal History</a></li>
+				  <li><a href="#questionnaire" data-toggle="tab"> Questionnaire</a></li>
+                </ul>
+                
+                <form class="form" id="firstForm">  
+                <div class="tab-content">
+                  
+                  <div class="tab-pane" id="agentinformation">
+				  <div class="row"><br>
+				  <div class="col-md-2"></div>
+				  <div class="col-md-8">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Surname, Given Name</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="AIname" class="form-control"  />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Agent Code</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="AIcode" class="form-control"  />
+                        </div>
+                      </div>
+					  <div class="form-group">
+                        <label class="col-sm-4 control-label">Branch</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="AIbranch" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+					 <div class="col-md-2"></div>
+					 </div><br>
+                  </div>
+                  <div class="tab-pane" id="lifeinsured">
+                    <div class="row"><br>
+				  <div class="col-md-4">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Surname</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIsurname" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Given Name</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIgivenname" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+					 <div class="col-md-4">
+					 <div class="form-group">
+                        <label class="col-sm-4 control-label">Middle Name</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LImiddlename" class="form-control"  />
+                        </div>
+                      </div>
+					 </div>
+					 </div><br>
+					 <div class="row">
+				  <div class="col-md-8">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Other Legal Name or Alias</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIalias" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+					 </div><hr>
+					 <div class="row">
+				  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Gender</label>
+                        <div class="col-sm-8">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Male</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">Female</label>
+                          </div>
+                          <label class="error" for="gender"></label>
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-6">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Civil Status</label>
+                        <div class="col-sm-4">
+						<div class="rdio rdio-primary">
+                            <input type="radio" id="single"  name="civilstatus" />
+                            <label for="single">Single</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="married" name="civilstatus"/>
+                            <label for="married">Married</label>
+                          </div>
+                      </div>
+					  <div class="col-sm-4">
+					  <div class="rdio rdio-primary">
+                            <input type="radio" id="others" name="civilstatus"/>
+                            <label for="others">Others</label>
+                          </div>
+                          <input type="text" name="LIcsothers" class="form-control"  />
+                      </div>
+				  </div>
+				  </div>
+				  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Salutation</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIsalutation" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-5">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Date of Birth</label>
+                        <div class="col-sm-8">
+                          <div class="input-group">
+							<input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+						  </div>
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Age</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIage" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-4">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Nationality</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LInationality" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-8">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Place of Birth</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIplaceofbirth" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-4">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">TIN/SSS/GSIS</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LItsg" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-6">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Occupation</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIoccupation" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-6">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Nature of Work or Nature of Business</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LInownob" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-6">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Employer</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIemployer" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-6">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Nature of Business of Employer</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LInbe" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-6 control-label">Gross Annual Income</label>
+                        <div class="col-sm-6">
+                          <input type="text" name="LIgai" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-6 control-label">Net Worth</label>
+                        <div class="col-sm-6">
+                          <input type="text" name="LInetworth" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+					  <div class="col-md-6">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Sources of Funds</label>
+                        <div class="col-sm-4">
+						<div class="rdio rdio-primary">
+                            <input type="radio" id="salary"  name="sourcesoffunds" />
+                            <label for="salary">Salary</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="business" name="sourcesoffunds"/>
+                            <label for="business">Business</label>
+                          </div>
+                      </div>
+					  <div class="col-sm-4">
+					  <div class="rdio rdio-primary">
+                            <input type="radio" id="others2" name="sourcesoffunds"/>
+                            <label for="others2">Others</label>
+                          </div>
+                          <input type="text" name="LIsofothers" class="form-control"  />
+                      </div>
+				  </div>
+				  </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-5">
+				  <div class="form-group">
+                        <label class="col-md-12 control-label">Do you currently file a tax return in the United States of America?</label>
+                  </div>
+				  </div>
+				  <div class="col-md-3">
+				  <div class="form-group">
+                        <div class="col-sm-6">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="tryes" name="taxreturn" />
+                            <label for="tryes">Yes</label>
+                          </div>
+                      </div>
+					  <div class="col-sm-6">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="trno" name="taxreturn" />
+                            <label for="trno">No</label>
+                          </div>
+                      </div>
+                      </div>
+					  </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-4">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Mobile Number</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LImobileno" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Telephone Number</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LItelephoneno" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+					<div class="col-md-5">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Email Address</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIemailadsress" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-6">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Present Address</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIpread" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Country</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LItpreadcountry" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+					<div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Zip Code</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIpreadzc" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-6">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Permanent Address</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIperad" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Country</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIperadcountry" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+					<div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Zip Code</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIperadzc" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-6">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Business or Employer Address</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIbusad" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Country</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+					<div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Zip Code</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIbusadzc" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-12">
+				  <label class="col-md-12 control-label">In the next 12 months, do you expect to change your:</label>
+				  </div></div><br>
+				  <div class="row">
+				  <div class="col-md-5">
+				  <div class="form-group">
+                        <label class="col-md-4 control-label">Occupation?</label>
+						<div class="col-md-8">
+				  <div class="form-group">
+                        <div class="col-sm-6">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="lioccuyes" name="LIoccuchange" />
+                            <label for="lioccuyes">Yes</label>
+                          </div>
+                      </div>
+					  <div class="col-sm-6">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="lioccuno" name="LIoccuchange" />
+                            <label for="lioccuno">No</label>
+                          </div>
+                      </div>
+                      </div>
+					  </div>
+                  </div>
+				  </div>
+				  <div class="col-md-7">
+				  <div class="form-group">
+                        <label class="col-md-6 control-label">Country/province/city/municipality of residence?</label>
+						<div class="col-md-6">
+				  <div class="form-group">
+                        <div class="col-sm-6">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="liaddyes" name="LIaddchange" />
+                            <label for="liaddyes">Yes</label>
+                          </div>
+                      </div>
+					  <div class="col-sm-6">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="liaddno" name="LIaddchange" />
+                            <label for="liaddno">No</label>
+                          </div>
+                      </div>
+                      </div>
+					  </div>
+                  </div>
+				  </div>
+				  </div>
+					 <br>
+                  </div>
+                  
+                  <div class="tab-pane" id="policyowner">
+                    <div class="row"><br>
+				  <div class="col-md-4">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Surname</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIsurname" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-4">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Given Name</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIgivenname" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+					 <div class="col-md-4">
+					 <div class="form-group">
+                        <label class="col-sm-4 control-label">Middle Name</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LImiddlename" class="form-control"  />
+                        </div>
+                      </div>
+					 </div>
+					 </div><br>
+					 <div class="row">
+				  <div class="col-md-8">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Other Legal Name or Alias</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIalias" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+					 </div><hr>
+					 <div class="row">
+				  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Gender</label>
+                        <div class="col-sm-8">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Male</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">Female</label>
+                          </div>
+                          <label class="error" for="gender"></label>
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-6">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Civil Status</label>
+                        <div class="col-sm-4">
+						<div class="rdio rdio-primary">
+                            <input type="radio" id="single"  name="civilstatus" />
+                            <label for="single">Single</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="married" name="civilstatus"/>
+                            <label for="married">Married</label>
+                          </div>
+                      </div>
+					  <div class="col-sm-4">
+					  <div class="rdio rdio-primary">
+                            <input type="radio" id="others" name="civilstatus"/>
+                            <label for="others">Others</label>
+                          </div>
+                          <input type="text" name="LIcsothers" class="form-control"  />
+                      </div>
+				  </div>
+				  </div>
+				  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Salutation</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIsalutation" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-5">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Date of Birth</label>
+                        <div class="col-sm-8">
+                          <div class="input-group">
+							<input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+						  </div>
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Age</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIage" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-4">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Nationality</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LInationality" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-8">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Place of Birth</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIplaceofbirth" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-4">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">TIN/SSS/GSIS</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LItsg" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-6">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Occupation</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIoccupation" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-6">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Nature of Work or Nature of Business</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LInownob" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-6">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Employer</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIemployer" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-6">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Nature of Business of Employer</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LInbe" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-6 control-label">Gross Annual Income</label>
+                        <div class="col-sm-6">
+                          <input type="text" name="LIgai" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-6 control-label">Net Worth</label>
+                        <div class="col-sm-6">
+                          <input type="text" name="LInetworth" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+					  <div class="col-md-6">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Sources of Funds</label>
+                        <div class="col-sm-4">
+						<div class="rdio rdio-primary">
+                            <input type="radio" id="salary"  name="sourcesoffunds" />
+                            <label for="salary">Salary</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="business" name="sourcesoffunds"/>
+                            <label for="business">Business</label>
+                          </div>
+                      </div>
+					  <div class="col-sm-4">
+					  <div class="rdio rdio-primary">
+                            <input type="radio" id="others2" name="sourcesoffunds"/>
+                            <label for="others2">Others</label>
+                          </div>
+                          <input type="text" name="LIsofothers" class="form-control"  />
+                      </div>
+				  </div>
+				  </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-5">
+				  <div class="form-group">
+                        <label class="col-md-12 control-label">Do you currently file a tax return in the United States of America?</label>
+                  </div>
+				  </div>
+				  <div class="col-md-3">
+				  <div class="form-group">
+                        <div class="col-sm-6">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="tryes" name="taxreturn" />
+                            <label for="tryes">Yes</label>
+                          </div>
+                      </div>
+					  <div class="col-sm-6">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="trno" name="taxreturn" />
+                            <label for="trno">No</label>
+                          </div>
+                      </div>
+                      </div>
+					  </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-4">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Mobile Number</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LImobileno" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Telephone Number</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LItelephoneno" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+					<div class="col-md-5">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Email Address</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIemailadsress" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-6">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Present Address</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIpread" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Country</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LItpreadcountry" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+					<div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Zip Code</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIpreadzc" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-6">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Permanent Address</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIperad" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Country</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIperadcountry" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+					<div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Zip Code</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIperadzc" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-6">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Business or Employer Address</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIbusad" class="form-control"  />
+                        </div>
+                      </div>
+				  </div>
+				  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Country</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+					<div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Zip Code</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIbusadzc" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-12">
+				  <label class="col-md-12 control-label">In the next 12 months, do you expect to change your:</label>
+				  </div></div><br>
+				  <div class="row">
+				  <div class="col-md-5">
+				  <div class="form-group">
+                        <label class="col-md-4 control-label">Occupation?</label>
+						<div class="col-md-8">
+				  <div class="form-group">
+                        <div class="col-sm-6">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="occuyes" name="occuchange" />
+                            <label for="occuyes">Yes</label>
+                          </div>
+                      </div>
+					  <div class="col-sm-6">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="occuno" name="occuchange" />
+                            <label for="occuno">No</label>
+                          </div>
+                      </div>
+                      </div>
+					  </div>
+                  </div>
+				  </div>
+				  <div class="col-md-7">
+				  <div class="form-group">
+                        <label class="col-md-6 control-label">Country/province/city/municipality of residence?</label>
+						<div class="col-md-6">
+				  <div class="form-group">
+                        <div class="col-sm-6">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="addyes" name="addchange" />
+                            <label for="addyes">Yes</label>
+                          </div>
+                      </div>
+					  <div class="col-sm-6">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="addno" name="addchange" />
+                            <label for="addno">No</label>
+                          </div>
+                      </div>
+                      </div>
+					  </div>
+                  </div>
+				  </div>
+				  </div><hr>
+				  <div class="row">
+				  <div class="col-md-6">
+                        <label class="col-sm-12 control-label">Preferred Policyowner's address for correspondences</label><br><br>
+				<div class="form-group">
+                        <div class="col-sm-4">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="popre" name="popreffered" />
+                            <label for="popre">Present</label>
+                          </div>
+                      </div>
+					  <div class="col-sm-4">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="poper" name="popreffered" />
+                            <label for="poper">Permanent</label>
+                          </div>
+                      </div>
+					  <div class="col-sm-4">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="pobus" name="popreffered" />
+                            <label for="pobus">Business/Employer</label>
+                          </div>
+                      </div>
+                      </div>
+                  </div>
+				  <div class="col-md-6">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Relationship of Policy Owner to Life Insured</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="relatioship" class="form-control"  />
+                        </div>
+                      </div>
+                      </div>
+				  </div>
+					 <br>
+                  </div>
+                  <div class="tab-pane" id="beneficialowner">
+				  <div class="row"><br>
+				  <div class="col-md-12">
+                      <div class="form-group">
+                        <label class="col-md-3 control-label">Do you have a Beneficial Owner?</label>
+						<div class="col-md-3">
+				  <div class="form-group">
+                        <div class="col-sm-6">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="occuyes" name="occuchange" />
+                            <label for="occuyes">Yes</label>
+                          </div>
+                      </div>
+					  <div class="col-sm-6">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="occuno" name="occuchange" />
+                            <label for="occuno">No</label>
+                          </div>
+                      </div>
+                      </div>
+					  </div>
+                  </div>
+					  </div>
+					 </div><hr>
+				<div class="row">
+				<div class="col-md-8">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Name of Beneficial Owner</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+				<div class="col-md-4">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Contact Number</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+                  </div><br>
+                  </div>
+                <div class="tab-pane" id="beneficiaries">
+					<div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">Primary Beneficiary</h4>
+            </div>
+			<div class="panel-body">
+			<div class="tab-pane" id="beneficiaries">
+				  <div class="row"><br>
+                      <div class="form-group">
+					  <div class="col-md-5">
+						<div class="form-group">
+                        <label class="col-sm-4 control-label">Name</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIalias" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+					  <div class="col-md-4">
+						<div class="form-group">
+                        <label class="col-sm-4 control-label">Date of Birth</label>
+                        <div class="col-sm-8">
+                          <div class="input-group">
+							<input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+						  </div>
+                        </div>
+                      </div>
+					  </div>
+						<div class="col-md-3">
+				  <div class="form-group">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Gender</label>
+                        <div class="col-sm-8">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Male</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">Female</label>
+                          </div>
+                          <label class="error" for="gender"></label>
+                        </div>
+                      </div>
+                      </div>
+                  </div>
+					  </div>
+					 </div><hr>
+				<div class="row">
+				<div class="col-md-6">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Place of Birth</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+				<div class="col-md-4">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Nationality</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+                  </div><hr>
+				  <div class="row">
+				<div class="col-md-3">
+                      <div class="form-group">
+                        <label class="col-sm-6 control-label">Relationship to Insured</label>
+                        <div class="col-sm-6">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+				<div class="col-md-2">
+				  <div class="form-group">
+                        <label class="col-sm-6 control-label">% Share</label>
+                        <div class="col-sm-6">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+					  <div class="col-md-4">
+				  <div class="form-group">
+                        <label class="col-sm-6 control-label">Type of Beneficiary</label>
+                        <div class="col-sm-6">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Primary</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">Secondary</label>
+                          </div>
+                          <label class="error" for="gender"></label>
+                        </div>
+                      </div>
+					  </div>
+					  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-6 control-label">Beneficiary Designation</label>
+                        <div class="col-sm-6">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Revocable</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">Irrevocable</label>
+                          </div>
+                          <label class="error" for="gender"></label>
+                        </div>
+                      </div>
+					  </div>
+                  </div><hr>
+				  <div class="row">
+				<div class="col-md-6">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Present Address</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+				<div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Country</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+					  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Zip Code</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+                  </div><br>
+                  </div>  
+			</div>
+			</div>
+				
+				<div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">Secondary Beneficiary</h4>
+            </div>
+			<div class="panel-body">
+			<div class="tab-pane" id="beneficiaries">
+				  <div class="row"><br>
+                      <div class="form-group">
+					  <div class="col-md-5">
+						<div class="form-group">
+                        <label class="col-sm-4 control-label">Name</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIalias" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+					  <div class="col-md-4">
+						<div class="form-group">
+                        <label class="col-sm-4 control-label">Date of Birth</label>
+                        <div class="col-sm-8">
+                          <div class="input-group">
+							<input type="text" class="form-control" placeholder="mm/dd/yyyy" id="datepicker">
+							<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+						  </div>
+                        </div>
+                      </div>
+					  </div>
+						<div class="col-md-3">
+				  <div class="form-group">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Gender</label>
+                        <div class="col-sm-8">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Male</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">Female</label>
+                          </div>
+                          <label class="error" for="gender"></label>
+                        </div>
+                      </div>
+                      </div>
+                  </div>
+					  </div>
+					 </div><hr>
+				<div class="row">
+				<div class="col-md-6">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Place of Birth</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+				<div class="col-md-4">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Nationality</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+                  </div><hr>
+				  <div class="row">
+				<div class="col-md-3">
+                      <div class="form-group">
+                        <label class="col-sm-6 control-label">Relationship to Insured</label>
+                        <div class="col-sm-6">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+				<div class="col-md-2">
+				  <div class="form-group">
+                        <label class="col-sm-6 control-label">% Share</label>
+                        <div class="col-sm-6">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+					  <div class="col-md-4">
+				  <div class="form-group">
+                        <label class="col-sm-6 control-label">Type of Beneficiary</label>
+                        <div class="col-sm-6">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Primary</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">Secondary</label>
+                          </div>
+                          <label class="error" for="gender"></label>
+                        </div>
+                      </div>
+					  </div>
+					  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-6 control-label">Beneficiary Designation</label>
+                        <div class="col-sm-6">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Revocable</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">Irrevocable</label>
+                          </div>
+                          <label class="error" for="gender"></label>
+                        </div>
+                      </div>
+					  </div>
+                  </div><hr>
+				  <div class="row">
+				<div class="col-md-6">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Present Address</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+				<div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Country</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+					  <div class="col-md-3">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Zip Code</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+                  </div><br>
+                  </div>  
+			</div>
+			</div>
+			</div>
+				<div class="tab-pane" id="policyinfo">
+				<div class="row"><br>
+				<div class="col-md-5">
+                      <div class="form-group">
+                        <label class="col-sm-4 control-label">Plan Name</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+				<div class="col-md-4">
+				  <div class="form-group">
+                        <label class="col-sm-4 control-label">Sum Assured</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+				<div class="col-md-3">
+				   <div class="form-group">
+                        <label class="col-sm-4 control-label">Currency</label>
+                        <div class="col-sm-8">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">PhP</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">USD</label>
+                          </div>
+                          <label class="error" for="gender"></label>
+                        </div>
+                      </div>
+					  </div>
+                  </div>
+				<div class="row">
+                      <div class="form-group">
+                        <label class="col-md-4 control-label">Benefits and Amount</label>
+                  </div>
+					 </div>
+				<div class="row"><br>
+				<div class="col-md-4">
+                      <div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Accelerated Total and Permanent Disability (TPD)</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  <div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Accidental Death and Disablement Benefit</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  <div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Accelerated Life Care Benefit</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  <div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Additional Term Rider</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  <div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Crisis Cover Benefit</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  <div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Crisis Cover Plus Benefit for Term</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+				<div class="col-md-4">
+				  <div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Crisis Cover Waiver</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+				<div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Life Care Advance Plus</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+				<div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Life Care Plus</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+				<div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Life Care Waiver</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  <div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Multiple Life Care Plus</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  <div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Non-accelerated Total and Permanent Disability Benefit</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  </div>
+				<div class="col-md-4">
+				  <div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Payor Term Benefit</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+				<div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Payor Waiver of Regular Premium</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+				<div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Renewable Convertible Level Term Assurance Benefit</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+				<div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Waiver of Premium on TPD</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+				<div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Others</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+
+					  </div>
+                  </div><hr>
+				<div class="row">
+                      <div class="form-group">
+                        <label class="col-md-4 control-label">Variable Life Rider and Amount</label>
+                  </div>
+					 </div><br>
+				<div class="row">
+				<div class="col-md-4">
+				<div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Variable Life Rider (One-off Premium)</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+				</div>
+				<div class="col-md-4">
+				<div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Variable Life Rider (Regular Premium)</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+				</div>
+				<div class="col-md-4">
+				<div class="form-group">
+						<div class="col-sm-6">
+                            <label for="male4">Payor Term Benefit</label>
+                        </div>
+						<div class="col-sm-6">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+				</div>
+					 </div><hr>
+				<div class="row">
+                      <div class="form-group">
+                        <label class="col-md-4 control-label">Hospital Income Benefits and Amount</label>
+                  </div>
+					 </div><br>
+				<div class="row">
+				<div class="col-md-4">
+				<div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Daily Hospital Income Benefit</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  <div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Intensive Care Unit Benefit</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+				</div>
+				<div class="col-md-4">
+				<div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Surgical Expense Benefit</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  <div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Long-term Hospitalization Benefit</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+				</div>
+				<div class="col-md-4">
+				<div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Others</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+				</div>
+					 </div><hr>
+				<div class="row">
+                      <div class="form-group">
+                        <label class="col-md-4 control-label">Personal Accident Benefits and Amount</label>
+                  </div>
+					 </div><br>
+				<div class="row">
+				<div class="col-md-4">
+				<div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Accidental Death and Disablement Benefit</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  <div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Dangerous Sports Coverage</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  <div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Double Indemnity Benefit</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+				</div>
+				<div class="col-md-4">
+				<div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Field Trip Coverage</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  <div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Medical Reimbursement Benefit</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  <div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Murder and Assault Benefit</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+				</div>
+				<div class="col-md-4">
+				<div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Total and Permanent Disability</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+					  <div class="form-group">
+                        <div class="col-sm-1">
+                          <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="1" id="checkboxPrimary" checked="checked" />
+                            <label for="male4"></label>
+                          </div>
+                        </div>
+						<div class="col-sm-6">
+                            <label for="male4">Others</label>
+                        </div>
+						<div class="col-sm-5">
+                          <input type="text" name="LIbusadcountry" class="form-control"  />
+                        </div>
+                      </div>
+				</div>
+					 </div><hr>
+				<div class="row">
+                      <div class="form-group">
+                        <label class="col-md-4 control-label">Premium Information</label>
+                  </div>
+					 </div><br>
+				<div class="row">
+				<div class="col-md-3">
+				<div class="form-group">
+                        <label class="col-sm-4 control-label">Annualized Premium</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIage" class="form-control"  />
+                        </div>
+                      </div>
+				</div>
+				<div class="col-md-3">
+				<div class="form-group">
+                        <label class="col-sm-4 control-label">Initial Premium Paid</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIage" class="form-control"  />
+                        </div>
+                      </div>
+				</div>
+				<div class="col-md-5">
+				<div class="form-group">
+                        <label class="col-sm-4 control-label">Mode of Payment</label>
+                        <div class="col-sm-4">
+						<div class="rdio rdio-primary">
+                            <input type="radio" id="single"  name="civilstatus" />
+                            <label for="single">Annual</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="married" name="civilstatus"/>
+                            <label for="married">Quarterly</label>
+                          </div>
+                      </div>
+					  <div class="col-sm-4">
+					  <div class="rdio rdio-primary">
+                            <input type="radio" id="others" name="civilstatus"/>
+                            <label for="others">Semi-annual</label>
+                          </div>
+                       <div class="rdio rdio-primary">
+                            <input type="radio" id="married" name="civilstatus"/>
+                            <label for="married">Monthly</label>
+                          </div>
+                      </div>
+				</div>
+				</div>
+					 </div><br>
+				<div class="row">
+				<div class="col-sm-12">
+				<div class="form-group">
+                        <label class="col-sm-2 control-label">Method of Payment</label>
+                        <div class="col-sm-2">
+						<div class="rdio rdio-primary">
+                            <input type="radio" id="single"  name="civilstatus" />
+                            <label for="single">Cash</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" id="married" name="civilstatus"/>
+                            <label for="married">Credit Card</label>
+                          </div>
+                      </div>
+					  <div class="col-sm-3">
+					  <div class="rdio rdio-primary">
+                            <input type="radio" id="others" name="civilstatus"/>
+                            <label for="others">Check</label>
+                          </div>
+                       <div class="rdio rdio-primary">
+                            <input type="radio" id="married" name="civilstatus"/>
+                            <label for="married">Auto-debit Arrangement</label>
+                          </div>
+                      </div>
+					  <div class="col-sm-2">
+					  <div class="rdio rdio-primary">
+                            <input type="radio" id="others" name="civilstatus"/>
+                            <label for="others">Post-dated Check</label>
+                          </div>
+                       <div class="rdio rdio-primary">
+                            <input type="radio" id="married" name="civilstatus"/>
+                            <label for="married">Others</label>
+                          </div>
+                      </div>
+					  <div class="col-sm-3">
+					   <div class="col-sm-12"><label for="others"></label>
+                      </div>
+					  <div class="col-sm-12">
+					    <input type="text" name="LIage" class="form-control"  />
+                      </div>
+                      </div>
+					  </div>
+				</div>
+					 </div><hr>
+				<div class="row">
+                      <div class="form-group">
+                        <label class="col-md-4 control-label">Non-forfeiure Options</label>
+                  </div>
+					 </div><br>
+				<div class="row">
+				<div class="col-md-12">
+				<div class="col-md-3">
+				<div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Premium Loan Option</label>
+                          </div>
+				</div>
+				<div class="col-md-3">
+				<div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Extended Team Insurance</label>
+                          </div>
+				</div>
+				<div class="col-md-3">
+				<div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Cash Surrender Value</label>
+                          </div>
+				</div></div>
+					 </div><hr>
+				<div class="row">
+                      <div class="form-group">
+                        <label class="col-md-4 control-label">Dividend ptions</label>
+                  </div>
+					 </div><br>
+				<div class="row">
+				<div class="col-md-12">
+				<div class="col-md-2">
+				<div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Paid in Cash</label>
+                          </div>
+				</div>
+				<div class="col-md-3">
+				<div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Used to Pay a Portion of Premium</label>
+                          </div>
+				</div>
+				<div class="col-md-3">
+				<div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Used to Buy Paid-up Insurance</label>
+                          </div>
+				</div></div>
+					 </div><br>
+				</div>  				  
+                <div class="tab-pane" id="personalhistory">
+				<div class="panel panel-default">
+			<div class="panel-body">
+			<div class="row"><br>
+				  <div class="col-md-6">
+				  <label class="control-label">Have you:</label>
+				  </div>
+				  <div class="col-md-2">
+				  <label class="control-label">Life Insured</label>
+				  </div>
+				  <div class="col-md-2">
+				  <label class="control-label">Policy Owner</label>
+				  </div>
+				<div class="col-md-2">
+				<label class="control-label">Details of "YES" answer</label>
+				</div>
+					 </div><hr>
+			<div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">a. flown in an aircraft other than as a passenger?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">b. driven a motorcycle or engaged in scuba diving, bungee umping, or other hazardous sports?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">c. been active in politics as a candidate or in any other capacity during last five (5) years?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">d. ever made an application for life insurance or reinstatement thereof which was declined, postponed, cancelled, or modified in kind, amount, or rate?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">e. received any threat in your life, person, or safety?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">f. do you have any pending application with other insurance companies?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+			<div class="row">
+				  <div class="col-md-6">
+				  <label class="control-label">What insuarnce(s) is/are now in force on the life of Life Insured?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <label class="col-md-12 control-label">Company</label>
+				  <div class="col-sm-12">
+                          <input type="text" name="LIage" class="form-control"  />
+                        </div>
+				  </div>
+				  <div class="col-md-2">
+				  <label class="col-md-12 control-label">Amount of coverage</label>
+				  <div class="col-sm-12">
+                          <input type="text" name="LIage" class="form-control"  />
+                        </div>
+				  </div>
+				<div class="col-md-2">
+				<label class="col-md-12 control-label">Rider(s)/Year Issued</label>
+				<div class="col-sm-12">
+                          <input type="text" name="LIage" class="form-control"  />
+                        </div>
+				</div>
+					 </div><hr>
+			<div class="row">
+				  <div class="col-md-6">
+				  <label class="control-label">Has there been or will there be any charge in any existing insurance in force?</label>
+				  </div>
+				  <div class="col-md-1">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+				  </div>
+				  <div class="col-md-1">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-4">
+				</div>
+					 </div><hr>
+			<div class="row">
+				  <div class="col-md-6">
+				  <label class="control-label">Will premiums for the insurance applied for be paid by a policy loan from any existing policy?</label>
+				  </div>
+				  <div class="col-md-1">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+				  </div>
+				  <div class="col-md-1">
+				                   <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-4">
+				</div>
+					 </div>
+			</div>
+			</div>
+				<div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">Family Details</h4>
+            </div>
+			<div class="panel-body">
+			<div class="row">
+				  <div class="col-md-6">
+				  <label class="control-label">Has any of your family members suffered from: tuberculosis, diabetes, cancer, high blood pressure, heart or kidney disease, sickle cell disease, or mental illness?</label>
+				  </div>
+				  <div class="col-md-1">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+				  </div>
+				  <div class="col-md-1">
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-4">
+				</div>
+					 </div><hr>
+			<div class="row">
+			<div class="col-md-6">
+			<h5 class="subtitle mb5">Life Insured</h5><br>
+			<div class="table-responsive">
+          <table class="table mb30">
+		   <col width="100">
+			<col width="80">
+			<col width="50">
+			<col width="80">
+			<col width="50">
+            <thead>
+              <tr>
+                <th>Family Members</th>
+                <th>Condition/Illness</th>
+                <th>Age at onset</th>
+                <th>Cause of death</th>
+				<th>Age at death</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Father</td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+              <tr>
+                <td>Mother</td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+              <tr>
+                <td>Spouse</td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+			  <tr>
+                <td>Siblings</td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+			  <tr>
+                <td></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+			  <tr>
+                <td></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+			  <tr>
+                <td></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+			  <tr>
+                <td>Children</td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+			  <tr>
+                <td></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+			  <tr>
+                <td></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+			  <tr>
+                <td></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+            </tbody>
+          </table>
+          </div><!-- table-responsive -->
+				</div>
+			<div class="col-md-6">
+			<h5 class="subtitle mb5">Policy Owner</h5><br>
+			<div class="table-responsive">
+          <table class="table mb30">
+		   <col width="100">
+			<col width="80">
+			<col width="50">
+			<col width="80">
+			<col width="50">
+            <thead>
+              <tr>
+                <th>Family Members</th>
+                <th>Condition/Illness</th>
+                <th>Age at onset</th>
+                <th>Cause of death</th>
+				<th>Age at death</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Father</td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+              <tr>
+                <td>Mother</td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+              <tr>
+                <td>Spouse</td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+			  <tr>
+                <td>Siblings</td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+			  <tr>
+                <td></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+			  <tr>
+                <td></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+			  <tr>
+                <td></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+			  <tr>
+                <td>Children</td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+			  <tr>
+                <td></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+			  <tr>
+                <td></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+			  <tr>
+                <td></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+                <td><input type="text" name="LIage" class="form-control"  /></td>
+				<td><input type="text" name="LIage" class="form-control"  /></td>
+              </tr>
+            </tbody>
+          </table>
+          </div><!-- table-responsive -->
+				</div>
+			</div>
+			
+			</div>
+			</div>
+				<div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">Height and Weight</h4>
+            </div>
+			<div class="panel-body">
+			<div class="row">
+			<div class="col-md-6">
+			<h5 class="subtitle mb5">Life Insured</h5><br>
+			<div class="form-group">
+			<div class="row">
+			<div class="col-md-6">
+             <div class="col-md-6">
+                    <label class="col-sm-12 control-label">Height</label>
+                        <div class="col-sm-12">
+                          <input type="text" name="LIage" class="form-control"  />
+                        </div>
+       
+            </div>
+			<div class="col-md-6">
+                 <label class="col-sm-12 control-label">Weight</label>
+                        <div class="col-sm-12">
+                          <input type="text" name="LIage" class="form-control"  />
+                        </div>       
+            </div>			
+            </div>
+			<div class="col-md-6">
+			<div class="row">
+            	<label class="control-label">Have you lost weight during the past 12 months?</label>
+				</div>	
+			<div class="row">
+				<div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+            </div>
+			</div>
+			</div><br>
+			<div class="row">
+			<div class="col-md-12">
+			<div class="form-group">
+                        <label class="col-sm-4 control-label">Reason and amount (lbs) of weight loss</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIage" class="form-control"  />
+                        </div>
+                      </div>
+			</div>
+			</div>
+            </div>
+			</div>
+			<div class="col-md-6">
+			<h5 class="subtitle mb5">Policyowner</h5><br>
+			<div class="form-group">
+			<div class="row">
+			<div class="col-md-6">
+             <div class="col-md-6">
+                    <label class="col-sm-12 control-label">Height</label>
+                        <div class="col-sm-12">
+                          <input type="text" name="LIage" class="form-control"  />
+                        </div>
+       
+            </div>
+			<div class="col-md-6">
+                 <label class="col-sm-12 control-label">Weight</label>
+                        <div class="col-sm-12">
+                          <input type="text" name="LIage" class="form-control"  />
+                        </div>       
+            </div>			
+            </div>
+			<div class="col-md-6">
+			<div class="row">
+            	<label class="control-label">Have you lost weight during the past 12 months?</label>
+				</div>	
+			<div class="row">
+				<div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+            </div>
+			</div>
+			</div><br>
+			<div class="row">
+			<div class="col-md-12">
+			<div class="form-group">
+                        <label class="col-sm-4 control-label">Reason and amount (lbs) of weight loss</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="LIage" class="form-control"  />
+                        </div>
+                      </div>
+			</div>
+			</div>
+            </div>
+			</div>
+			</div>
+			</div>
+			</div>
+				</div>
+				<div class="tab-pane" id="questionnaire">
+				<div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">Non-medical Questionnaire for Adults (Ages 18 and Above)</h4>
+            </div>
+			<div class="panel-body">
+			<div class="row"><br>
+				  <div class="col-md-6">
+				  <label class="control-label">Have you:</label>
+				  </div>
+				  <div class="col-md-2">
+				  <label class="control-label">Life Insured</label>
+				  </div>
+				  <div class="col-md-2">
+				  <label class="control-label">Policy Owner</label>
+				  </div>
+				<div class="col-md-2">
+				<label class="control-label">Details of "YES" answer</label>
+				</div>
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">a. within the past five years, consulted or been treated or examined by any physician or medical practitioner?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">b. ever had x-ray, electrocardiogram, blood studies, or other diagnostic test?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">c. ever been in a hospital, clinic, sanitarium, or institute for observation, diagnosis, operation, or treatment?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">d. had or been told you had acquired immune deficiency sysndrome (AIDS), AIDS-related complications, or AIDS-related conditions?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">e. had any form of sexually transmitted disease (STD)? Is there anything in your lifestyle which culd be expose you to risk of AIDS?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">f. been tested positive for antibodies to the AIDS virus?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">g. had any abnormality, deformity, disease , or disorder?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">h. had and/or presently receiving treatment or taking medication of any kind?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">i. ever drank alcoholic beverages, taken habit-forming drugs, or sough advice or treatment for alcoholism, drug habit or other addiction?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-2"></div>
+				<div class="col-md-4">
+				  <label class="control-label">i. Drugs</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-2"></div>
+				<div class="col-md-4">
+				  <label class="control-label">ii. Alcohol intake per week</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-3"></div>
+				<div class="col-md-3">
+				  <label class="control-label">wine (no. of glasses)</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-3"></div>
+				<div class="col-md-3">
+				  <label class="control-label">beer (no. of 350mL glasses)</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-3"></div>
+				<div class="col-md-3">
+				  <label class="control-label">hard liquor (no. of shots)</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">j. smoked cigarettes/tobacco within the past year?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-2"></div>
+				<div class="col-md-4">
+				  <label class="control-label">i. How many years have you smoked/been smking cigarettes and/or tobacco?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-2"></div>
+				<div class="col-md-4">
+				  <label class="control-label">ii. What is the average number of sticks you smoke daily?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+			<div class="row">
+				  <div class="col-md-6">
+				  <label class="control-label">Have you ever had or beenn told that you had or sought advice for:</label>
+				  </div>
+				  <div class="col-md-2">
+				  <label class="control-label"></label>
+				  </div>
+				  <div class="col-md-2">
+				  <label class="control-label"></label>
+				  </div>
+				<div class="col-md-2">
+				<label class="control-label"></label>
+				</div>
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">a. diziness, fainting spells, epilepsy, nervous breakdown, severe headaches, or any disease of the brain or nervous system?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">b. asthma, hay fever. chronic cough, spitting of blood, tuberculosis, or any disease or disorder of the lungs or respiratory system?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">c. high blood pressure, chest pain, shortness of breathe, heart murmur, or any other disease of the heart or circulatory system?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">d. any disease or disorder of the stomach, intestines, bowel, rectum, appendix, liver, or gallbladder?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">e. nephritis, kidney stone, or any disease or disorder of the kidney, bladder, or prostate?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">f. diabetes, thyroid, or other endocrine disorder</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">g. arthritis, rheumatism, or any disease or disorder of the back, spine, bones, joints, or muscles?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">h. cancer (carcinoma in situ) or a tumor or ulcer of any kind or any abnormal tissue growth?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">i. varicose veins, varicose ulcer, phlebitis, or hernia of any kind?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">j. any disease or disorder of the eyes, ears, nose, or throat?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					 <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">k. any other serious illness, disease, injury, or surgery not mention above?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+			<div class="row">
+				  <div class="col-md-6">
+				  <label class="control-label">For Women Only</label>
+				  </div>
+				  <div class="col-md-2">
+				  <label class="control-label"></label>
+				  </div>
+				  <div class="col-md-2">
+				  <label class="control-label"></label>
+				  </div>
+				<div class="col-md-2">
+				<label class="control-label"></label>
+				</div>
+					 </div><hr>
+					  <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">a. Are you pregnant?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+					  <div class="row">
+			<div class="col-md-1"></div>
+				<div class="col-md-5">
+				  <label class="control-label">a. Any abnormality in menstruation, pregnancy, or of the breast or reproductive organs?</label>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				  <div class="col-md-2">
+				  <div class="rdio rdio-primary">
+                            <input type="radio" id="male4" value="m" name="gender" />
+                            <label for="male4">Yes</label>
+                          </div>
+                          <div class="rdio rdio-primary">
+                            <input type="radio" value="f" id="female4" name="gender"/>
+                            <label for="female4">No</label>
+                          </div>
+				  </div>
+				<div class="col-md-2">
+				<input type="text" name="LIage" class="form-control"  />
+				</div>  
+					 </div><hr>
+			</div>
+			</div>
+			<div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">Non-medical Questionnaire for Adults (Ages 17 and Below)</h4>
+            </div>
+			<div class="panel-body">
+			<div class="row"><br>
+				  <div class="col-md-6">
+				  <label class="control-label">Have you:</label>
+				  </div>
+				  <div class="col-md-2">
+				  <label class="control-label">Life Insured</label>
+				  </div>
+				  <div class="col-md-2">
+				  <label class="control-label">Policy Owner</label>
+				  </div>
+				<div class="col-md-2">
+				<label class="control-label">Details of "YES" answer</label>
+				</div>
+					 </div><hr>
+			</div>
+			</div>
+				</div>
+				</div><!-- tab-content -->
+                </form>
+                
+                <ul class="pager wizard">
+                    <li class="previous"><a href="javascript:void(0)">Previous</a></li>
+                    <li class="next"><a href="javascript:void(0)">Next</a></li>
+                  </ul>
+                
+              </div><!-- #validationWizard -->
+              
+            </div><!-- panel-body -->
+          </div><!-- panel -->
+      </div><!-- row -->
+    </div><!-- contentpanel -->
+    
+  </div><!-- mainpanel -->
+</section>
+
+
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/jquery-migrate-1.2.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/modernizr.min.js"></script>
+<script src="js/jquery.sparkline.min.js"></script>
+<script src="js/toggles.min.js"></script>
+<script src="js/retina.min.js"></script>
+<script src="js/jquery.cookies.js"></script>
+<script src="js/jquery-ui-1.10.3.min.js"></script>
+
+<script src="js/bootstrap-wizard.min.js"></script>
+<script src="js/select2.min.js"></script>
+<script src="js/jquery.validate.min.js"></script>
+
+<script src="js/custom.js"></script>
+<script>
+jQuery(document).ready(function(){
+    
+    "use strict";
+  // Basic Wizard
+  jQuery('#basicWizard').bootstrapWizard();
+  
+  // Progress Wizard
+  $('#progressWizard').bootstrapWizard({
+    'nextSelector': '.next',
+    'previousSelector': '.previous',
+    onNext: function(tab, navigation, index) {
+      var $total = navigation.find('li').length;
+      var $current = index+1;
+      var $percent = ($current/$total) * 100;
+      jQuery('#progressWizard').find('.progress-bar').css('width', $percent+'%');
+    },
+    onPrevious: function(tab, navigation, index) {
+      var $total = navigation.find('li').length;
+      var $current = index+1;
+      var $percent = ($current/$total) * 100;
+      jQuery('#progressWizard').find('.progress-bar').css('width', $percent+'%');
+    },
+    onTabShow: function(tab, navigation, index) {
+      var $total = navigation.find('li').length;
+      var $current = index+1;
+      var $percent = ($current/$total) * 100;
+      jQuery('#progressWizard').find('.progress-bar').css('width', $percent+'%');
+    }
+  });
+  
+  // Disabled Tab Click Wizard
+  jQuery('#disabledTabWizard').bootstrapWizard({
+    tabClass: 'nav nav-pills nav-justified nav-disabled-click',
+    onTabClick: function(tab, navigation, index) {
+      return false;
+    }
+  });
+  
+  // With Form Validation Wizard
+  var $validator = jQuery("#firstForm").validate({
+    highlight: function(element) {
+      jQuery(element).closest('.form-group').removeClass('has-success').addClass('has-error');
+    },
+    success: function(element) {
+      jQuery(element).closest('.form-group').removeClass('has-error');
+    }
+  });
+  
+  jQuery('#validationWizard').bootstrapWizard({
+    tabClass: 'nav nav-pills nav-justified nav-disabled-click',
+    onTabClick: function(tab, navigation, index) {
+      return false;
+    },
+    onNext: function(tab, navigation, index) {
+      var $valid = jQuery('#firstForm').valid();
+      if(!$valid) {
+        
+        $validator.focusInvalid();
+        return false;
+      }
+    }
+  });
+  
+  jQuery(".select2").select2({
+    width: '100%',
+    minimumResultsForSearch: -1
+  });
+  
+  
+});
+// Date Picker
+  jQuery('#datepicker').datepicker();
+  
+  jQuery('#datepicker-inline').datepicker();
+  
+  jQuery('#datepicker-multiple').datepicker({
+    numberOfMonths: 3,
+    showButtonPanel: true
+  });
+</script>
+
+</body>
+</html>
