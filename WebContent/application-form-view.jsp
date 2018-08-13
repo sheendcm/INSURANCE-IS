@@ -116,33 +116,43 @@
                 <th>Application Number</th>
                 <th>Name</th>
                 <th>Plan Name</th>
+                <th>Status</th>
+                <th style="display:none;"></th>
+                <th style="display:none;"></th>
+                <th style="display:none;"></th>
+                <th style="display:none;"></th>
+                <th style="display:none;"></th>
                 <th>Action</th>
-                <th style="display:none;"></th>
-                <th style="display:none;"></th>
-                <th style="display:none;"></th>
-                <th style="display:none;"></th>
-                <th style="display:none;"></th>
               </tr>
             </thead>
             <tbody>
             <%
 			try{ 
-				String query = "SELECT c.c_id as cid, af.af_applicationnumber ApplicationNumber, CONCAT (p.p_givenname,' ',p.p_middlename,' ',p.p_surname) as Name, pi.pi_planname as PlanName, ar.ar_req1 as Req1, ar.ar_req2 as Req2, ar.ar_req3 as Req3, ar.ar_req4 as Req4, ar.ar_req5 as Req5 FROM r_application_requirements_details ar LEFT JOIN r_client_details c ON ar.ar_ref_c_id=c.c_id LEFT JOIN r_application_form_details af ON c.c_ref_af_id=af.af_id LEFT JOIN r_agent_information_details ai ON c.c_ref_ai_id=ai.ai_id LEFT JOIN r_life_insured_details li ON c.c_ref_li_id=li.li_id LEFT JOIN r_policyowner_details p ON c.c_ref_p_id=p.p_id LEFT JOIN r_beneficial_owner_details bo ON c.c_ref_bo_id=bo.bo_id LEFT JOIN r_primary_beneficiary_details pb ON c.c_ref_pb_id=pb.pb_id LEFT JOIN r_secondary_beneficiary_details sb ON c.c_ref_sb_id=sb.sb_id LEFT JOIN r_policy_information_details pi ON c.c_ref_pi_id=pi.pi_id";
+				String query = "SELECT c.c_id as cid, af.af_applicationnumber ApplicationNumber, CONCAT (p.p_givenname,' ',p.p_middlename,' ',p.p_surname) as Name, pi.pi_planname as PlanName, (select ar_req1+ar_req2+ar_req3+ar_req4+ar_req5 from r_application_requirements_details) as sum, ar.ar_req1 as Req1, ar.ar_req2 as Req2, ar.ar_req3 as Req3, ar.ar_req4 as Req4, ar.ar_req5 as Req5 FROM r_application_requirements_details ar LEFT JOIN r_client_details c ON ar.ar_ref_c_id=c.c_id LEFT JOIN r_application_form_details af ON c.c_ref_af_id=af.af_id LEFT JOIN r_agent_information_details ai ON c.c_ref_ai_id=ai.ai_id LEFT JOIN r_life_insured_details li ON c.c_ref_li_id=li.li_id LEFT JOIN r_policyowner_details p ON c.c_ref_p_id=p.p_id LEFT JOIN r_beneficial_owner_details bo ON c.c_ref_bo_id=bo.bo_id LEFT JOIN r_primary_beneficiary_details pb ON c.c_ref_pb_id=pb.pb_id LEFT JOIN r_secondary_beneficiary_details sb ON c.c_ref_sb_id=sb.sb_id LEFT JOIN r_policy_information_details pi ON c.c_ref_pi_id=pi.pi_id";
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
 				while(rs.next())
 				{
 			%>
-              
+ 
               <tr>
                 <td style="display:none;"><%out.print(rs.getInt("cid")); %></td>
                 <td><%out.print(rs.getString("ApplicationNumber")); %></td>
                 <td><%out.print(rs.getString("Name")); %></td>
                 <td><%out.print(rs.getString("PlanName")); %></td>
+                <td id="reqstat"><%out.print(rs.getString("sum")); %>/5</td>
+                <td style="display:none;"><%out.print(rs.getString("Req1")); %></td>
+                <td style="display:none;"><%out.print(rs.getString("Req2")); %></td>
+                <td style="display:none;"><%out.print(rs.getString("Req3")); %></td>
+                <td style="display:none;"><%out.print(rs.getString("Req4")); %></td>
+                <td style="display:none;"><%out.print(rs.getString("Req5")); %></td>
                 <td>
-                <a class="btn btn-success btnCheckStatus" href="#modalCheckStatus" data-toggle="modal" style="padding: 4px 7px;">
+                <a class="btn btn-warning btnCheckStatus" href="#modalCheckStatus" data-toggle="modal" style="padding: 4px 7px;">
                         <i class="glyphicon glyphicon-pencil"></i>
                     </a>
+                <button class="btn btn-success" href="#modalCompleted" data-toggle="modal" style="padding: 4px 7px;" id="btnCompleted" disabled>
+                        <i class="glyphicon glyphicon-ok" onclick="return false;"></i>
+                    </button>
                 </td>
       
                 <%
@@ -176,8 +186,8 @@
 				        <div class="modal-header" style="background-color:#db241e;">
 				            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
 				            <h4 class="modal-title">Upload Requirements</h4>
-				            <input id="puname" type="text" class="form-control" name="selected_applicationid"
-				            style="color: black; width: 560px; display:none;" value="" maxlength="50"/>
+				            <input id="reqstatus_id" type="text" class="form-control" name="reqstatus_id"
+				            style="color: black; width: 560px; display:none" maxlength="50"/>
 				        </div>
 				        <div class="modal-body">
 				        
@@ -185,12 +195,28 @@
 				         <div class="col-sm-2"></div>
 				         <div class="col-sm-8">
 				         <br><br>
-				         <input type="text" id="appno" name="appno" class="form-control input-sm mb15" style="margin-top:0px; margin-bottom:10px" />
-				         <input type="text" id="pname" name="pname" class="form-control input-sm mb15" style="margin-top:0px; margin-bottom:10px" />
-				         <input type="text" id="planname" name="plannname" class="form-control input-sm mb15" style="margin-top:0px; margin-bottom:10px" />
-				         
+				         <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="0" id="req_1"/>
+                            <label for="req_1" style="font-size:85%;">Requirement 1</label>
+                 		</div>
+                 		 <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="0" id="req_2"/>
+                            <label for="req_2" style="font-size:85%;">Requirement 2</label>
+                 		</div>
+                 		 <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="0" id="req_3"/>
+                            <label for="req_3" style="font-size:85%;">Requirement 3</label>
+                 		</div>
+                 		 <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="0" id="req_4"/>
+                            <label for="req_4" style="font-size:85%;">Requirement 4</label>
+                 		</div>
+                 		 <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="0" id="req_5"/>
+                            <label for="req_5" style="font-size:85%;">Requirement 5</label>
+                 		</div>
 				         <br>
-				         <a class="btn btn-primary" style="alight:right;">Save</a>
+				         <a class="btn btn-primary" style="alight:right;" id="btnUpdateReqStatus">Save</a>
 				         </form>
 				         </div>
 				         <div class="col-sm-2"></div>
@@ -202,7 +228,55 @@
 		</div>
 		</div>
 		<!-- MODALS-->
-                
+            <!-- MODALS-->
+       <div class="modal fade bs-example-modal-static" id="modalCompleted" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-backdrop="static" aria-hidden="true">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				        <div class="modal-header" style="background-color:#db241e;">
+				            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
+				            <h4 class="modal-title">Upload Requirements</h4>
+				            <input id="reqstatus_id" type="text" class="form-control" name="reqstatus_id"
+				            style="color: black; width: 560px; display:none" maxlength="50"/>
+				        </div>
+				        <div class="modal-body">
+				        
+				         <div class="row">
+				         <div class="col-sm-2"></div>
+				         <div class="col-sm-8">
+				         <br><br>
+				         <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="0" id="req_1"/>
+                            <label for="req_1" style="font-size:85%;">Requirement 1</label>
+                 		</div>
+                 		 <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="0" id="req_2"/>
+                            <label for="req_2" style="font-size:85%;">Requirement 2</label>
+                 		</div>
+                 		 <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="0" id="req_3"/>
+                            <label for="req_3" style="font-size:85%;">Requirement 3</label>
+                 		</div>
+                 		 <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="0" id="req_4"/>
+                            <label for="req_4" style="font-size:85%;">Requirement 4</label>
+                 		</div>
+                 		 <div class="ckbox ckbox-primary">
+                        <input type="checkbox" value="0" id="req_5"/>
+                            <label for="req_5" style="font-size:85%;">Requirement 5</label>
+                 		</div>
+				         <br>
+				         <a class="btn btn-primary" style="alight:right;" id="btnUpdateReqStatus">Save</a>
+				         </form>
+				         </div>
+				         <div class="col-sm-2"></div>
+				          
+				        
+				        </div>
+				    </div>
+		</div>
+		</div>
+		</div>
+		<!-- MODALS-->     
       </div><!-- row -->
 
     </div><!-- contentpanel -->
@@ -215,18 +289,31 @@ $('.btnCheckStatus').click( function() {
     var table = document.getElementById('pendingapplication'); 
     for(var i = 1; i < table.rows.length; i++)
     {
-      table.rows[i].cells[4].onclick = function()
+      table.rows[i].cells[10].onclick = function()
       {
 
     	  	indexedituser = this.parentElement.rowIndex;
-	        var editusergetid = document.getElementById('pendingapplication').rows[indexedituser].cells.item(1).innerHTML
-	        document.getElementById('appno').value = editusergetid;
+    	  	var reqstatusid = document.getElementById('pendingapplication').rows[indexedituser].cells.item(0).innerHTML
+	        document.getElementById('reqstatus_id').value = reqstatusid;
+	        var req1 = document.getElementById('pendingapplication').rows[indexedituser].cells.item(5).innerHTML
+	        if (req1==1)
+	        document.getElementById("req_1").checked = true;
     	  	indexedituser = this.parentElement.rowIndex;
-	        var editusergetfname = document.getElementById('pendingapplication').rows[indexedituser].cells.item(2).innerHTML
-	        document.getElementById('pname').value = editusergetfname;
+    	  	var req2 = document.getElementById('pendingapplication').rows[indexedituser].cells.item(6).innerHTML
+	        if (req2==1)
+	        document.getElementById("req_2").checked = true;
     	  	indexedituser = this.parentElement.rowIndex;
-	        var editusergetmname = document.getElementById('pendingapplication').rows[indexedituser].cells.item(3).innerHTML
-	        document.getElementById('planname').value = editusergetmname;
+    	  	var req3 = document.getElementById('pendingapplication').rows[indexedituser].cells.item(7).innerHTML
+	        if (req3==1)
+	        document.getElementById("req_3").checked = true;
+    	  	indexedituser = this.parentElement.rowIndex;
+    	  	var req4 = document.getElementById('pendingapplication').rows[indexedituser].cells.item(8).innerHTML
+	        if (req4==1)
+	        document.getElementById("req_4").checked = true;
+    	  	indexedituser = this.parentElement.rowIndex;
+    	  	var req5 = document.getElementById('pendingapplication').rows[indexedituser].cells.item(9).innerHTML
+	        if (req5==1)
+	        document.getElementById("req_5").checked = true;
     	  	indexedituser = this.parentElement.rowIndex;
 	       
       };
@@ -234,7 +321,63 @@ $('.btnCheckStatus').click( function() {
     }
     
   }); 
+  
+
 </script>
+              <script type="text/javascript">
+					var stat = out.print(rs.getString("sum"));
+					if (stat ==5)
+					document.getElementById("btnCompleted").disabled = false;
+					</script>
+<script type="text/javascript">
+	$(document).ready(function (){
+		
+		
+		
+		$("#btnUpdateReqStatus").click(function() {
+			
+			var reqstatus_id = $('#reqstatus_id').val();
+			
+			if($('#req_1').is(':checked'))
+			var req_1 = 1
+			else var req_1 = 0
+			if($('#req_2').is(':checked'))
+			var req_2 = 1
+			else var req_2 = 0
+			if($('#req_3').is(':checked'))
+			var req_3 = 1
+			else var req_3 = 0
+			if($('#req_4').is(':checked'))
+			var req_4 = 1
+			else var req_4 = 0
+			if($('#req_5').is(':checked'))
+			var req_5 = 1
+			else var req_5 = 0
+			
+			
+			$.ajax({
+				type:'POST',
+				data:
+				{	
+					reqstatus_id:reqstatus_id,
+					req_1:req_1,
+					req_2:req_2,
+					req_3:req_3,
+					req_4:req_4,
+					req_5:req_5
+					
+				},
+				url:'updatereqstatus',
+				success: function(result){
+					setTimeout(location.reload.bind(location), 1000);
+					
+				}
+			});
+		});
+		
+		
+	});
+</script>			
 
 <script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/jquery-migrate-1.2.1.min.js"></script>

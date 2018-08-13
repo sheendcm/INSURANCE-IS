@@ -4,7 +4,7 @@
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
 	<classpathentry kind="lib" path="C:/xampp/tomcat/lib/servlet-api.jar"/>
-	<classpathentry kind="lib" path="C:/Users/SHEEN/eclipse-workspace/Insurance-IS/mysql-connector-java-5.1.46/mysql-connector-java-5.1.46-bin.jar">
+	<classpathentry kind="lib" path="C:/Users/Sheen/eclipse-workspace/INSURANCE-IS/mysql-connector-java-5.1.46/mysql-connector-java-5.1.46-bin.jar">
 		<attributes>
 			<attribute name="org.eclipse.jst.component.dependency" value="/WEB-INF/lib"/>
 		</attributes>
