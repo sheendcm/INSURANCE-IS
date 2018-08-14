@@ -16,14 +16,14 @@ import db.Conn;
 /**
  * Servlet implementation class updatereqstatus
  */
-@WebServlet("/updatereqstatus")
-public class updatereqstatus extends HttpServlet {
+@WebServlet("/updatehealthy")
+public class updatehealthy extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public updatereqstatus() {
+    public updatehealthy() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,11 +44,6 @@ public class updatereqstatus extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		String reqstatus_id = request.getParameter("reqstatus_id");
-		String req_1 = request.getParameter("req_1");
-		String req_2 = request.getParameter("req_2");
-		String req_3 = request.getParameter("req_3");
-		String req_4 = request.getParameter("req_4");
-		String req_5 = request.getParameter("req_5");
 		
 		
 
@@ -59,11 +54,9 @@ public class updatereqstatus extends HttpServlet {
         
         
 		try
-		{		
-				PreparedStatement reqstatusupdate = (PreparedStatement) conn.prepareStatement("UPDATE r_application_requirements_details SET ar_req1 = "+req_1+", ar_req2 = "+req_2+", ar_req3 = "+req_3+", ar_req4 = "+req_4+", ar_req5 = "+req_5+" WHERE ar_ref_c_id = '"+reqstatus_id+"' ");
+		{		PreparedStatement reqstatusupdate = (PreparedStatement) conn.prepareStatement("update r_application_status_details \r\n" + 
+				"set as_status = 'In Medical Department' where as_ref_c_id ='"+reqstatus_id+"' ");
 				reqstatusupdate.executeUpdate();
-				PreparedStatement msdetails = (PreparedStatement) conn.prepareStatement("Insert into r_medical_status_details (ms_ref_c_id, ms_status) values ('"+reqstatus_id+"','Pending')");
-				msdetails.executeUpdate();
 				
 				
 			
