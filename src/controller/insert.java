@@ -188,9 +188,11 @@ public class insert extends HttpServlet {
 				pidetails.executeUpdate();
 				PreparedStatement cdetails = (PreparedStatement) conn.prepareStatement("INSERT INTO r_client_details (c_ref_af_id, c_ref_ai_id, c_ref_li_id, c_ref_p_id, c_ref_bo_id, c_ref_pb_id, c_ref_sb_id, c_ref_pi_id) values ((SELECT MAX(af_id) from r_application_form_details ),(SELECT MAX(ai_id) from r_agent_information_details ),(SELECT MAX(li_id) from r_life_insured_details ),(SELECT MAX(p_id) from r_policyowner_details ),(SELECT MAX(bo_id) from r_beneficial_owner_details ),(SELECT MAX(pb_id) from r_primary_beneficiary_details ),(SELECT MAX(sb_id) from r_secondary_beneficiary_details ),(SELECT MAX(pi_id) from r_policy_information_details ))");
 				cdetails.executeUpdate();
-				PreparedStatement asdetails = (PreparedStatement) conn.prepareStatement("insert into r_application_status_details (as_ref_c_id, as_status) values ((SELECT MAX(as_id) from r_application_status_details), 'Pending')");
+				PreparedStatement asdetails = (PreparedStatement) conn.prepareStatement("insert into r_application_status_details (as_ref_c_id, as_status) values ((SELECT MAX(c_id) from r_client_details), 'Pending')");
 				asdetails.executeUpdate();
-			
+				PreparedStatement ardetails = (PreparedStatement) conn.prepareStatement("insert into r_application_requirements_details (ar_ref_c_id) values ((SELECT MAX(c_id) from r_client_details))");
+				ardetails.executeUpdate();
+				
 		} 
 		catch (Exception e)
 		{

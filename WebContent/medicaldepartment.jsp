@@ -29,7 +29,10 @@
 	
 	Conn db = new Conn();
 	Connection conn = db.getConnection();
-
+	/* if(conn == null)
+		out.print("failed");
+	else
+		out.print("success"); */
 %>
 
 <section>
@@ -101,7 +104,7 @@
 
           <div class="panel panel-default">
             <div class="panel-heading" style="background-color:#db241e; height:60px; padding:20px;">
-              <h4 class="panel-title" align="center" style="font-size:90%; color:white;">APPLICATION FOR LIFE INSURANCE</h4>
+              <h4 class="panel-title" align="center" style="font-size:90%; color:white;">MEDICAL DEPARTMENT</h4>
             </div>
 			<div class="panel-body">
 			<div class="row" style="padding-right:20px; padding-left:20px; padding-top:25px;">
@@ -112,7 +115,6 @@
               	<th style="display:none;"></th>
                 <th>Application Number</th>
                 <th>Name</th>
-                <th>Plan Name</th>
                 <th>Status</th>
                 <th>Action</th>
               </tr>
@@ -120,32 +122,23 @@
             <tbody>
             <%
 			try{ 
-				String query = "SELECT c.c_id as cid, af.af_applicationnumber ApplicationNumber, CONCAT (p.p_givenname,' ',p.p_middlename,' ',p.p_surname) as Name, pi.pi_planname as PlanName FROM r_application_requirements_details ar LEFT JOIN r_client_details c ON ar.ar_ref_c_id=c.c_id LEFT JOIN r_application_status_details astat on astat.as_ref_c_id=c.c_id LEFT JOIN r_application_form_details af ON c.c_ref_af_id=af.af_id LEFT JOIN r_agent_information_details ai ON c.c_ref_ai_id=ai.ai_id LEFT JOIN r_life_insured_details li ON c.c_ref_li_id=li.li_id LEFT JOIN r_policyowner_details p ON c.c_ref_p_id=p.p_id LEFT JOIN r_beneficial_owner_details bo ON c.c_ref_bo_id=bo.bo_id LEFT JOIN r_primary_beneficiary_details pb ON c.c_ref_pb_id=pb.pb_id LEFT JOIN r_secondary_beneficiary_details sb ON c.c_ref_sb_id=sb.sb_id LEFT JOIN r_policy_information_details pi ON c.c_ref_pi_id=pi.pi_id where astat.as_status='In Medical Department'";
+				String query = "SELECT c.c_id as cid, af.af_applicationnumber ApplicationNumber, CONCAT (p.p_givenname,' ',p.p_middlename,' ',p.p_surname) as Name, pi.pi_planname as PlanName, ms.ms_status as Status FROM r_application_requirements_details ar LEFT JOIN r_client_details c ON ar.ar_ref_c_id=c.c_id LEFT JOIN r_application_status_details astat on astat.as_ref_c_id=c.c_id LEFT JOIN r_medical_status_details ms ON ms.ms_ref_c_id= c.c_id LEFT JOIN r_application_form_details af ON c.c_ref_af_id=af.af_id LEFT JOIN r_agent_information_details ai ON c.c_ref_ai_id=ai.ai_id LEFT JOIN r_life_insured_details li ON c.c_ref_li_id=li.li_id LEFT JOIN r_policyowner_details p ON c.c_ref_p_id=p.p_id LEFT JOIN r_beneficial_owner_details bo ON c.c_ref_bo_id=bo.bo_id LEFT JOIN r_primary_beneficiary_details pb ON c.c_ref_pb_id=pb.pb_id LEFT JOIN r_secondary_beneficiary_details sb ON c.c_ref_sb_id=sb.sb_id LEFT JOIN r_policy_information_details pi ON c.c_ref_pi_id=pi.pi_id where astat.as_status='In Medical Department'";
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
 				while(rs.next())
 				{
 			%>
-			<script>
-			$(document).ready(function (){
-				var req= <%out.print(rs.getString("sum")); %>;
-				if (req==5)
-				$('#btnCompleted').attr('disabled',false);
-				else $('#btnCompleted').attr('disabled',true);
-			});
-			</script>
  
               <tr>
                 <td style="display:none;"><%out.print(rs.getInt("cid")); %></td>
                 <td><%out.print(rs.getString("ApplicationNumber")); %></td>
                 <td><%out.print(rs.getString("Name")); %></td>
-                <td><%out.print(rs.getString("PlanName")); %></td>
-                <td id="reqstat"><%out.print(rs.getString("sum")); %>/5</td>
+                <td id="reqstat"><%out.print(rs.getString("Status")); %></td>
                 <td>
-                <a class="btn btn-warning btnCheckStatus" href="#modalHealthy" data-toggle="modal" style="padding: 4px 7px;">
+                <a class="btn btn-success btnCheckStatus" href="#modalHealthy" data-toggle="modal" style="padding: 4px 7px;">
                         <i class="glyphicon glyphicon-ok"></i>
                     </a>
-                <button class="btn btn-success btnCheckStatus" href="#modalUnhealthy" data-toggle="modal" style="padding: 4px 7px;" id="btnCompleted" disabled>
+                <button class="btn btn-danger btnCheckStatus" href="#modalUnhealthy" data-toggle="modal" style="padding: 4px 7px;" id="btnCompleted">
                         <i class="glyphicon glyphicon-remove"></i>
                     </button>
                 </td>
@@ -181,8 +174,8 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-        <input id="reqstatus_id" type="text" class="form-control" name="reqstatus_id"
-				            style="color: black; width: 560px; display:none;" maxlength="50"/>
+        <input id="id_healthy" type="text" class="form-control" name="id_healthy"
+				            style="color: black; width: 560px;  display:none;" maxlength="50"/>
       </div>
       <div class="modal-body">
         Content goes here...
@@ -194,6 +187,7 @@
     </div><!-- modal-content -->
   </div><!-- modal-dialog -->
 </div><!-- modal -->
+
 		<!-- MODALS-->
             <div class="modal fade" id="modalUnhealthy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -201,7 +195,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-        <input id="reqstatus_id1" type="text" class="form-control" name="reqstatus_id1"
+        <input id="id_unhealthy" type="text" class="form-control" name="id_unhealthy"
 				            style="color: black; width: 560px; display:none;" maxlength="50"/>
       </div>
       <div class="modal-body">
@@ -226,14 +220,14 @@ $('.btnCheckStatus').click( function() {
     var table = document.getElementById('pendingapplication'); 
     for(var i = 1; i < table.rows.length; i++)
     {
-      table.rows[i].cells[10].onclick = function()
+      table.rows[i].cells[4].onclick = function()
       {
 
     	  	indexedituser = this.parentElement.rowIndex;
-    	  	var reqstatusid = document.getElementById('pendingapplication').rows[indexedituser].cells.item(0).innerHTML
-	        document.getElementById('reqstatus_id').value = reqstatusid;
-	        var reqstatusid1 = document.getElementById('pendingapplication').rows[indexedituser].cells.item(0).innerHTML
-	        document.getElementById('reqstatus_id1').value = reqstatusid1;
+    	  	var idhealthy = document.getElementById('pendingapplication').rows[indexedituser].cells.item(0).innerHTML
+	        document.getElementById('id_healthy').value = idhealthy;
+	        var idunhealthy = document.getElementById('pendingapplication').rows[indexedituser].cells.item(0).innerHTML
+	        document.getElementById('id_unhealthy').value = idunhealthy;
     	  	indexedituser = this.parentElement.rowIndex;
 	       
       };
@@ -244,19 +238,15 @@ $('.btnCheckStatus').click( function() {
   
 
 </script>
-              <script type="text/javascript">
-					var stat = out.print(rs.getString("sum"));
-					if (stat ==5)
-					document.getElementById("btnCompleted").disabled = false;
-					</script>
+
 <script type="text/javascript">
 	$(document).ready(function (){
 		
 		
 		
-		$("#btnUpdateReqStatus").click(function() {
+		$("#btnHealthy").click(function() {
 			
-			var reqstatus_id = $('#reqstatus_id').val();
+			var id_healthy = $('#id_healthy').val();
 			
 			
 			
@@ -264,7 +254,7 @@ $('.btnCheckStatus').click( function() {
 				type:'POST',
 				data:
 				{	
-					reqstatus_id:reqstatus_id
+					id_healthy:id_healthy
 					
 				},
 				url:'updatehealthy',
@@ -275,16 +265,16 @@ $('.btnCheckStatus').click( function() {
 			});
 		});
 		
-				$("#btnStatusInMed").click(function() {
+				$("#btnUnhealthy").click(function() {
 			
-			var reqstatus_id = $('#reqstatus_id').val();
+			var id_unhealthy = $('#id_unhealthy').val();
 			
 			
 			$.ajax({
 				type:'POST',
 				data:
 				{	
-					reqstatus_id:reqstatus_id
+					id_unhealthy:id_unhealthy
 					
 				},
 				url:'updateunhealthy',

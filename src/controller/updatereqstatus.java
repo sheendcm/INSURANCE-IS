@@ -62,8 +62,6 @@ public class updatereqstatus extends HttpServlet {
 		{		
 				PreparedStatement reqstatusupdate = (PreparedStatement) conn.prepareStatement("UPDATE r_application_requirements_details SET ar_req1 = "+req_1+", ar_req2 = "+req_2+", ar_req3 = "+req_3+", ar_req4 = "+req_4+", ar_req5 = "+req_5+" WHERE ar_ref_c_id = '"+reqstatus_id+"' ");
 				reqstatusupdate.executeUpdate();
-				PreparedStatement msdetails = (PreparedStatement) conn.prepareStatement("Insert into r_medical_status_details (ms_ref_c_id, ms_status) values ('"+reqstatus_id+"','Pending')");
-				msdetails.executeUpdate();
 				
 				
 			

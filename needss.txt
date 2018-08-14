@@ -1,5 +1,14 @@
 SET FOREIGN_KEY_CHECKS = 0; -- Disable foreign key checking.
-TRUNCATE TABLE forums;
-TRUNCATE TABLE dates;
-TRUNCATE TABLE remarks;
+TRUNCATE TABLE r_secondary_beneficiary_details;
+TRUNCATE TABLE r_primary_beneficiary_details;
+TRUNCATE TABLE r_policy_information_details;
+TRUNCATE TABLE r_policyowner_details;
+TRUNCATE TABLE r_medical_status_details;
+TRUNCATE TABLE r_life_insured_details;
+TRUNCATE TABLE r_client_details;
+TRUNCATE TABLE r_beneficial_owner_details;
+TRUNCATE TABLE r_application_status_details;
+TRUNCATE TABLE r_application_requirements_details;
+TRUNCATE TABLE r_application_form_details;
+TRUNCATE TABLE r_agent_information_details;
 SET FOREIGN_KEY_CHECKS = 1; -- Enable foreign key checking.

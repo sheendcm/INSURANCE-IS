@@ -57,6 +57,8 @@ public class updatestatusinmed extends HttpServlet {
 		{		PreparedStatement reqstatusupdate = (PreparedStatement) conn.prepareStatement("update r_application_status_details \r\n" + 
 				"set as_status = 'In Medical Department' where as_ref_c_id ='"+reqstatus_id+"' ");
 				reqstatusupdate.executeUpdate();
+				PreparedStatement msdetails = (PreparedStatement) conn.prepareStatement("Insert into r_medical_status_details (ms_ref_c_id, ms_status) values ('"+reqstatus_id+"','Pending')");
+				msdetails.executeUpdate();
 				
 				
 			
