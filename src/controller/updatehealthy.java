@@ -54,9 +54,12 @@ public class updatehealthy extends HttpServlet {
         
         
 		try
-		{		PreparedStatement reqstatusupdate = (PreparedStatement) conn.prepareStatement("update r_medical_status_details \r\n" + 
+		{		PreparedStatement updatehealthy = (PreparedStatement) conn.prepareStatement("update r_medical_status_details \r\n" + 
 				"set ms_status = 'Healthy' where ms_ref_c_id ='"+id_healthy+"' ");
-				reqstatusupdate.executeUpdate();
+				updatehealthy.executeUpdate();
+				PreparedStatement updatestatus = (PreparedStatement) conn.prepareStatement("update r_application_status_details \r\n" + 
+						"set as_status = 'Medical Completed' where as_ref_c_id ='"+id_healthy+"' ");
+						updatestatus.executeUpdate();
 				
 				
 			

@@ -12,7 +12,7 @@
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
 <meta charset="ISO-8859-1">
- <title>Application for Life Insurance</title>
+ <title>Application with Pending Requirement</title>
 
   <link href="css/style.default.css" rel="stylesheet">
   <link rel="stylesheet" href="css/dropzone.css" />
@@ -63,11 +63,15 @@
       
       <ul class="nav nav-pills nav-stacked nav-bracket">
         <li><a href="#"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-        <li><a href="application-form.jsp" ><i class="fa fa-caret-right"></i>Application Form</a></li>
-        <li><a href="upload-requirements.jsp"><i class="fa fa-caret-right"></i>Upload Requirements</a></li>
-        <li><a href="update-application.jsp"><i class="fa fa-caret-right"></i>Update Application</a></li>
-        <li><a href="application-form-view.jsp" style="color:#db241e;"><i class="fa fa-caret-right"></i>Issued Applicants</a></li>
-
+        <li><a href="application-form.jsp"><i class="fa fa-edit"></i> <span>Application Form</span></a></li>
+        <li class="nav-parent nav-active active"><a href=""><i class="fa fa-list-alt"></i> <span>List of Application</span></a>
+          <ul class="children" style="display: block">
+            <li class="active"><a href="application-form-view.jsp"><i class="fa fa-caret-right"></i> Pending Application</a></li>
+            <li><a href="issued-application.jsp"><i class="fa fa-caret-right"></i> Issued</a></li>
+            <li><a href="declined-application.jsp"><i class="fa fa-caret-right"></i> Declined</a></li>
+          </ul>
+        </li>
+        <li><a href="upload-requirements.jsp"><i class="fa fa-edit"></i> <span>Profile</span></a></li>
       </ul>
 
       
@@ -102,7 +106,8 @@
     <div class="contentpanel">
       
       <div class="row">
-          <div class="panel panel-default">
+          
+     <div class="panel panel-default">
             <div class="panel-heading" style="background-color:#db241e; height:60px; padding:20px;">
               <h4 class="panel-title" align="center" style="font-size:90%; color:white;">WITH PENDING REQUIREMENTS</h4>
             </div>
@@ -110,6 +115,12 @@
 			<div class="row" style="padding-right:20px; padding-left:20px; padding-top:25px;">
               <div class="table-responsive">
           <table class="table table-bordered mb30" id="pendingapplication">
+           <col width="80">
+  			<col width="100">
+  			<col width="200">
+  			<col width="200">
+  			<col width="80">
+  			<col width="100">
             <thead>
               <tr>
               	<th style="display:none;"></th>
@@ -129,7 +140,7 @@
             <tbody>
             <%
 			try{ 
-				String query = "SELECT c.c_id as cid, af.af_applicationnumber ApplicationNumber,af.af_dateapplied as Date, CONCAT (p.p_givenname,' ',p.p_middlename,' ',p.p_surname) as Name, pi.pi_planname as PlanName, (select ar_req1+ar_req2+ar_req3+ar_req4+ar_req5 from r_application_requirements_details) as sum, ar.ar_req1 as Req1, ar.ar_req2 as Req2, ar.ar_req3 as Req3, ar.ar_req4 as Req4, ar.ar_req5 as Req5 FROM r_application_requirements_details ar LEFT JOIN r_client_details c ON ar.ar_ref_c_id=c.c_id LEFT JOIN r_application_status_details astat on astat.as_ref_c_id=c.c_id LEFT JOIN r_application_form_details af ON c.c_ref_af_id=af.af_id LEFT JOIN r_agent_information_details ai ON c.c_ref_ai_id=ai.ai_id LEFT JOIN r_life_insured_details li ON c.c_ref_li_id=li.li_id LEFT JOIN r_policyowner_details p ON c.c_ref_p_id=p.p_id LEFT JOIN r_beneficial_owner_details bo ON c.c_ref_bo_id=bo.bo_id LEFT JOIN r_primary_beneficiary_details pb ON c.c_ref_pb_id=pb.pb_id LEFT JOIN r_secondary_beneficiary_details sb ON c.c_ref_sb_id=sb.sb_id LEFT JOIN r_policy_information_details pi ON c.c_ref_pi_id=pi.pi_id where astat.as_status='Pending'";
+				String query = "SELECT c.c_id as cid, af.af_applicationnumber ApplicationNumber,af.af_dateapplied as Date, CONCAT (p.p_givenname,' ',p.p_middlename,' ',p.p_surname) as Name, pi.pi_planname as PlanName, ar_req1+ar_req2+ar_req3+ar_req4+ar_req5 as sum, ar.ar_req1 as Req1, ar.ar_req2 as Req2, ar.ar_req3 as Req3, ar.ar_req4 as Req4, ar.ar_req5 as Req5 FROM r_application_requirements_details ar LEFT JOIN r_client_details c ON ar.ar_ref_c_id=c.c_id LEFT JOIN r_application_status_details astat on astat.as_ref_c_id=c.c_id LEFT JOIN r_application_form_details af ON c.c_ref_af_id=af.af_id LEFT JOIN r_agent_information_details ai ON c.c_ref_ai_id=ai.ai_id LEFT JOIN r_life_insured_details li ON c.c_ref_li_id=li.li_id LEFT JOIN r_policyowner_details p ON c.c_ref_p_id=p.p_id LEFT JOIN r_beneficial_owner_details bo ON c.c_ref_bo_id=bo.bo_id LEFT JOIN r_primary_beneficiary_details pb ON c.c_ref_pb_id=pb.pb_id LEFT JOIN r_secondary_beneficiary_details sb ON c.c_ref_sb_id=sb.sb_id LEFT JOIN r_policy_information_details pi ON c.c_ref_pi_id=pi.pi_id where astat.as_status='Pending'";
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
 				while(rs.next())
@@ -183,20 +194,20 @@
           </div><!-- table-responsive -->
 			  </div>
             </div>
-            <div class="panel-body panel-body-nopadding">
-              
-              
-              
-            </div><!-- panel-body -->
-          </div><!-- panel -->
-          <div class="panel panel-default">
+          </div><!-- panel -->  
+     <div class="panel panel-default">
             <div class="panel-heading" style="background-color:#db241e; height:60px; padding:20px;">
               <h4 class="panel-title" align="center" style="font-size:90%; color:white;">IN MEDICAL DEPARTMENT</h4>
             </div>
 			<div class="panel-body">
 			<div class="row" style="padding-right:20px; padding-left:20px; padding-top:25px;">
               <div class="table-responsive">
-          <table class="table table-bordered mb30" id="pendingapplication">
+          <table class="table table-bordered mb30" id="medicalcompleted">
+          <col width="100">
+  			<col width="200">
+  			<col width="200">
+  			<col width="80">
+  			<col width="100">
             <thead>
               <tr>
               	<th style="display:none;"></th>
@@ -210,13 +221,13 @@
             <tbody>
             <%
 			try{ 
-				String query = "SELECT c.c_id as cid, af.af_applicationnumber ApplicationNumber, CONCAT (p.p_givenname,' ',p.p_middlename,' ',p.p_surname) as Name, pi.pi_planname as PlanName, ms.ms_status as Status FROM r_application_requirements_details ar LEFT JOIN r_client_details c ON ar.ar_ref_c_id=c.c_id LEFT JOIN r_application_status_details astat on astat.as_ref_c_id=c.c_id LEFT JOIN r_medical_status_details ms ON ms.ms_ref_c_id= c.c_id LEFT JOIN r_application_form_details af ON c.c_ref_af_id=af.af_id LEFT JOIN r_agent_information_details ai ON c.c_ref_ai_id=ai.ai_id LEFT JOIN r_life_insured_details li ON c.c_ref_li_id=li.li_id LEFT JOIN r_policyowner_details p ON c.c_ref_p_id=p.p_id LEFT JOIN r_beneficial_owner_details bo ON c.c_ref_bo_id=bo.bo_id LEFT JOIN r_primary_beneficiary_details pb ON c.c_ref_pb_id=pb.pb_id LEFT JOIN r_secondary_beneficiary_details sb ON c.c_ref_sb_id=sb.sb_id LEFT JOIN r_policy_information_details pi ON c.c_ref_pi_id=pi.pi_id where astat.as_status='In Medical Department'";
+				String query = "SELECT c.c_id as cid, af.af_applicationnumber ApplicationNumber, CONCAT (p.p_givenname,' ',p.p_middlename,' ',p.p_surname) as Name, pi.pi_planname as PlanName, ms.ms_status as Status FROM r_application_requirements_details ar LEFT JOIN r_client_details c ON ar.ar_ref_c_id=c.c_id LEFT JOIN r_application_status_details astat on astat.as_ref_c_id=c.c_id LEFT JOIN r_medical_status_details ms ON ms.ms_ref_c_id= c.c_id LEFT JOIN r_application_form_details af ON c.c_ref_af_id=af.af_id LEFT JOIN r_agent_information_details ai ON c.c_ref_ai_id=ai.ai_id LEFT JOIN r_life_insured_details li ON c.c_ref_li_id=li.li_id LEFT JOIN r_policyowner_details p ON c.c_ref_p_id=p.p_id LEFT JOIN r_beneficial_owner_details bo ON c.c_ref_bo_id=bo.bo_id LEFT JOIN r_primary_beneficiary_details pb ON c.c_ref_pb_id=pb.pb_id LEFT JOIN r_secondary_beneficiary_details sb ON c.c_ref_sb_id=sb.sb_id LEFT JOIN r_policy_information_details pi ON c.c_ref_pi_id=pi.pi_id where astat.as_status='Medical Completed' or astat.as_status='In Medical Department'";
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
 				while(rs.next())
 				{
 			%>
- 
+
               <tr>
                 <td style="display:none;"><%out.print(rs.getInt("cid")); %></td>
                 <td><%out.print(rs.getString("ApplicationNumber")); %></td>
@@ -224,10 +235,10 @@
                 <td><%out.print(rs.getString("PlanName")); %></td>
                 <td id="reqstat"><%out.print(rs.getString("Status")); %></td>
                 <td>
-                <a class="btn btn-success btnCheckStatus" href="#modalCheckStatus" data-toggle="modal" style="padding: 4px 7px;">
+                <button class="btn btn-success btnChangeStatus" href="#modalIssue" data-toggle="modal" style="padding: 4px 7px;" id="btnIssue" >
                         <i class="glyphicon glyphicon-ok"></i>
-                    </a>
-                <button class="btn btn-danger btnCheckStatus" href="#modalCompleted" data-toggle="modal" style="padding: 4px 7px;" id="btnCompleted">
+                    </button>
+                <button class="btn btn-danger btnChangeStatus" href="#modalDecline" data-toggle="modal" style="padding: 4px 7px;" id="btnDecline" >
                         <i class="glyphicon glyphicon-remove"></i>
                     </button>
                 </td>
@@ -250,72 +261,75 @@
           </div><!-- table-responsive -->
 			  </div>
             </div>
-            <div class="panel-body panel-body-nopadding">
-              
-              
-              
-            </div><!-- panel-body -->
-          </div><!-- panel -->
-          <!-- MODALS-->
+          </div><!-- panel -->        
+      </div><!-- row -->
+
+    </div><!-- contentpanel -->
+    
+  </div><!-- mainpanel -->
+</section>
+<!-- MODALS-->
        <div class="modal fade bs-example-modal-static" id="modalCheckStatus" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-backdrop="static" aria-hidden="true">
 				  <div class="modal-dialog">
 				    <div class="modal-content">
 				        <div class="modal-header" style="background-color:#db241e;">
 				            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
-				            <h4 class="modal-title">Upload Requirements</h4>
+				            <h4 class="modal-title">Requirements Checklist</h4>
 				            <input id="reqstatus_id" type="text" class="form-control" name="reqstatus_id"
 				            style="color: black; width: 560px; display:none" maxlength="50"/>
 				        </div>
 				        <div class="modal-body">
 				        
 				         <div class="row">
-				         <div class="col-sm-2"></div>
-				         <div class="col-sm-8">
+				         <div class="col-sm-3"></div>
+				         <div class="col-sm-6">
 				         <br><br>
 				         <div class="ckbox ckbox-primary">
                         <input type="checkbox" value="0" id="req_1"/>
                             <label for="req_1" style="font-size:85%;">Requirement 1</label>
-                 		</div>
+                 		</div><br>
                  		 <div class="ckbox ckbox-primary">
                         <input type="checkbox" value="0" id="req_2"/>
                             <label for="req_2" style="font-size:85%;">Requirement 2</label>
-                 		</div>
+                 		</div><br>
                  		 <div class="ckbox ckbox-primary">
                         <input type="checkbox" value="0" id="req_3"/>
                             <label for="req_3" style="font-size:85%;">Requirement 3</label>
-                 		</div>
+                 		</div><br>
                  		 <div class="ckbox ckbox-primary">
                         <input type="checkbox" value="0" id="req_4"/>
                             <label for="req_4" style="font-size:85%;">Requirement 4</label>
-                 		</div>
+                 		</div><br>
                  		 <div class="ckbox ckbox-primary">
                         <input type="checkbox" value="0" id="req_5"/>
                             <label for="req_5" style="font-size:85%;">Requirement 5</label>
                  		</div>
-				         <br>
-				         <a class="btn btn-primary" style="alight:right;" id="btnUpdateReqStatus">Save</a>
+				         <br><br>
+				         <a class="btn btn-primary" style="margin-left:200px;" id="btnUpdateReqStatus">Save</a><br><br>
 				         </form>
 				         </div>
-				         <div class="col-sm-2"></div>
+				         <div class="col-sm-3"></div>
 				          
 				        
 				        </div>
 				    </div>
 		</div>
 		</div>
-		</div>
-		<!-- MODALS-->
+		</div><!--eND MODALS COMPLETED REQUIEREMENTS-->
+		<!-- MODALS COMPLETED REQUIEREMENTS-->
             <div class="modal fade" id="modalCompleted" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Change Status</h4>
         <input id="reqstatus_id1" type="text" class="form-control" name="reqstatus_id1"
 				            style="color: black; width: 560px; display:none;" maxlength="50"/>
       </div>
       <div class="modal-body">
-        Content goes here...
+      <br><br>
+        Proceed in Medical Department
+        <br><br>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -324,12 +338,49 @@
     </div><!-- modal-content -->
   </div><!-- modal-dialog -->
 </div><!-- modal -->
-      </div><!-- row -->
+<!-- MODALS CHANGE STATUS -->
+            <div class="modal fade" id="modalIssue" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Change Status</h4>
+        <input id="issue_id" type="text" class="form-control" name="issue_id"
+				            style="color: black; width: 560px; display:none;" maxlength="50"/>
+      </div>
+      <div class="modal-body">
+       <br><br>Issued
+       <br><br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="btnIssue">Save changes</button>
+      </div>
+    </div><!-- modal-content -->
+  </div><!-- modal-dialog -->
+</div><!-- modal -->
 
-    </div><!-- contentpanel -->
-    
-  </div><!-- mainpanel -->
-</section>
+<!-- MODALS CHANGE STATUS -->
+            <div class="modal fade" id="modalDecline" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Change Status</h4>
+        <input id="decline_id" type="text" class="form-control" name="decline_id"
+				            style="color: black; width: 560px; display:none;" maxlength="50"/>
+      </div>
+      <div class="modal-body">
+        <br><br>Issued
+       <br><br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="btnDecline">Save changes</button>
+      </div>
+    </div><!-- modal-content -->
+  </div><!-- modal-dialog -->
+</div><!-- modal -->
 <script>
 var indexedituser = '';
 $('.btnCheckStatus').click( function() {
@@ -373,6 +424,31 @@ $('.btnCheckStatus').click( function() {
   
 
 </script>
+<script>
+var indexedituser = '';
+$('.btnChangeStatus').click( function() {
+    var table2 = document.getElementById('medicalcompleted'); 
+    for(var i = 1; i < table2.rows.length; i++)
+    {
+      table2.rows[i].cells[5].onclick = function()
+      {
+
+    	  	indexedituser = this.parentElement.rowIndex;
+    	  	var issue_id = document.getElementById('medicalcompleted').rows[indexedituser].cells.item(0).innerHTML
+	        document.getElementById('issue_id').value = issue_id;
+	        var decline_id = document.getElementById('medicalcompleted').rows[indexedituser].cells.item(0).innerHTML
+	        document.getElementById('decline_id').value = decline_id;
+    	  	indexedituser = this.parentElement.rowIndex;
+	       
+      };
+      
+    }
+    
+  }); 
+  
+
+</script>
+ 		
               <script type="text/javascript">
 					var stat = out.print(rs.getString("sum"));
 					if (stat ==5)
@@ -443,7 +519,44 @@ $('.btnCheckStatus').click( function() {
 				}
 			});
 		});
-		
+		$("#btnIssue").click(function() {
+			
+			var issue_id = $('#issue_id').val();
+			
+			
+			$.ajax({
+				type:'POST',
+				data:
+				{	
+					issue_id:issue_id
+					
+				},
+				url:'updatestatusissued',
+				success: function(result){
+					setTimeout(location.reload.bind(location), 1000);
+					
+				}
+			});
+		});
+		$("#btnDecline").click(function() {
+			
+			var decline_id = $('#decline_id').val();
+			
+			
+			$.ajax({
+				type:'POST',
+				data:
+				{	
+					decline_id:decline_id
+					
+				},
+				url:'updatestatusdeclined',
+				success: function(result){
+					setTimeout(location.reload.bind(location), 1000);
+					
+				}
+			});
+		});
 		
 	});
 </script>			

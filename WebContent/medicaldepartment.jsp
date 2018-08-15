@@ -12,7 +12,7 @@
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
 <meta charset="ISO-8859-1">
- <title>Application for Life Insurance</title>
+ <title>Medical Department</title>
 
   <link href="css/style.default.css" rel="stylesheet">
   <link rel="stylesheet" href="css/dropzone.css" />
@@ -65,7 +65,7 @@
         </div>
       
       <ul class="nav nav-pills nav-stacked nav-bracket">
-        <li><a href="medicaldepartment.jsp"><i class="fa fa-home"></i> <span>Medical Department</span></a></li>
+        <li class="active"><a href="medicaldepartment.jsp"><i class="fa fa-home"></i> <span>Medical Department</span></a></li>
        
       </ul>
 
@@ -110,6 +110,10 @@
 			<div class="row" style="padding-right:20px; padding-left:20px; padding-top:25px;">
               <div class="table-responsive">
           <table class="table table-bordered mb30" id="pendingapplication">
+          <col width="100">
+  			<col width="200">
+  			<col width="80">
+  			<col width="100">
             <thead>
               <tr>
               	<th style="display:none;"></th>
@@ -173,12 +177,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Change Status</h4>
         <input id="id_healthy" type="text" class="form-control" name="id_healthy"
 				            style="color: black; width: 560px;  display:none;" maxlength="50"/>
       </div>
       <div class="modal-body">
-        Content goes here...
+        <br><br>
+        Healthy
+        <br><br>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -194,12 +200,14 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <h4 class="modal-title" id="myModalLabel">Change Status</h4>
         <input id="id_unhealthy" type="text" class="form-control" name="id_unhealthy"
 				            style="color: black; width: 560px; display:none;" maxlength="50"/>
       </div>
       <div class="modal-body">
-        Content goes here...
+        <br><br>
+        Unhealthy
+        <br><br>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

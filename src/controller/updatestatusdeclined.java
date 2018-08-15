@@ -16,14 +16,14 @@ import db.Conn;
 /**
  * Servlet implementation class updatereqstatus
  */
-@WebServlet("/updateunhealthy")
-public class updateunhealthy extends HttpServlet {
+@WebServlet("/updatestatusdeclined")
+public class updatestatusdeclined extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public updateunhealthy() {
+    public updatestatusdeclined() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,7 +43,7 @@ public class updateunhealthy extends HttpServlet {
 		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
 		
-		String id_unhealthy = request.getParameter("id_unhealthy");
+		String decline_id = request.getParameter("decline_id");
 		
 		
 
@@ -54,12 +54,9 @@ public class updateunhealthy extends HttpServlet {
         
         
 		try
-		{		PreparedStatement reqstatusupdate = (PreparedStatement) conn.prepareStatement("update r_medical_status_details \r\n" + 
-				"set ms_status = 'Unhealthy' where ms_ref_c_id ='"+id_unhealthy+"' ");
-				reqstatusupdate.executeUpdate();
-				PreparedStatement updatestatus = (PreparedStatement) conn.prepareStatement("update r_application_status_details \r\n" + 
-						"set as_status = 'Medical Completed' where as_ref_c_id ='"+id_unhealthy+"' ");
-						updatestatus.executeUpdate();
+		{		PreparedStatement statusupdate = (PreparedStatement) conn.prepareStatement("update r_application_status_details \r\n" + 
+				"set as_status = 'Declined' where as_ref_c_id ='"+decline_id+"' ");
+				statusupdate.executeUpdate();
 				
 				
 			

@@ -63,12 +63,16 @@
       
       <ul class="nav nav-pills nav-stacked nav-bracket">
         <li><a href="#"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-        <li><a href="application-form.jsp" ><i class="fa fa-caret-right"></i>Application Form</a></li>
-        <li><a href="upload-requirements.jsp" style="color:#db241e;"><i class="fa fa-caret-right"></i>Upload Requirements</a></li>
-        <li><a href="update-application.jsp"><i class="fa fa-caret-right"></i>Update Application</a></li>
-        <li><a href="application-form-view.jsp"><i class="fa fa-caret-right"></i>Issued Applicants</a></li>
+        <li><a href="application-form.jsp"><i class="fa fa-edit"></i> <span>Application Form</span></a></li>
+        <li class="nav-parent"><a href=""><i class="fa fa-list-alt"></i> <span>List of Application</span></a>
+          <ul class="children">
+            <li><a href="application-form-view.jsp"><i class="fa fa-caret-right"></i> Pending Application</a></li>
+            <li><a href="issued-application.jsp"><i class="fa fa-caret-right"></i> Issued</a></li>
+            <li><a href="declined-application.jsp"><i class="fa fa-caret-right"></i> Declined</a></li>
+          </ul>
+        </li>
+        <li class="active"><a href="upload-requirements.jsp"><i class="fa fa-edit"></i> <span>Profile</span></a></li>
 
-        
       </ul>
 
       
@@ -103,6 +107,7 @@
     <div class="contentpanel">
       
       <div class="row">
+      
           <div class="panel panel-default">
             <div class="panel-heading" style="background-color:#db241e; height:60px; padding:20px;">
               <h4 class="panel-title" align="center" style="font-size:90%; color:white;">UPLOAD REQUIREMENTS</h4>
@@ -110,7 +115,7 @@
 			<div class="panel-body">
 			<div class="row" style="padding-right:20px; padding-left:20px; padding-top:25px;">
               <div class="table-responsive">
-          <table class="table table-bordered mb30">
+          <table class="table table-bordered mb30" id="profiletable">
           <col width="120">
   			<col width="80">
   			<col width="30">
@@ -121,14 +126,13 @@
                 <th>Policyowner</th>
                 <th>Plan Name</th>
                 <th>Status</th>
-                <th>Upload</th>
-                <th>Files</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
             <%
 			try{ 
-				String query = "SELECT applicationID, CONCAT(af.P_givenname,' ', af.P_middlename,' ',af.P_surname) AS Name, F.file_name as FName, af.PI_planname AS PlanName, ast.application_status as Status FROM application_status AS AST INNER JOIN application_form AS AF ON af.applicationID = AST.ref_applicationID LEFT JOIN r_file AS F ON AF.applicationID = F.ref_applicationID";
+				String query = "SELECT c.c_id as cid, f.f_name  AS Files, af.af_applicationnumber ApplicationNumber,af.af_dateapplied as Date, CONCAT (p.p_givenname,' ',p.p_middlename,' ',p.p_surname) as Name, pi.pi_planname as PlanName, astat.as_status as Status FROM r_application_requirements_details ar LEFT JOIN r_client_details c ON ar.ar_ref_c_id=c.c_id LEFT JOIN r_application_status_details astat on astat.as_ref_c_id=c.c_id LEFT JOIN r_file_details f ON f.f_ref_c_id=c.c_id LEFT JOIN r_application_form_details af ON c.c_ref_af_id=af.af_id LEFT JOIN r_agent_information_details ai ON c.c_ref_ai_id=ai.ai_id LEFT JOIN r_life_insured_details li ON c.c_ref_li_id=li.li_id LEFT JOIN r_policyowner_details p ON c.c_ref_p_id=p.p_id LEFT JOIN r_beneficial_owner_details bo ON c.c_ref_bo_id=bo.bo_id LEFT JOIN r_primary_beneficiary_details pb ON c.c_ref_pb_id=pb.pb_id LEFT JOIN r_secondary_beneficiary_details sb ON c.c_ref_sb_id=sb.sb_id LEFT JOIN r_policy_information_details pi ON c.c_ref_pi_id=pi.pi_id where astat.as_status!='Declined' GROUP BY c.c_id";
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
 				while(rs.next())
@@ -136,55 +140,20 @@
 			%>
               
               <tr>
-                <td style="display:none;"><%out.print(rs.getInt("applicationID")); %></td>
+                <td style="display:none;"><%out.print(rs.getInt("cid")); %></td>
                 <td><%out.print(rs.getString("Name")); %></td>
                 <td><%out.print(rs.getString("PlanName")); %></td>
                 <td><%out.print(rs.getString("Status")); %></td>
+                <td style="display:none;"><%out.print(rs.getString("Files")); %></td>
                 <td>
-                <a class="btn btn-primary" style="padding: 3px 7px; margin-right:10px; margin-left:10px;" data-toggle="modal" data-target="#modalUpload<%out.print(rs.getInt("applicationID")); %>">
-                <span class="glyphicon glyphicon-arrow-up"></span></a>
-                
+                <a class="btn btn-primary btnUploadFile" href="#modalUpload" data-toggle="modal" style="padding: 4px 7px;">
+                        <i class="glyphicon glyphicon-upload"></i>
+                    </a>
+                <a class="btn btn-info btnUploadFile" href="#modalViewFile" type="submit" data-toggle="modal" style="padding: 4px 7px;">
+                        <i class="glyphicon glyphicon-eye-open"></i>
+                    </a>
                 </td>
-                <td><%out.print(rs.getString("FName")); %></td>
-      <!-- MODALS-->
-       <div class="modal fade bs-example-modal-static" id="modalUpload<%out.print(rs.getInt("applicationID")); %>" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-backdrop="static" aria-hidden="true">
-				  <div class="modal-dialog">
-				    <div class="modal-content">
-				        <div class="modal-header" style="background-color:#db241e;">
-				            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
-				            <h4 class="modal-title">Upload Requirements</h4>
-
-				        </div>
-				        <div class="modal-body">
-				        
-				         <div class="row">
-				         <div class="col-sm-2"></div>
-				         <div class="col-sm-8">
-				         <br><br>
-				         <form method="post" action="uploadServlet" enctype="multipart/form-data">
-				<input id="puname<%out.print(rs.getInt("applicationID")); %>" type="text" class="form-control" name="selected_applicationid"
-				style="color: black; width: 560px; display:none;" value="<%out.print(rs.getString("applicationID")); %>" maxlength="50"/>
-				         <input name="requirementfile" type="file" class="form-control" onchange="setfilename(this.value);"  multiple/>
-				         <input type="text"  id="filereq" style="display:none;" name="filereqname"/>
-				         <br>
-				         <input type="submit" value="Save" class="btn btn-primary" style="margin-left:300px; margin-top:30px; margin-bottom:30px;">
-				         
-				         </form>
-				           <script>
-							   function setfilename(val)
-							  {
-							    var fileName = val.substr(val.lastIndexOf("\\")+1, val.length);
-							   document.getElementById("filereq").value = fileName;
-							  }
-							</script>
-				         </div>
-				         <div class="col-sm-2"></div>
-				        </div>
-				        
-				    </div>
-		</div>
-		</div>
-		<!-- MODALS-->
+     
                 
                 <%
 				}
@@ -210,13 +179,102 @@
               
             </div><!-- panel-body -->
           </div><!-- panel -->
+
       </div><!-- row -->
 
     </div><!-- contentpanel -->
     
   </div><!-- mainpanel -->
 </section>
-
+ <!-- MODALS-->
+       <div class="modal fade bs-example-modal-static" id="modalUpload" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-backdrop="static" aria-hidden="true">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				        <div class="modal-header" style="background-color:#db241e;">
+				            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
+				            <h4 class="modal-title">Upload Requirements</h4>
+							
+				        </div>
+				        <div class="modal-body">
+				        
+				         <div class="row">
+				         <div class="col-sm-2"></div>
+				         <div class="col-sm-8">
+				         <br><br>
+				         <form method="post" action="uploadServlet" enctype="multipart/form-data">
+				         <input id="c_id" type="text" class="form-control" name="c_id"
+				            style="color: black; width: 560px;display:none;" maxlength="50"/>
+				<input id="c_id" type="text" class="form-control" name="c_id"
+				style="color: black; width: 560px; display:none;" value="" maxlength="50"/>
+				         <input name="requirementfile" type="file" class="form-control" onchange="setfilename(this.value);"  multiple/>
+				         <input type="text"  id="filereq"  name="filereqname" style="display:none"/>
+				         <br>
+				         <input type="submit" value="Save" class="btn btn-primary" style="margin-left:300px; margin-top:30px; margin-bottom:30px;">
+				         
+				         </form>
+				           <script>
+							   function setfilename(val)
+							  {
+							    var fileName = val.substr(val.lastIndexOf("\\")+1, val.length);
+							   document.getElementById("filereq").value = fileName;
+							  }
+							</script>
+				         </div>
+				         <div class="col-sm-2"></div>
+				        </div>
+				        
+				    </div>
+		</div>
+		</div>
+		</div>
+		<!-- MODALS-->
+          <!-- MODALS view file -->
+            <div class="modal fade" id="modalViewFile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+        <input id="f_id" type="text" class="form-control" name="f_id"
+				            style="color: black; width: 560px; display:none;" maxlength="50"/>
+      </div>
+      <div class="modal-body">
+       <div class="table-responsive">
+          <table class="table table-bordered mb30" id="profiletable">
+          <col width="120">
+  			<col width="80">
+  			<col width="30">
+  			<col width="30">
+  			<col width="80">
+            <thead>
+              <tr>
+                <th style="display:none;">Policyowner</th>
+                <th>File Name</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="display:none;"></td>
+                <td id="file_name" name="file_name"></td>
+                <td>
+                <a class="btn btn-warning" id="btnDownload" data-toggle="modal" style="padding: 4px 7px;">
+                        <i class="glyphicon  glyphicon-download"></i>
+                    </a>
+                </td>
+     
+              </tr>
+            </tbody>
+          </table>
+          </div><!-- table-responsive -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="btnIssue">Save changes</button>
+      </div>
+    </div><!-- modal-content -->
+  </div><!-- modal-dialog -->
+</div><!-- modal -->		
 
 <script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/jquery-migrate-1.2.1.min.js"></script>
@@ -234,8 +292,62 @@
 <script src="js/jquery.validate.min.js"></script>
 
 <script src="js/custom.js"></script>
+<script>
+var indexedituser = '';
+$('.btnUploadFile').click( function() {
+    var table2 = document.getElementById('profiletable'); 
+    for(var i = 1; i < table2.rows.length; i++)
+    {
+      table2.rows[i].cells[5].onclick = function()
+      {
 
+    	  	indexedituser = this.parentElement.rowIndex;
+    	  	var profile_id = document.getElementById('profiletable').rows[indexedituser].cells.item(0).innerHTML
+	        document.getElementById('c_id').value = profile_id;
+	        indexedituser = this.parentElement.rowIndex;
+    	  	var f_id = document.getElementById('profiletable').rows[indexedituser].cells.item(0).innerHTML
+	        document.getElementById('f_id').value = f_id;
+	        indexedituser = this.parentElement.rowIndex;
+    	  	var filename = document.getElementById('profiletable').rows[indexedituser].cells.item(4).innerHTML
+	        document.getElementById('file_name').innerHTML = filename;
+    	  	indexedituser = this.parentElement.rowIndex;
+      };
+      
+    }
+    
+  }); 
+  
 
+</script>
+<script type="text/javascript">
+	$(document).ready(function (){
+		
+		
+		
+		
+		$("#btnDownload").click(function() {
+			
+			var f_id = $('#f_id').val();
+			
+			
+			$.ajax({
+				type:'POST',
+				data:
+				{	
+					f_id:f_id
+					
+				},
+				url:'FileDownload',
+				contentType: "application/json; charset=utf-8",
+				success: function(result){
+					setTimeout(location.reload.bind(location), 1000);
+					
+				}
+			});
+		});
+		
+	});
+</script>			
 			
 </body>
 </html>

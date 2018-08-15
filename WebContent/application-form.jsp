@@ -65,21 +65,15 @@
       
       <ul class="nav nav-pills nav-stacked nav-bracket">
         <li><a href="#"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-        <li><a href="application-form.jsp"><i class="fa fa-edit"></i> <span>Application Form</span></a></li>
-        <li><a href="upload-requirements.jsp"><i class="fa fa-caret-right"></i>Upload Requirements</a></li>
-        <li><a href="update-application.jsp"><i class="fa fa-caret-right"></i>Update Application</a></li>
-        <li><a href="application-form-view.jsp"><i class="fa fa-caret-right"></i>Issued Applicants</a></li>
+        <li class="active"><a href="application-form.jsp"><i class="fa fa-edit"></i> <span>Application Form</span></a></li>
         <li class="nav-parent"><a href=""><i class="fa fa-list-alt"></i> <span>List of Application</span></a>
           <ul class="children">
-            <li><a href="general-forms.html"><i class="fa fa-caret-right"></i> General Forms</a></li>
-            <li><a href="form-layouts.html"><i class="fa fa-caret-right"></i> Form Layouts</a></li>
-            <li><a href="form-validation.html"><i class="fa fa-caret-right"></i> Form Validation</a></li>
-            <li><a href="form-wizards.html"><i class="fa fa-caret-right"></i> Form Wizards</a></li>
-            <li><a href="wysiwyg.html"><i class="fa fa-caret-right"></i> Text Editor</a></li>
-            <li><a href="code-editor.html"><i class="fa fa-caret-right"></i> Code Editor</a></li>
-                                <li><a href="x-editable.html"><i class="fa fa-caret-right"></i> X-Editable</a></li>
+            <li><a href="application-form-view.jsp"><i class="fa fa-caret-right"></i> Pending Application</a></li>
+            <li><a href="issued-application.jsp"><i class="fa fa-caret-right"></i> Issued</a></li>
+            <li><a href="declined-application.jsp"><i class="fa fa-caret-right"></i> Declined</a></li>
           </ul>
         </li>
+        <li><a href="upload-requirements.jsp"><i class="fa fa-edit"></i> <span>Profile</span></a></li>
 
         
       </ul>

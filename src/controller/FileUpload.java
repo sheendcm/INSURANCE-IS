@@ -1,4 +1,4 @@
-package net.codejava.upload;
+package controller;
  
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,10 +17,10 @@ import javax.servlet.http.Part;
  
 @WebServlet("/uploadServlet")
 @MultipartConfig(maxFileSize = 16177215)    // upload file's size up to 16MB
-public class FileUploadDBServlet extends HttpServlet {
+public class FileUpload extends HttpServlet {
      
     // database connection settings
-    private String dbURL = "jdbc:mysql://localhost:3306/insurance_is";
+    private String dbURL = "jdbc:mysql://localhost:3306/insurance_is_db";
     private String dbUser = "root";
     private String dbPass = "";
      
@@ -28,9 +28,9 @@ public class FileUploadDBServlet extends HttpServlet {
             HttpServletResponse response) throws ServletException, IOException {
         
 
-        String application_id = request.getParameter("selected_applicationid");
+        String c_id = request.getParameter("c_id");
         String filereq_name = request.getParameter("filereqname");
-        int convert_id = Integer.parseInt(application_id);	
+        int cid = Integer.parseInt(c_id);	
         
         
         InputStream inputStream = null; // input stream of the upload file
@@ -56,10 +56,10 @@ public class FileUploadDBServlet extends HttpServlet {
             conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
  
             // constructs SQL statement
-            String sql = "INSERT INTO r_file ( ref_applicationID,FILE,file_name) values (?, ?, ?)";
+            String sql = "INSERT INTO r_file_details ( f_ref_c_id, f_file, f_name) values (?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
              
-            statement.setInt(1, convert_id);
+            statement.setInt(1, cid);
              
             if (inputStream != null) {
                 // fetches input stream of the upload file for the blob column
