@@ -126,7 +126,7 @@
             <tbody>
             <%
 			try{ 
-				String query = "SELECT c.c_id as cid, af.af_applicationnumber ApplicationNumber, CONCAT (p.p_givenname,' ',p.p_middlename,' ',p.p_surname) as Name, pi.pi_planname as PlanName, ms.ms_status as Status FROM r_application_requirements_details ar LEFT JOIN r_client_details c ON ar.ar_ref_c_id=c.c_id LEFT JOIN r_application_status_details astat on astat.as_ref_c_id=c.c_id LEFT JOIN r_medical_status_details ms ON ms.ms_ref_c_id= c.c_id LEFT JOIN r_application_form_details af ON c.c_ref_af_id=af.af_id LEFT JOIN r_agent_information_details ai ON c.c_ref_ai_id=ai.ai_id LEFT JOIN r_life_insured_details li ON c.c_ref_li_id=li.li_id LEFT JOIN r_policyowner_details p ON c.c_ref_p_id=p.p_id LEFT JOIN r_beneficial_owner_details bo ON c.c_ref_bo_id=bo.bo_id LEFT JOIN r_primary_beneficiary_details pb ON c.c_ref_pb_id=pb.pb_id LEFT JOIN r_secondary_beneficiary_details sb ON c.c_ref_sb_id=sb.sb_id LEFT JOIN r_policy_information_details pi ON c.c_ref_pi_id=pi.pi_id where astat.as_status='In Medical Department'";
+				String query = "SELECT c.c_id as cid, af.af_applicationnumber ApplicationNumber, CONCAT (p.p_givenname,' ',p.p_middlename,' ',p.p_surname) as Name, pi.pi_planname as PlanName, ms.ms_status as Status,ms.ms_remarks as Remarks FROM r_application_requirements_details ar LEFT JOIN r_client_details c ON ar.ar_ref_c_id=c.c_id LEFT JOIN r_application_status_details astat on astat.as_ref_c_id=c.c_id LEFT JOIN r_medical_status_details ms ON ms.ms_ref_c_id= c.c_id LEFT JOIN r_application_form_details af ON c.c_ref_af_id=af.af_id LEFT JOIN r_agent_information_details ai ON c.c_ref_ai_id=ai.ai_id LEFT JOIN r_life_insured_details li ON c.c_ref_li_id=li.li_id LEFT JOIN r_policyowner_details p ON c.c_ref_p_id=p.p_id LEFT JOIN r_beneficial_owner_details bo ON c.c_ref_bo_id=bo.bo_id LEFT JOIN r_primary_beneficiary_details pb ON c.c_ref_pb_id=pb.pb_id LEFT JOIN r_secondary_beneficiary_details sb ON c.c_ref_sb_id=sb.sb_id LEFT JOIN r_policy_information_details pi ON c.c_ref_pi_id=pi.pi_id where astat.as_status='In Medical Department'";
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
 				while(rs.next())
@@ -142,9 +142,9 @@
                 <a class="btn btn-success btnCheckStatus" href="#modalHealthy" data-toggle="modal" style="padding: 4px 7px;">
                         <i class="glyphicon glyphicon-ok"></i>
                     </a>
-                <button class="btn btn-danger btnCheckStatus" href="#modalUnhealthy" data-toggle="modal" style="padding: 4px 7px;" id="btnCompleted">
+                <a class="btn btn-danger btnCheckStatus" href="#modalUnhealthy" data-toggle="modal" style="padding: 4px 7px;">
                         <i class="glyphicon glyphicon-remove"></i>
-                    </button>
+                    </a>
                 </td>
       
                 <%
@@ -183,7 +183,17 @@
       </div>
       <div class="modal-body">
         <br><br>
-        Healthy
+        <div class="row" style="margin-left:90px">
+        <label class="control-label" style="font-size:85%;">Mark as Healthy</label>
+        </div>
+        <div class="row" style="margin-left:80px">
+        <div class="form-group"> <br> 
+                        <label class="col-sm-2 control-label" style="font-size:85%;">Remarks</label>
+                        <div class="col-sm-5">
+                          <input type="text" name="healthy_remarks" id="healthy_remarks" class="form-control input-sm mb15"  />
+        </div>
+        </div>
+        </div>
         <br><br>
       </div>
       <div class="modal-footer">
@@ -206,7 +216,18 @@
       </div>
       <div class="modal-body">
         <br><br>
-        Unhealthy
+        <div class="row" style="margin-left:90px">
+        <label class="control-label" style="font-size:85%;">Mark as Unhealthy</label>
+        </div>
+        <div class="row" style="margin-left:80px">
+        <div class="form-group"> <br> 
+                        <label class="col-sm-2 control-label" style="font-size:85%;">Remarks</label>
+                        <div class="col-sm-5">
+                          <input type="text" name="unhealthy_remarks" id="unhealthy_remarks" class="form-control input-sm mb15"  />
+        </div>
+        </div>
+        </div>
+        
         <br><br>
       </div>
       <div class="modal-footer">
@@ -255,14 +276,15 @@ $('.btnCheckStatus').click( function() {
 		$("#btnHealthy").click(function() {
 			
 			var id_healthy = $('#id_healthy').val();
-			
+			var healthy_remarks = $('#healthy_remarks').val();
 			
 			
 			$.ajax({
 				type:'POST',
 				data:
 				{	
-					id_healthy:id_healthy
+					id_healthy:id_healthy,
+					healthy_remarks:healthy_remarks
 					
 				},
 				url:'updatehealthy',
@@ -276,13 +298,14 @@ $('.btnCheckStatus').click( function() {
 				$("#btnUnhealthy").click(function() {
 			
 			var id_unhealthy = $('#id_unhealthy').val();
-			
+			var unhealthy_remarks = $('#unhealthy_remarks').val();
 			
 			$.ajax({
 				type:'POST',
 				data:
 				{	
-					id_unhealthy:id_unhealthy
+					id_unhealthy:id_unhealthy,
+					unhealthy_remarks:unhealthy_remarks
 					
 				},
 				url:'updateunhealthy',

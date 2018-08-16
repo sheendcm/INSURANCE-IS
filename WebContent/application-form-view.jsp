@@ -205,9 +205,9 @@
           <table class="table table-bordered mb30" id="medicalcompleted">
           <col width="100">
   			<col width="200">
-  			<col width="200">
-  			<col width="80">
+  			<col width="150">
   			<col width="100">
+  			<col width="120">
             <thead>
               <tr>
               	<th style="display:none;"></th>
@@ -221,7 +221,7 @@
             <tbody>
             <%
 			try{ 
-				String query = "SELECT c.c_id as cid, af.af_applicationnumber ApplicationNumber, CONCAT (p.p_givenname,' ',p.p_middlename,' ',p.p_surname) as Name, pi.pi_planname as PlanName, ms.ms_status as Status FROM r_application_requirements_details ar LEFT JOIN r_client_details c ON ar.ar_ref_c_id=c.c_id LEFT JOIN r_application_status_details astat on astat.as_ref_c_id=c.c_id LEFT JOIN r_medical_status_details ms ON ms.ms_ref_c_id= c.c_id LEFT JOIN r_application_form_details af ON c.c_ref_af_id=af.af_id LEFT JOIN r_agent_information_details ai ON c.c_ref_ai_id=ai.ai_id LEFT JOIN r_life_insured_details li ON c.c_ref_li_id=li.li_id LEFT JOIN r_policyowner_details p ON c.c_ref_p_id=p.p_id LEFT JOIN r_beneficial_owner_details bo ON c.c_ref_bo_id=bo.bo_id LEFT JOIN r_primary_beneficiary_details pb ON c.c_ref_pb_id=pb.pb_id LEFT JOIN r_secondary_beneficiary_details sb ON c.c_ref_sb_id=sb.sb_id LEFT JOIN r_policy_information_details pi ON c.c_ref_pi_id=pi.pi_id where astat.as_status='Medical Completed' or astat.as_status='In Medical Department'";
+				String query = "SELECT c.c_id as cid, af.af_applicationnumber ApplicationNumber, CONCAT (p.p_givenname,' ',p.p_middlename,' ',p.p_surname) as Name, pi.pi_planname as PlanName, ms.ms_status as Status, ms.ms_remarks as Remarks FROM r_application_requirements_details ar LEFT JOIN r_client_details c ON ar.ar_ref_c_id=c.c_id LEFT JOIN r_application_status_details astat on astat.as_ref_c_id=c.c_id LEFT JOIN r_medical_status_details ms ON ms.ms_ref_c_id= c.c_id LEFT JOIN r_application_form_details af ON c.c_ref_af_id=af.af_id LEFT JOIN r_agent_information_details ai ON c.c_ref_ai_id=ai.ai_id LEFT JOIN r_life_insured_details li ON c.c_ref_li_id=li.li_id LEFT JOIN r_policyowner_details p ON c.c_ref_p_id=p.p_id LEFT JOIN r_beneficial_owner_details bo ON c.c_ref_bo_id=bo.bo_id LEFT JOIN r_primary_beneficiary_details pb ON c.c_ref_pb_id=pb.pb_id LEFT JOIN r_secondary_beneficiary_details sb ON c.c_ref_sb_id=sb.sb_id LEFT JOIN r_policy_information_details pi ON c.c_ref_pi_id=pi.pi_id where astat.as_status='Medical Completed' or astat.as_status='In Medical Department'";
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
 				while(rs.next())
@@ -234,11 +234,15 @@
                 <td><%out.print(rs.getString("Name")); %></td>
                 <td><%out.print(rs.getString("PlanName")); %></td>
                 <td id="reqstat"><%out.print(rs.getString("Status")); %></td>
+                <td style="display:none;"><%out.print(rs.getString("Remarks")); %></td>
                 <td>
-                <button class="btn btn-success btnChangeStatus" href="#modalIssue" data-toggle="modal" style="padding: 4px 7px;" id="btnIssue" >
+                <button class="btn btn-info btnChangeStatus" href="#modalRemarks" data-toggle="modal" style="padding: 4px 7px;"  >
+                        <i class="glyphicon glyphicon-eye-open"></i>
+                    </button>
+                    <button class="btn btn-success btnChangeStatus" href="#modalIssue" data-toggle="modal" style="padding: 4px 7px;"  >
                         <i class="glyphicon glyphicon-ok"></i>
                     </button>
-                <button class="btn btn-danger btnChangeStatus" href="#modalDecline" data-toggle="modal" style="padding: 4px 7px;" id="btnDecline" >
+                <button class="btn btn-danger btnChangeStatus" href="#modalDecline" data-toggle="modal" style="padding: 4px 7px;" >
                         <i class="glyphicon glyphicon-remove"></i>
                     </button>
                 </td>
@@ -339,6 +343,29 @@
   </div><!-- modal-dialog -->
 </div><!-- modal -->
 <!-- MODALS CHANGE STATUS -->
+            <div class="modal fade" id="modalRemarks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Remarks</h4>
+        <input id="remark_id" type="text" class="form-control" name="remark_id"
+				            style="color: black; width: 560px; display:none;" maxlength="50"/>
+      </div>
+      <div class="modal-body">
+       <br><br>
+		<div class="row" style="margin-left:90px">
+        <label class="control-label" id="remarks_1">Mark as Healthy</label>
+        </div>
+       <br><br>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- modal-content -->
+  </div><!-- modal-dialog -->
+</div><!-- modal -->
+<!-- MODALS CHANGE STATUS -->
             <div class="modal fade" id="modalIssue" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -346,7 +373,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title" id="myModalLabel">Change Status</h4>
         <input id="issue_id" type="text" class="form-control" name="issue_id"
-				            style="color: black; width: 560px; display:none;" maxlength="50"/>
+				            style="color: black; width: 560px; display:none; " maxlength="50"/>
       </div>
       <div class="modal-body">
        <br><br>Issued
@@ -371,7 +398,7 @@
 				            style="color: black; width: 560px; display:none;" maxlength="50"/>
       </div>
       <div class="modal-body">
-        <br><br>Issued
+        <br><br>Declined
        <br><br>
       </div>
       <div class="modal-footer">
@@ -430,7 +457,7 @@ $('.btnChangeStatus').click( function() {
     var table2 = document.getElementById('medicalcompleted'); 
     for(var i = 1; i < table2.rows.length; i++)
     {
-      table2.rows[i].cells[5].onclick = function()
+      table2.rows[i].cells[6].onclick = function()
       {
 
     	  	indexedituser = this.parentElement.rowIndex;
@@ -438,6 +465,8 @@ $('.btnChangeStatus').click( function() {
 	        document.getElementById('issue_id').value = issue_id;
 	        var decline_id = document.getElementById('medicalcompleted').rows[indexedituser].cells.item(0).innerHTML
 	        document.getElementById('decline_id').value = decline_id;
+	        var remarks = document.getElementById('medicalcompleted').rows[indexedituser].cells.item(5).innerHTML
+	        document.getElementById('remarks_1').innerHTML = "Remarks: "+remarks;
     	  	indexedituser = this.parentElement.rowIndex;
 	       
       };
@@ -577,7 +606,7 @@ $('.btnChangeStatus').click( function() {
 <script src="js/jquery.validate.min.js"></script>
 
 <script src="js/custom.js"></script>
-
+<script src="js/jquery.gritter.min.js"></script>
 
 			
 </body>

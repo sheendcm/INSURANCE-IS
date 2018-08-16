@@ -2,6 +2,31 @@
 <web-app xmlns="http://java.sun.com/xml/ns/j2ee"
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee;http://java.sun.com/xml/ns/j2ee/web-app_2_5.xsd"
-           version="4.0">
+           version="4.0" id="WebApp_ID">
+	<display-name>EmailSendingWebApp</display-name>
 
+	<!-- SMTP settings -->
+	<context-param>
+		<param-name>host</param-name>
+		<param-value>smtp.gmail.com</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>port</param-name>
+		<param-value>587</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>user</param-name>
+		<param-value>sheenmape1@gmail.com</param-value>
+	</context-param>
+
+	<context-param>
+		<param-name>pass</param-name>
+		<param-value>may091999</param-value>
+	</context-param>
+
+	<welcome-file-list>
+		<welcome-file>application-form-view.jsp</welcome-file>
+	</welcome-file-list>
 </web-app>

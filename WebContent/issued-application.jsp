@@ -114,7 +114,7 @@
 			<div class="panel-body">
 			<div class="row" style="padding-right:20px; padding-left:20px; padding-top:25px;">
               <div class="table-responsive">
-          <table class="table table-bordered mb30" id="pendingapplication">
+          <table class="table table-bordered mb30" id="IssuedApplication">
           
   			<col width="80">
   			<col width="100">
@@ -134,7 +134,7 @@
             <tbody>
             <%
 			try{ 
-				String query = "SELECT c.c_id as cid, af.af_applicationnumber ApplicationNumber,af.af_dateapplied as Date, CONCAT (p.p_givenname,' ',p.p_middlename,' ',p.p_surname) as Name, pi.pi_planname as PlanName, ar_req1+ar_req2+ar_req3+ar_req4+ar_req5 as sum, ar.ar_req1 as Req1, ar.ar_req2 as Req2, ar.ar_req3 as Req3, ar.ar_req4 as Req4, ar.ar_req5 as Req5 FROM r_application_requirements_details ar LEFT JOIN r_client_details c ON ar.ar_ref_c_id=c.c_id LEFT JOIN r_application_status_details astat on astat.as_ref_c_id=c.c_id LEFT JOIN r_application_form_details af ON c.c_ref_af_id=af.af_id LEFT JOIN r_agent_information_details ai ON c.c_ref_ai_id=ai.ai_id LEFT JOIN r_life_insured_details li ON c.c_ref_li_id=li.li_id LEFT JOIN r_policyowner_details p ON c.c_ref_p_id=p.p_id LEFT JOIN r_beneficial_owner_details bo ON c.c_ref_bo_id=bo.bo_id LEFT JOIN r_primary_beneficiary_details pb ON c.c_ref_pb_id=pb.pb_id LEFT JOIN r_secondary_beneficiary_details sb ON c.c_ref_sb_id=sb.sb_id LEFT JOIN r_policy_information_details pi ON c.c_ref_pi_id=pi.pi_id where astat.as_status='Issued'";
+				String query = "SELECT c.c_id as cid, af.af_applicationnumber ApplicationNumber,af.af_dateapplied as Date, CONCAT (p.p_givenname,' ',p.p_middlename,' ',p.p_surname) as Name, p.p_emailaddress as Email, pi.pi_planname as PlanName, ar_req1+ar_req2+ar_req3+ar_req4+ar_req5 as sum, ar.ar_req1 as Req1, ar.ar_req2 as Req2, ar.ar_req3 as Req3, ar.ar_req4 as Req4, ar.ar_req5 as Req5 FROM r_application_requirements_details ar LEFT JOIN r_client_details c ON ar.ar_ref_c_id=c.c_id LEFT JOIN r_application_status_details astat on astat.as_ref_c_id=c.c_id LEFT JOIN r_application_form_details af ON c.c_ref_af_id=af.af_id LEFT JOIN r_agent_information_details ai ON c.c_ref_ai_id=ai.ai_id LEFT JOIN r_life_insured_details li ON c.c_ref_li_id=li.li_id LEFT JOIN r_policyowner_details p ON c.c_ref_p_id=p.p_id LEFT JOIN r_beneficial_owner_details bo ON c.c_ref_bo_id=bo.bo_id LEFT JOIN r_primary_beneficiary_details pb ON c.c_ref_pb_id=pb.pb_id LEFT JOIN r_secondary_beneficiary_details sb ON c.c_ref_sb_id=sb.sb_id LEFT JOIN r_policy_information_details pi ON c.c_ref_pi_id=pi.pi_id where astat.as_status='Issued'";
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
 				while(rs.next())
@@ -147,8 +147,9 @@
                 <td><%out.print(rs.getString("Date")); %></td>
                 <td><%out.print(rs.getString("Name")); %></td>
                 <td><%out.print(rs.getString("PlanName")); %></td>
+                <td style="display:none;"><%out.print(rs.getString("Email")); %></td>
                 <td>
-                <a class="btn btn-warning btnCheckStatus" href="#modalCheckStatus" data-toggle="modal" style="padding: 4px 7px;">
+                <a class="btn btn-warning btnSendMsg" href="#modalSendMsg" data-toggle="modal" style="padding: 4px 7px;">
                         <i class="glyphicon glyphicon-envelope"></i>
                     </a>
                 </td>
@@ -174,12 +175,74 @@
           </div><!-- panel -->  
      
       </div><!-- row -->
-
+ <!-- MODALS-->
+       <div class="modal fade bs-example-modal-static" id="modalSendMsg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-backdrop="static" aria-hidden="true">
+				  <div class="modal-dialog">
+				    <div class="modal-content">
+				        <div class="modal-header" style="background-color:#db241e;">
+				            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
+				            <h4 class="modal-title">Send Message</h4>
+							
+				        </div>
+				        <div class="modal-body">
+				        	<form action="EmailSendingServlet" method="post">
+				        	<div class="row">
+				        	<div class="col-md-1"></div>
+				        	<div class="col-md-10">
+				        	<div class="form-group"> <br> 
+                        <label class="col-sm-4 control-label" style="font-size:85%;">Email</label>
+                        <div class="col-sm-8">
+                          <input type="text"  name="email" id="email" class="form-control input-sm mb15" style="" />
+                        </div>
+                        <label class="col-sm-4 control-label" style="font-size:85%;">Subject</label>
+                        <div class="col-sm-8">
+                          <input type="text" name="subject" id="subject" class="form-control input-sm mb15"  />
+                        </div>
+                        <label class="col-sm-4 control-label" style="font-size:85%;">Message</label>
+                        <div class="col-sm-8">
+                        <textarea class="form-control input-sm mb15" name="content" id="content" rows="5"></textarea>
+                        </div><br>
+                        <div class="col-sm-12" style="padding-left:200px; padding-top:20px; padding-bottom:30px">
+                          <input type="submit" value="Send"/>
+                        </div>
+                      </div>
+				        	</div>
+				        	<div class="col-md-1"></div>
+				        	</div>
+							</form>
+				    </div>
+		</div>
+		</div>
+		</div>
+		<!-- MODALS-->
     </div><!-- contentpanel -->
     
   </div><!-- mainpanel -->
 </section>
+<script>
+var indexedituser = '';
+$('.btnSendMsg').click( function() {
+    var table2 = document.getElementById('IssuedApplication'); 
+    for(var i = 1; i < table2.rows.length; i++)
+    {
+      table2.rows[i].cells[6].onclick = function()
+      {
 
+    	  	indexedituser = this.parentElement.rowIndex;
+	        var email = document.getElementById('IssuedApplication').rows[indexedituser].cells.item(5).innerHTML
+	        document.getElementById('email').value = email;
+	        document.getElementById('subject').value = "Prulife UK Life Insurance Application";
+	        document.getElementById('content').value = "Congratulations! Your application is approved!";
+    	  	indexedituser = this.parentElement.rowIndex;
+	       
+      };
+      
+    }
+    
+  }); 
+  
+
+</script>
 			
 
 <script src="js/jquery-1.11.1.min.js"></script>

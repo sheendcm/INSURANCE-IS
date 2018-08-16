@@ -44,7 +44,7 @@ public class updateunhealthy extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		
 		String id_unhealthy = request.getParameter("id_unhealthy");
-		
+		String unhealthy_remarks = request.getParameter("unhealthy_remarks");
 		
 
 		
@@ -55,7 +55,7 @@ public class updateunhealthy extends HttpServlet {
         
 		try
 		{		PreparedStatement reqstatusupdate = (PreparedStatement) conn.prepareStatement("update r_medical_status_details \r\n" + 
-				"set ms_status = 'Unhealthy' where ms_ref_c_id ='"+id_unhealthy+"' ");
+				"set ms_status = 'Unhealthy', ms_remarks='"+unhealthy_remarks+"' where ms_ref_c_id ='"+id_unhealthy+"' ");
 				reqstatusupdate.executeUpdate();
 				PreparedStatement updatestatus = (PreparedStatement) conn.prepareStatement("update r_application_status_details \r\n" + 
 						"set as_status = 'Medical Completed' where as_ref_c_id ='"+id_unhealthy+"' ");

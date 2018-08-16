@@ -18,5 +18,7 @@
 	<classpathentry kind="lib" path="C:/Users/SHEEN/eclipse-workspace/INSURANCE-IS/javax.el-api.jar"/>
 	<classpathentry kind="lib" path="C:/Users/SHEEN/eclipse-workspace/INSURANCE-IS/jsp-api-2.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/SHEEN/eclipse-workspace/INSURANCE-IS/spdf_2.9.2-0.1.0-sources.jar"/>
+	<classpathentry kind="lib" path="C:/Users/SHEEN/eclipse-workspace/INSURANCE-IS/activation-jaf1.1.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/SHEEN/eclipse-workspace/INSURANCE-IS/java-mail-1.4.4.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

@@ -202,7 +202,7 @@
                       <div class="form-group"> <br> 
                         <label class="col-sm-4 control-label" style="font-size:85%;">Surname, Given Name</label>
                         <div class="col-sm-8">
-                          <input type="text" name="AI_name" id="AI_name" class="form-control input-sm mb15"  />
+                          <input type="text" name="AI_name" id="AI_name" class="form-control input-sm mb15" style="" />
                         </div>
                         <label class="col-sm-4 control-label" style="font-size:85%;">Agent Code</label>
                         <div class="col-sm-8">
