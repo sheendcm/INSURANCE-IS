@@ -1,20 +1,21 @@
 <%@page import="java.sql.*"%>
 <%@page import="db.Conn" %>
 <%@page import="java.sql.DriverManager" %>
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <script
   src="http://code.jquery.com/jquery-3.3.1.js"
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
-  crossorigin="anonymous"></script>
+  crossorigin="anonymous">
+</script>
 <meta charset="ISO-8859-1">
- <title>Application for Life Insurance</title>
+<title>Pru Life UK - Application Form</title>
 
-  <link href="css/style.default.css" rel="stylesheet">
+<link href="css/style.default.css" rel="stylesheet">
 
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -36,36 +37,17 @@
 
 <section>
   
-  <div class="leftpanel">
+  <div class="leftpanel" >
+  
+    <div class="logopanel" >
+    	<img src="images/prulife.png" alt="" />
+  	</div><!-- logopanel -->
     
-    <div class="logopanel" style="padding=0;">
-    <img src="images/prulife.png" alt="" />
-    </div><!-- logopanel -->
-    
-    <div class="leftpanelinner">
-        
-        <!-- This is only visible to small devices -->
-        <div class="visible-xs hidden-sm hidden-md hidden-lg">   
-            <div class="media userlogged">
-                <img alt="" src="images/photos/loggeduser.png" class="media-object">
-                <div class="media-body">
-                    <h4>John Doe</h4>
-                    <span>"Life is so..."</span>
-                </div>
-            </div>
-          
-            <h5 class="sidebartitle actitle">Account</h5>
-            <ul class="nav nav-pills nav-stacked nav-bracket mb30">
-              <li><a href="profile.html"><i class="fa fa-user"></i> <span>Profile</span></a></li>
-              <li><a href=""><i class="fa fa-cog"></i> <span>Account Settings</span></a></li>
-              <li><a href=""><i class="fa fa-question-circle"></i> <span>Help</span></a></li>
-              <li><a href="signout.html"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
-            </ul>
-        </div>
+  <div class="leftpanelinner" style="padding-top:30px; ">     
       
       <ul class="nav nav-pills nav-stacked nav-bracket">
         <li><a href="#"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-        <li class="active"><a href="application-form.jsp"><i class="fa fa-edit"></i> <span>Application Form</span></a></li>
+        <li class="active"><a href="application-form.jsp"style="background-color: #DB241E;"><i class="fa fa-edit"></i> <span>Application Form</span></a></li>
         <li class="nav-parent"><a href=""><i class="fa fa-list-alt"></i> <span>List of Application</span></a>
           <ul class="children">
             <li><a href="application-form-view.jsp"><i class="fa fa-caret-right"></i> Pending Application</a></li>
@@ -74,12 +56,10 @@
           </ul>
         </li>
         <li><a href="upload-requirements.jsp"><i class="fa fa-edit"></i> <span>Profile</span></a></li>
-
-        
       </ul>
 
-      
-    </div><!-- leftpanelinner -->
+	</div><!-- leftpanelinner -->
+	
   </div><!-- leftpanel -->
   
   <div class="mainpanel">
@@ -87,6 +67,7 @@
     <div class="headerbar">
       
       <div class="header-right">
+      
         <ul class="headermenu">
           <li>
             <div class="btn-group">
@@ -96,28 +77,31 @@
                 <span class="caret"></span>
               </button>
               <ul class="dropdown-menu dropdown-menu-usermenu pull-right">
-                <li><a href="profile.html"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-cog"></i> Account Settings</a></li>
-                <li><a href="#"><i class="glyphicon glyphicon-question-sign"></i> Help</a></li>
                 <li><a href="signin.html"><i class="glyphicon glyphicon-log-out"></i> Log Out</a></li>
               </ul>
             </div>
           </li>
         </ul>
+        
       </div><!-- header-right -->
       
     </div><!-- headerbar -->
+    
     <div class="contentpanel">
       
       <div class="row">
+          
           <div class="panel panel-default">
+          
             <div class="panel-heading" style="background-color:#db241e; height:60px; padding:20px;">
               <h4 class="panel-title" align="center" style="font-size:90%; color:white;">APPLICATION FOR LIFE INSURANCE</h4>
             </div>
+			
 			<div class="panel-body">
+			
 			<div class="row">
-              <div class="col-md-5">
-			  </div>
+              <div class="col-md-5"></div>
+			  
 			  <div class="col-md-3">
 			  <div class="form-group">
                         <label class="col-sm-5 control-label" style="font-size:90%;">Client Number</label>
@@ -126,6 +110,7 @@
                         </div>
                       </div>
 			  </div>
+			  
 			  <div class="col-md-4">
 			  <div class="form-group">
                         <label class="col-sm-5 control-label" style="font-size:90%;">Application Number</label>
@@ -134,8 +119,11 @@
                         </div>
                       </div>
 			  </div>
-			  </div>
+			  
+			 </div>
+			 
             </div>
+            
             <div class="panel-body panel-body-nopadding">
               
               <!-- BASIC WIZARD -->
@@ -150,9 +138,10 @@
 				  <li><a href="#personalhistory" data-toggle="tab" style="font-size:85%;"><span>Step 6:</span></a></li>
 				  <li><a href="#questionnaire" data-toggle="tab" style="font-size:85%;"><span>Step 7:</span></a></li>
 				  <li><a href="#save" data-toggle="tab" style="font-size:85%;"><span>Save</span></a></li>
-				  
                 </ul>
+                
                 <form class="form" id="firstForm">  
+                
                 <div class="tab-content">
                   <div class="tab-pane" id="save">
                   <div class="row">
@@ -178,7 +167,7 @@
 						  </div>
                         </div>
                       </div><br><br>
-                 <a class="btn btn-primary" id="btnSubmitAF" name="btnSubmitAF" style="font-size:12px; padding:0px,10px; margin-left:120px;">Save</a><br><br>
+                 <a class="btn btn-primary" id="btnSubmitAF" style="font-size:12px; background-color:#db241e; border-color:#db241e; padding:0px,10px; margin-left:120px;">Save</a><br><br>
                  </div>
                  <div class="col-md-2"></div>
 			 </div>
@@ -4532,8 +4521,8 @@ checkradiobox();
                 </form>
                 
                 <ul class="pager wizard">
-                    <li class="previous"><a href="javascript:void(0)">Previous</a></li>
-                    <li class="next"><a href="javascript:void(0)">Next</a></li>
+                    <li class="previous"><a href="javascript:void(0)" style="background-color: #DB241E;border-color: #DB241E;">Previous</a></li>
+                    <li class="next"><a href="javascript:void(0)" style="background-color: #DB241E;border-color: #DB241E;">Next</a></li>
                   </ul>
                 
               </div><!-- #validationWizard -->
@@ -4542,11 +4531,28 @@ checkradiobox();
           </div><!-- panel -->
       </div><!-- row -->
     </div><!-- contentpanel -->
-    
+    <!-- Modal -->
+<div class="modal fade modalSuccess" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        Content goes here...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- modal-content -->
+  </div><!-- modal-dialog -->
+</div><!-- modal -->
   </div><!-- mainpanel -->
 </section>
 
-
+<script src="js/jquery.gritter.min.js"></script>
 <script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/jquery-migrate-1.2.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -4631,6 +4637,7 @@ jQuery(document).ready(function(){
     width: '100%',
     minimumResultsForSearch: -1
   });
+  
   
   
 });
@@ -4981,9 +4988,14 @@ document.getElementById('PI_personal8').value = ""; document.getElementById('PI_
 				},
 				url:'insert',
 				success: function(result){
+					
 					setTimeout(location.reload.bind(location), 1000);
 					
-				}
+						},
+						error:function(result)
+						{
+						
+						}
 			});
 		});
 		

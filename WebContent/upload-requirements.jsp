@@ -40,26 +40,7 @@
     <img src="images/prulife.png" alt="" />
     </div><!-- logopanel -->
     
-    <div class="leftpanelinner">
-        
-        <!-- This is only visible to small devices -->
-        <div class="visible-xs hidden-sm hidden-md hidden-lg">   
-            <div class="media userlogged">
-                <img alt="" src="images/photos/loggeduser.png" class="media-object">
-                <div class="media-body">
-                    <h4>John Doe</h4>
-                    <span>"Life is so..."</span>
-                </div>
-            </div>
-          
-            <h5 class="sidebartitle actitle">Account</h5>
-            <ul class="nav nav-pills nav-stacked nav-bracket mb30">
-              <li><a href="profile.html"><i class="fa fa-user"></i> <span>Profile</span></a></li>
-              <li><a href=""><i class="fa fa-cog"></i> <span>Account Settings</span></a></li>
-              <li><a href=""><i class="fa fa-question-circle"></i> <span>Help</span></a></li>
-              <li><a href="signout.html"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
-            </ul>
-        </div>
+    <div class="leftpanelinner" style="padding-top:30px;">
       
       <ul class="nav nav-pills nav-stacked nav-bracket">
         <li><a href="#"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
@@ -71,7 +52,7 @@
             <li><a href="declined-application.jsp"><i class="fa fa-caret-right"></i> Declined</a></li>
           </ul>
         </li>
-        <li class="active"><a href="upload-requirements.jsp"><i class="fa fa-edit"></i> <span>Profile</span></a></li>
+        <li class="active"><a href="upload-requirements.jsp" style="background-color: #DB241E;"><i class="fa fa-edit"></i> <span>Profile</span></a></li>
 
       </ul>
 
@@ -110,7 +91,7 @@
       
           <div class="panel panel-default">
             <div class="panel-heading" style="background-color:#db241e; height:60px; padding:20px;">
-              <h4 class="panel-title" align="center" style="font-size:90%; color:white;">UPLOAD REQUIREMENTS</h4>
+              <h4 class="panel-title" align="center" style="font-size:90%; color:white;">PROFILE</h4>
             </div>
 			<div class="panel-body">
 			<div class="row" style="padding-right:20px; padding-left:20px; padding-top:25px;">
@@ -146,11 +127,14 @@
                 <td><%out.print(rs.getString("Status")); %></td>
                 <td style="display:none;"><%out.print(rs.getString("Files")); %></td>
                 <td>
-                <a class="btn btn-primary btnUploadFile" href="#modalUpload" data-toggle="modal" style="padding: 4px 7px;">
+                 <a  title="View Profile" class="btn btn-info" href="#modalViewProfile" type="submit" data-toggle="modal" style="padding: 4px 7px;">
+                        <i class="glyphicon glyphicon-eye-open"></i>
+                    </a>
+                <a  title="Upload File" class="btn btn-warning btnUploadFile" href="#modalUpload" data-toggle="modal" style="padding: 4px 7px;">
                         <i class="glyphicon glyphicon-upload"></i>
                     </a>
-                <a class="btn btn-info btnUploadFile" href="#modalViewFile" type="submit" data-toggle="modal" style="padding: 4px 7px;">
-                        <i class="glyphicon glyphicon-eye-open"></i>
+                <a title="View Uploaded File" class="btn btn-success btnUploadFile" href="#modalViewFile" type="submit" data-toggle="modal" style="padding: 4px 7px;">
+                        <i class="glyphicon  glyphicon-file"></i>
                     </a>
                 </td>
      
@@ -189,29 +173,27 @@
  <!-- MODALS-->
        <div class="modal fade bs-example-modal-static" id="modalUpload" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-backdrop="static" aria-hidden="true">
 				  <div class="modal-dialog">
-				    <div class="modal-content">
+				    <div class="modal-content" style=" width:500px; height:50px;">
 				        <div class="modal-header" style="background-color:#db241e;">
-				            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
-				            <h4 class="modal-title">Upload Requirements</h4>
+				            <button aria-hidden="true" data-dismiss="modal" style="margin:0px" class="close" type="button">&times;</button>
+				            <h4 class="modal-title" style="font-size:15px;color:white;">Upload File</h4>
 							
 				        </div>
-				        <div class="modal-body">
+				        <form method="post" action="uploadServlet" enctype="multipart/form-data">
+				        <div class="modal-body" style="background-color:white;">
 				        
 				         <div class="row">
 				         <div class="col-sm-2"></div>
 				         <div class="col-sm-8">
 				         <br><br>
-				         <form method="post" action="uploadServlet" enctype="multipart/form-data">
+				         
 				         <input id="c_id" type="text" class="form-control" name="c_id"
 				            style="color: black; width: 560px;display:none;" maxlength="50"/>
 				<input id="c_id" type="text" class="form-control" name="c_id"
 				style="color: black; width: 560px; display:none;" value="" maxlength="50"/>
 				         <input name="requirementfile" type="file" class="form-control" onchange="setfilename(this.value);"  multiple/>
-				         <input type="text"  id="filereq"  name="filereqname" style="display:none"/>
-				         <br>
-				         <input type="submit" value="Save" class="btn btn-primary" style="margin-left:300px; margin-top:30px; margin-bottom:30px;">
+				         <input type="text"  id="filereq"  name="filereqname" style="display:none"/><br>
 				         
-				         </form>
 				           <script>
 							   function setfilename(val)
 							  {
@@ -224,6 +206,11 @@
 				        </div>
 				        
 				    </div>
+				    <div class="modal-footer" style="background-color:white;">
+				        <button type="button" class="btn btn-default" data-dismiss="modal" style ="font-size:11px">Close</button>
+				        <button type="submit" class="btn btn-primary" id="btnUpdateReqStatus" style ="font-size:11px">Upload</button>
+				      </div>
+				    </form>
 		</div>
 		</div>
 		</div>
@@ -231,10 +218,10 @@
           <!-- MODALS view file -->
             <div class="modal fade" id="modalViewFile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+    <div class="modal-content" style=" width:500px;">
+      <div class="modal-header" style="background-color:#db241e; height:50px;">
+        <button type="button" class="close" data-dismiss="modal" style="margin:0px" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel" style="font-size:15px;color:white;">Uploaded</h4>
         <input id="f_id" type="text" class="form-control" name="f_id"
 				            style="color: black; width: 560px; display:none;" maxlength="50"/>
       </div>
@@ -250,7 +237,7 @@
               <tr>
                 <th style="display:none;">Policyowner</th>
                 <th>File Name</th>
-                <th>Action</th>
+                <th>Download</th>
               </tr>
             </thead>
             <tbody>
@@ -269,8 +256,7 @@
           </div><!-- table-responsive -->
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="btnIssue">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" style ="font-size:11px">Close</button>
       </div>
     </div><!-- modal-content -->
   </div><!-- modal-dialog -->

@@ -618,7 +618,7 @@ strong {
 .nav-bracket > li.active > a,
 .nav-bracket > li.active > a:hover,
 .nav-bracket > li.active > a:focus {
-    background-color: #1caf9a;
+    background-color: #DB241E;
     color: #fff;
 }
 
@@ -1053,8 +1053,8 @@ p {
 }
 
 .ckbox-primary input[type="checkbox"]:checked + label:before {
-    border-color: #357EBD;
-    background-color: #428BCA;
+    border-color: green;
+    background-color: green;
 }
 
 .ckbox-warning input[type="checkbox"]:checked + label:before {
@@ -1294,8 +1294,8 @@ div.error label.error:before {
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     border-radius: 2px;
-    border-color: #357EBD;
-    background-color: #428BCA;
+    border-color: #DB241E;
+    background-color: #DB241E;
     color: #fff;
 }
 

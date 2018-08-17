@@ -40,33 +40,15 @@
     <img src="images/prulife.png" alt="" />
     </div><!-- logopanel -->
     
-    <div class="leftpanelinner">
-        
-        <!-- This is only visible to small devices -->
-        <div class="visible-xs hidden-sm hidden-md hidden-lg">   
-            <div class="media userlogged">
-                <img alt="" src="images/photos/loggeduser.png" class="media-object">
-                <div class="media-body">
-                    <h4>John Doe</h4>
-                    <span>"Life is so..."</span>
-                </div>
-            </div>
-          
-            <h5 class="sidebartitle actitle">Account</h5>
-            <ul class="nav nav-pills nav-stacked nav-bracket mb30">
-              <li><a href="profile.html"><i class="fa fa-user"></i> <span>Profile</span></a></li>
-              <li><a href=""><i class="fa fa-cog"></i> <span>Account Settings</span></a></li>
-              <li><a href=""><i class="fa fa-question-circle"></i> <span>Help</span></a></li>
-              <li><a href="signout.html"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
-            </ul>
-        </div>
+    <div class="leftpanelinner" style="padding-top:30px;">
+
       
       <ul class="nav nav-pills nav-stacked nav-bracket">
         <li><a href="#"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
         <li><a href="application-form.jsp"><i class="fa fa-edit"></i> <span>Application Form</span></a></li>
-        <li class="nav-parent nav-active active"><a href=""><i class="fa fa-list-alt"></i> <span>List of Application</span></a>
+        <li class="nav-parent nav-active active"><a href="" style="background-color: #DB241E;"><i class="fa fa-list-alt"></i> <span>List of Application</span></a>
           <ul class="children" style="display: block">
-            <li class="active"><a href="application-form-view.jsp"><i class="fa fa-caret-right"></i> Pending Application</a></li>
+            <li class="active"><a href="application-form-view.jsp" style="color: #DB241E;"><i class="fa fa-caret-right"></i> Pending Application</a></li>
             <li><a href="issued-application.jsp"><i class="fa fa-caret-right"></i> Issued</a></li>
             <li><a href="declined-application.jsp"><i class="fa fa-caret-right"></i> Declined</a></li>
           </ul>
@@ -148,11 +130,18 @@
 			%>
 			<script>
 			$(document).ready(function (){
-				var req= <%out.print(rs.getString("sum")); %>;
+				<%-- var req= <%out.print(rs.getString("sum")); %>;
 				if (req==5)
 				$('#btnCompleted').attr('disabled',false);
-				else $('#btnCompleted').attr('disabled',true);
-			});
+				else $('#btnCompleted').attr('disabled',true); --%>
+				
+				var cells = document.getElementsByTagName("td");
+					for (var i = 0; i < cells.length; i++) {
+					    if (cells[i].innerHTML == "5/5") {
+					        cells[i].style.color = "green";
+					    }
+					}
+							});
 			</script>
  
               <tr>
@@ -161,17 +150,17 @@
                 <td><%out.print(rs.getString("Date")); %></td>
                 <td><%out.print(rs.getString("Name")); %></td>
                 <td><%out.print(rs.getString("PlanName")); %></td>
-                <td id="reqstat"><%out.print(rs.getString("sum")); %>/5</td>
+                <td id="reqstat" style="color:#db241e"><%out.print(rs.getString("sum")); %>/5</td>
                 <td style="display:none;"><%out.print(rs.getString("Req1")); %></td>
                 <td style="display:none;"><%out.print(rs.getString("Req2")); %></td>
                 <td style="display:none;"><%out.print(rs.getString("Req3")); %></td>
                 <td style="display:none;"><%out.print(rs.getString("Req4")); %></td>
                 <td style="display:none;"><%out.print(rs.getString("Req5")); %></td>
                 <td>
-                <a class="btn btn-warning btnCheckStatus" href="#modalCheckStatus" data-toggle="modal" style="padding: 4px 7px;">
+                <a title="Requirements Checklist" class="btn btn-warning btnCheckStatus" href="#modalCheckStatus" data-toggle="modal" style="padding: 4px 7px;">
                         <i class="glyphicon glyphicon-pencil"></i>
                     </a>
-                <button class="btn btn-success btnCheckStatus" href="#modalCompleted" data-toggle="modal" style="padding: 4px 7px;" id="btnCompleted" disabled>
+                <button title="Proceed in Medical Department" class="btn btn-success btnCheckStatus" href="#modalCompleted" data-toggle="modal" style="padding: 4px 7px;" id="btnCompleted">
                         <i class="glyphicon glyphicon-ok"></i>
                     </button>
                 </td>
@@ -233,16 +222,16 @@
                 <td><%out.print(rs.getString("ApplicationNumber")); %></td>
                 <td><%out.print(rs.getString("Name")); %></td>
                 <td><%out.print(rs.getString("PlanName")); %></td>
-                <td id="reqstat"><%out.print(rs.getString("Status")); %></td>
+                <td id="reqstat" style="color:"><%out.print(rs.getString("Status")); %></td>
                 <td style="display:none;"><%out.print(rs.getString("Remarks")); %></td>
                 <td>
-                <button class="btn btn-info btnChangeStatus" href="#modalRemarks" data-toggle="modal" style="padding: 4px 7px;"  >
+                <button title="View Remarks" class="btn btn-info btnChangeStatus" href="#modalRemarks" data-toggle="modal" style="padding: 4px 7px;"  >
                         <i class="glyphicon glyphicon-eye-open"></i>
                     </button>
-                    <button class="btn btn-success btnChangeStatus" href="#modalIssue" data-toggle="modal" style="padding: 4px 7px;"  >
+                    <button title="Approve Application" class="btn btn-success btnChangeStatus" href="#modalIssue" data-toggle="modal" style="padding: 4px 7px;"  >
                         <i class="glyphicon glyphicon-ok"></i>
                     </button>
-                <button class="btn btn-danger btnChangeStatus" href="#modalDecline" data-toggle="modal" style="padding: 4px 7px;" >
+                <button title="Decline Application" class="btn btn-danger btnChangeStatus" href="#modalDecline" data-toggle="modal" style="padding: 4px 7px;" >
                         <i class="glyphicon glyphicon-remove"></i>
                     </button>
                 </td>
@@ -275,15 +264,14 @@
 <!-- MODALS-->
        <div class="modal fade bs-example-modal-static" id="modalCheckStatus" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-backdrop="static" aria-hidden="true">
 				  <div class="modal-dialog">
-				    <div class="modal-content">
-				        <div class="modal-header" style="background-color:#db241e;">
-				            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
-				            <h4 class="modal-title">Requirements Checklist</h4>
+				    <div class="modal-content" style=" width:500px;">
+				        <div class="modal-header" style="background-color:#db241e; height:50px;">
+				            <button aria-hidden="true" data-dismiss="modal" style="margin:0px" class="close" type="button">&times;</button>
+				            <h4 class="modal-title" style="font-size:15px;color:white;">Requirements Checklist</h4>
 				            <input id="reqstatus_id" type="text" class="form-control" name="reqstatus_id"
 				            style="color: black; width: 560px; display:none" maxlength="50"/>
 				        </div>
 				        <div class="modal-body">
-				        
 				         <div class="row">
 				         <div class="col-sm-3"></div>
 				         <div class="col-sm-6">
@@ -291,53 +279,58 @@
 				         <div class="ckbox ckbox-primary">
                         <input type="checkbox" value="0" id="req_1"/>
                             <label for="req_1" style="font-size:85%;">Requirement 1</label>
-                 		</div><br>
+                 		</div>
                  		 <div class="ckbox ckbox-primary">
                         <input type="checkbox" value="0" id="req_2"/>
                             <label for="req_2" style="font-size:85%;">Requirement 2</label>
-                 		</div><br>
+                 		</div>
                  		 <div class="ckbox ckbox-primary">
                         <input type="checkbox" value="0" id="req_3"/>
                             <label for="req_3" style="font-size:85%;">Requirement 3</label>
-                 		</div><br>
+                 		</div>
                  		 <div class="ckbox ckbox-primary">
                         <input type="checkbox" value="0" id="req_4"/>
                             <label for="req_4" style="font-size:85%;">Requirement 4</label>
-                 		</div><br>
+                 		</div>
                  		 <div class="ckbox ckbox-primary">
                         <input type="checkbox" value="0" id="req_5"/>
                             <label for="req_5" style="font-size:85%;">Requirement 5</label>
                  		</div>
-				         <br><br>
-				         <a class="btn btn-primary" style="margin-left:200px;" id="btnUpdateReqStatus">Save</a><br><br>
-				         </form>
+				        
 				         </div>
 				         <div class="col-sm-3"></div>
 				          
 				        
 				        </div>
 				    </div>
+				    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" style ="font-size:11px">Close</button>
+        <button type="button" class="btn btn-primary" id="btnUpdateReqStatus" style ="font-size:11px">Save changes</button>
+      </div>
 		</div>
 		</div>
 		</div><!--eND MODALS COMPLETED REQUIEREMENTS-->
 		<!-- MODALS COMPLETED REQUIEREMENTS-->
             <div class="modal fade" id="modalCompleted" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Change Status</h4>
+    <div class="modal-content" style=" width:500px;">
+      <div class="modal-header" style="background-color:#db241e; height:50px;">
+        <button type="button" class="close" data-dismiss="modal"  style="margin:0px" aria-hidden="true">&times;</button>
         <input id="reqstatus_id1" type="text" class="form-control" name="reqstatus_id1"
 				            style="color: black; width: 560px; display:none;" maxlength="50"/>
       </div>
       <div class="modal-body">
-      <br><br>
-        Proceed in Medical Department
-        <br><br>
+      <div class="row"><br><br>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+      <label for="req_5" style="font-size:105%;">Proceed in Medical Department</label>
+      </div>
+      <div class="col-sm-2"></div><br>
+      </div><br>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="btnStatusInMed">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" style ="font-size:11px">Close</button>
+        <button type="button" class="btn btn-primary" id="btnStatusInMed" style ="font-size:11px">Save changes</button>
       </div>
     </div><!-- modal-content -->
   </div><!-- modal-dialog -->
@@ -345,22 +338,24 @@
 <!-- MODALS CHANGE STATUS -->
             <div class="modal fade" id="modalRemarks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Remarks</h4>
+    <div class="modal-content" style=" width:500px;">
+      <div class="modal-header" style="background-color:#db241e; height:50px;">
+        <button type="button" class="close" data-dismiss="modal" style="margin:0px" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel" style="font-size:15px;color:white;">Remarks</h4>
         <input id="remark_id" type="text" class="form-control" name="remark_id"
 				            style="color: black; width: 560px; display:none;" maxlength="50"/>
       </div>
       <div class="modal-body">
-       <br><br>
-		<div class="row" style="margin-left:90px">
-        <label class="control-label" id="remarks_1">Mark as Healthy</label>
-        </div>
-       <br><br>
+      <div class="row"><br><br>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+      <label style="font-size:105%;" id=remarks_1>Proceed in Medical Department</label>
+      </div>
+      <div class="col-sm-2"></div><br>
+      </div><br>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" style ="font-size:11px">Close</button>
       </div>
     </div><!-- modal-content -->
   </div><!-- modal-dialog -->
@@ -368,20 +363,24 @@
 <!-- MODALS CHANGE STATUS -->
             <div class="modal fade" id="modalIssue" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Change Status</h4>
+    <div class="modal-content" style=" width:500px;">
+      <div class="modal-header" style="background-color:#db241e; height:50px;">
+        <button type="button" class="close" data-dismiss="modal" style="margin:0px"  aria-hidden="true">&times;</button>
         <input id="issue_id" type="text" class="form-control" name="issue_id"
 				            style="color: black; width: 560px; display:none; " maxlength="50"/>
       </div>
       <div class="modal-body">
-       <br><br>Issued
-       <br><br>
+      <div class="row"><br><br>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+      <label style="font-size:105%;">Approve Application</label>
+      </div>
+      <div class="col-sm-2"></div><br>
+      </div><br>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="btnIssue">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" style ="font-size:11px">Close</button>
+        <button type="button" class="btn btn-primary" id="btnIssue" style ="font-size:11px">Save changes</button>
       </div>
     </div><!-- modal-content -->
   </div><!-- modal-dialog -->
@@ -390,20 +389,24 @@
 <!-- MODALS CHANGE STATUS -->
             <div class="modal fade" id="modalDecline" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Change Status</h4>
+    <div class="modal-content" style=" width:500px;">
+      <div class="modal-header" style="background-color:#db241e; height:50px;">
+        <button type="button" class="close" data-dismiss="modal" style="margin:0px" aria-hidden="true">&times;</button>
         <input id="decline_id" type="text" class="form-control" name="decline_id"
 				            style="color: black; width: 560px; display:none;" maxlength="50"/>
       </div>
       <div class="modal-body">
-        <br><br>Declined
-       <br><br>
+      <div class="row"><br><br>
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+      <label style="font-size:105%;">Decline Application</label>
+      </div>
+      <div class="col-sm-2"></div><br>
+      </div><br>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="btnDecline">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" style ="font-size:11px">Close</button>
+        <button type="button" class="btn btn-primary" id="btnDecline" style ="font-size:11px">Save changes</button>
       </div>
     </div><!-- modal-content -->
   </div><!-- modal-dialog -->
@@ -411,6 +414,12 @@
 <script>
 var indexedituser = '';
 $('.btnCheckStatus').click( function() {
+	document.getElementById("req_1").checked = false;
+	document.getElementById("req_2").checked = false;
+	document.getElementById("req_3").checked = false;
+	document.getElementById("req_4").checked = false;
+	document.getElementById("req_5").checked = false;
+	
     var table = document.getElementById('pendingapplication'); 
     for(var i = 1; i < table.rows.length; i++)
     {

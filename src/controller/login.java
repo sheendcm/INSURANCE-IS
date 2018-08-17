@@ -24,6 +24,11 @@ import db.Conn;
 public class login extends HttpServlet {
        
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * @see HttpServlet#HttpServlet()
      */
     public login() {
@@ -46,13 +51,15 @@ public class login extends HttpServlet {
 
 	     
 		PrintWriter out = response.getWriter();
-		HttpSession session = request.getSession();
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
+		String error = request.getParameter("error");
 		
 		String usernamedb="";
 		String passworddb="";
+		
+		request.setAttribute("error", error);
 		
 		try 
 		{
@@ -71,9 +78,10 @@ public class login extends HttpServlet {
 							response.sendRedirect("application-form.jsp");
 						}
 				else {
-							System.out.println("Incorrect!");
-;				}
-			}
+					
+					RequestDispatcher requestDispatcher = request.getRequestDispatcher("login.jsp");
+					requestDispatcher.forward(request, response);				}
+					}
 		}
 		catch (Exception e) 
 		{

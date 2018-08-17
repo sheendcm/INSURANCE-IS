@@ -139,10 +139,10 @@
                 <td><%out.print(rs.getString("Name")); %></td>
                 <td id="reqstat"><%out.print(rs.getString("Status")); %></td>
                 <td>
-                <a class="btn btn-success btnCheckStatus" href="#modalHealthy" data-toggle="modal" style="padding: 4px 7px;">
+                <a title="Healthy" class="btn btn-success btnCheckStatus" href="#modalHealthy" data-toggle="modal" style="padding: 4px 7px;">
                         <i class="glyphicon glyphicon-ok"></i>
                     </a>
-                <a class="btn btn-danger btnCheckStatus" href="#modalUnhealthy" data-toggle="modal" style="padding: 4px 7px;">
+                <a title="Healthy" class="btn btn-danger btnCheckStatus" href="#modalUnhealthy" data-toggle="modal" style="padding: 4px 7px;">
                         <i class="glyphicon glyphicon-remove"></i>
                     </a>
                 </td>
@@ -174,31 +174,33 @@
 				<!-- MODALS-->
             <div class="modal fade" id="modalHealthy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Change Status</h4>
+    <div class="modal-content" style=" width:500px;">
+      <div class="modal-header" style="background-color:#db241e; height:50px;">
+        <button type="button" class="close" data-dismiss="modal" style="margin:0px" aria-hidden="true">&times;</button>
         <input id="id_healthy" type="text" class="form-control" name="id_healthy"
 				            style="color: black; width: 560px;  display:none;" maxlength="50"/>
       </div>
       <div class="modal-body">
-        <br><br>
-        <div class="row" style="margin-left:90px">
-        <label class="control-label" style="font-size:85%;">Mark as Healthy</label>
+      <div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+		<div class="row"><br>
+        <label class="control-label" style="padding-left:10px">Mark as Healthy</label><br><br>
         </div>
-        <div class="row" style="margin-left:80px">
-        <div class="form-group"> <br> 
-                        <label class="col-sm-2 control-label" style="font-size:85%;">Remarks</label>
-                        <div class="col-sm-5">
-                          <input type="text" name="healthy_remarks" id="healthy_remarks" class="form-control input-sm mb15"  />
+        <div class="row">
+        <div class="col-md-3"><label class="control-label">Remarks</label></div>
+        <div class="col-sm-9">
+          <textarea name="healthy_remarks" id="healthy_remarks" class="form-control input-sm mb15" name="content" id="content" rows="5"></textarea>
+        </div><br>
         </div>
-        </div>
-        </div>
-        <br><br>
+		</div>
+		<div class="col-md-2"></div>
+		</div>
+        
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="btnHealthy">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" style ="font-size:11px">Close</button>
+        <button type="button" class="btn btn-primary" id="btnHealthy" style ="font-size:11px">Submit</button>
       </div>
     </div><!-- modal-content -->
   </div><!-- modal-dialog -->
@@ -207,32 +209,33 @@
 		<!-- MODALS-->
             <div class="modal fade" id="modalUnhealthy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title" id="myModalLabel">Change Status</h4>
+    <div class="modal-content" style=" width:500px;">
+      <div class="modal-header" style="background-color:#db241e; height:50px;">
+        <button type="button" class="close" data-dismiss="modal" style="margin:0px" aria-hidden="true">&times;</button>
         <input id="id_unhealthy" type="text" class="form-control" name="id_unhealthy"
 				            style="color: black; width: 560px; display:none;" maxlength="50"/>
       </div>
       <div class="modal-body">
-        <br><br>
-        <div class="row" style="margin-left:90px">
-        <label class="control-label" style="font-size:85%;">Mark as Unhealthy</label>
+      <div class="row">
+		<div class="col-md-2"></div>
+		<div class="col-md-8">
+		<div class="row"><br>
+        <label class="control-label" style="padding-left:10px">Mark as Unhealthy</label><br><br>
         </div>
-        <div class="row" style="margin-left:80px">
-        <div class="form-group"> <br> 
-                        <label class="col-sm-2 control-label" style="font-size:85%;">Remarks</label>
-                        <div class="col-sm-5">
-                          <input type="text" name="unhealthy_remarks" id="unhealthy_remarks" class="form-control input-sm mb15"  />
+        <div class="row">
+        <div class="col-md-3"><label class="control-label">Remarks</label></div>
+        <div class="col-sm-9">
+          <textarea  name="unhealthy_remarks" id="unhealthy_remarks" class="form-control input-sm mb15" name="content" id="content" rows="5"></textarea>
+        </div><br>
         </div>
-        </div>
-        </div>
+		</div>
+		<div class="col-md-2"></div>
+		</div>
         
-        <br><br>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" id="btnUnhealthy">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal" style ="font-size:11px">Close</button>
+        <button type="button" class="btn btn-primary" id="btnUnhealthy" style ="font-size:11px">Submit</button>
       </div>
     </div><!-- modal-content -->
   </div><!-- modal-dialog -->

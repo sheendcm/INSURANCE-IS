@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Message</title>
+<title>Pru Life UK</title>
 </head>
 <body style="padding-left:350px; padding-right:350px; padding-top:30px;">
      <div class="panel panel-default">

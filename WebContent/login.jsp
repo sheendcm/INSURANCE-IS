@@ -11,9 +11,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="shortcut icon" href="images/favicon.png" type="image/png">
+  <link rel="shortcut icon" href="images/prulifelogo.png" type="image/png">
 
-  <title>Pru Life UK - Insurance IS</title>
+  <title>Pru Life UK - Login</title>
 
   <link href="css/style.default.css" rel="stylesheet">
 
@@ -25,28 +25,33 @@
 </head>
 
 <body class="signin" style="background-color:white;">
-<img src="./images/prulife.png" alt="logo" style="height:55px;width:190px;margin-left:117px;padding-top:5px">
+<% 
+	
+	Conn db = new Conn();
+	Connection conn = db.getConnection();
 
+%>
 <section>
   
     <div class="signinpanel">
         
         <div class="row">
-            
+            <div class="col-md-3" ></div>
             <div class="col-md-6" >
                 
                 <form method="post" action="login">
-                    <h4 class="nomargin">Log In</h4>
-                    <p class="mt5 mb20">Login to access your account.</p>
-                
+                <img alt="" src="images/prulifelogo.png" class="media-object" style="margin-left:100px;"><br>
+                	
                     <input type="text" name="username" id="username" class="form-control uname" placeholder="Username" />
-                    <input type="password" name="password" id="password" class="form-control pword" placeholder="Password" />
-                    <a href=""><small>Forgot Your Password?</small></a>
-                    <button class="btn btn-success btn-block" type="submit" name="btnLogin" id="btnLogin">Login</button>
+                    <input type="password" name="password" id="password" class="form-control pword" placeholder="Password" /><br>
+                    <input type="hidden" class="form-control" placeholder="error" name="error" value="Username or password incorrect!">
+
+    					<p style="color: red"><%=(request.getAttribute("error") == null) ? "": request.getAttribute("error")%></p>
+                    <button class="btn btn-success btn-block" type="submit" name="btnLogin" id="btnLogin"  style="background-color:#db241e; border-color:#db241e;">Login</button>
                     
                 </form>
             </div><!-- col-sm-5 -->
-            
+            <div class="col-md-3" ></div>
         </div><!-- row -->
         
         <div class="signup-footer">

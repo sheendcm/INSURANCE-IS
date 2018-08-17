@@ -40,34 +40,16 @@
     <img src="images/prulife.png" alt="" />
     </div><!-- logopanel -->
     
-    <div class="leftpanelinner">
-        
-        <!-- This is only visible to small devices -->
-        <div class="visible-xs hidden-sm hidden-md hidden-lg">   
-            <div class="media userlogged">
-                <img alt="" src="images/photos/loggeduser.png" class="media-object">
-                <div class="media-body">
-                    <h4>John Doe</h4>
-                    <span>"Life is so..."</span>
-                </div>
-            </div>
-          
-            <h5 class="sidebartitle actitle">Account</h5>
-            <ul class="nav nav-pills nav-stacked nav-bracket mb30">
-              <li><a href="profile.html"><i class="fa fa-user"></i> <span>Profile</span></a></li>
-              <li><a href=""><i class="fa fa-cog"></i> <span>Account Settings</span></a></li>
-              <li><a href=""><i class="fa fa-question-circle"></i> <span>Help</span></a></li>
-              <li><a href="signout.html"><i class="fa fa-sign-out"></i> <span>Sign Out</span></a></li>
-            </ul>
-        </div>
+    <div class="leftpanelinner" style="padding-top:30px;">
+
       
       <ul class="nav nav-pills nav-stacked nav-bracket">
         <li><a href="#"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
         <li><a href="application-form.jsp"><i class="fa fa-edit"></i> <span>Application Form</span></a></li>
-        <li class="nav-parent nav-active active"><a href=""><i class="fa fa-list-alt"></i> <span>List of Application</span></a>
+        <li class="nav-parent nav-active active"><a href="" style="background-color: #DB241E;"><i class="fa fa-list-alt"></i> <span>List of Application</span></a>
           <ul class="children" style="display: block">
             <li><a href="application-form-view.jsp"><i class="fa fa-caret-right"></i> Pending Application</a></li>
-            <li class="active"><a href="issued-application.jsp"><i class="fa fa-caret-right"></i> Issued</a></li>
+            <li class="active"><a href="issued-application.jsp" style="color: #DB241E;"><i class="fa fa-caret-right"></i> Issued</a></li>
             <li><a href="declined-application.jsp"><i class="fa fa-caret-right"></i> Declined</a></li>
           </ul>
         </li>
@@ -149,7 +131,7 @@
                 <td><%out.print(rs.getString("PlanName")); %></td>
                 <td style="display:none;"><%out.print(rs.getString("Email")); %></td>
                 <td>
-                <a class="btn btn-warning btnSendMsg" href="#modalSendMsg" data-toggle="modal" style="padding: 4px 7px;">
+                <a title="Send Message" class="btn btn-warning btnSendMsg" href="#modalSendMsg" data-toggle="modal" style="padding: 4px 7px;">
                         <i class="glyphicon glyphicon-envelope"></i>
                     </a>
                 </td>
@@ -178,14 +160,15 @@
  <!-- MODALS-->
        <div class="modal fade bs-example-modal-static" id="modalSendMsg" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" data-backdrop="static" aria-hidden="true">
 				  <div class="modal-dialog">
-				    <div class="modal-content">
-				        <div class="modal-header" style="background-color:#db241e;">
-				            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">&times;</button>
-				            <h4 class="modal-title">Send Message</h4>
+				    <div class="modal-content" style=" width:500px;">
+				        <div class="modal-header" style="background-color:#db241e; height:50px;">
+				            <button aria-hidden="true" data-dismiss="modal" style="margin:0px" class="close" type="button">&times;</button>
+				            <h4 class="modal-title" style="font-size:15px;color:white;">Send Message</h4>
 							
 				        </div>
+				        <form action="EmailSendingServlet" method="post">
 				        <div class="modal-body">
-				        	<form action="EmailSendingServlet" method="post">
+				        	
 				        	<div class="row">
 				        	<div class="col-md-1"></div>
 				        	<div class="col-md-10">
@@ -201,16 +184,17 @@
                         <label class="col-sm-4 control-label" style="font-size:85%;">Message</label>
                         <div class="col-sm-8">
                         <textarea class="form-control input-sm mb15" name="content" id="content" rows="5"></textarea>
-                        </div><br>
-                        <div class="col-sm-12" style="padding-left:200px; padding-top:20px; padding-bottom:30px">
-                          <input type="submit" value="Send"/>
                         </div>
                       </div>
 				        	</div>
 				        	<div class="col-md-1"></div>
 				        	</div>
-							</form>
 				    </div>
+				    <div class="modal-footer">
+				        <button type="button" class="btn btn-default" data-dismiss="modal" style ="font-size:11px">Close</button>
+				        <button type="submit" class="btn btn-primary" id="btnUpdateReqStatus" style ="font-size:11px">Send</button>
+				      </div>
+				      </form>
 		</div>
 		</div>
 		</div>
