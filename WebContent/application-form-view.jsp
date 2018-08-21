@@ -12,6 +12,7 @@
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
 <meta charset="ISO-8859-1">
+  <link rel="shortcut icon" href="images/prulifelogo.png" type="image/png">
  <title>Application with Pending Requirement</title>
 
   <link href="css/style.default.css" rel="stylesheet">

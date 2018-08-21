@@ -13,6 +13,7 @@
   crossorigin="anonymous">
 </script>
 <meta charset="ISO-8859-1">
+  <link rel="shortcut icon" href="images/prulifelogo.png" type="image/png">
 <title>Pru Life UK - Application Form</title>
 
 <link href="css/style.default.css" rel="stylesheet">
@@ -92,7 +93,7 @@
       <div class="row">
           
           <div class="panel panel-default">
-          
+          <form class="form" id="applicationForm">  
             <div class="panel-heading" style="background-color:#db241e; height:60px; padding:20px;">
               <h4 class="panel-title" align="center" style="font-size:90%; color:white;">APPLICATION FOR LIFE INSURANCE</h4>
             </div>
@@ -127,7 +128,7 @@
             <div class="panel-body panel-body-nopadding">
               
               <!-- BASIC WIZARD -->
-              <div id="basicWizard" class="basic-wizard">
+              <div id="validationWizard" class="basic-wizard">
                 
                 <ul class="nav nav-pills nav-justified">
                   <li><a href="#agentinformation" data-toggle="tab" style="font-size:85%;"><span>Step 1:</span></a></li>
@@ -1428,21 +1429,7 @@
                       </div>
 					  </div>
 				<div class="col-md-4" style="padding:0;">
-				   <div class="form-group">
-                        <label class="col-sm-3 control-label" style="font-size:85%;">Currency</label>
-                        <div class="col-sm-4" style="padding:0;">
-                          <div class="rdio rdio-primary">
-                      <input type="radio" id="PI_currencyphp" value="Php" name="PI_currency">
-                      <label for="PI_currencyphp" style="font-size:85%;">PhP</label>
-                    </div><!-- rdio -->
-                        </div>
-                        <div class="col-sm-3" style="padding:0;">
-                       <div class="rdio rdio-primary">
-                      <input type="radio" value="USD" id="PI_currencyusd" name="PI_currency">
-                      <label for="PI_currencyusd" style="font-size:85%;">USD</label>
-                    </div><!-- rdio -->
-                        </div>
-                      </div>
+				
 					  </div>
 					  <div class="col-md-1">
 				</div>
@@ -4571,42 +4558,7 @@ checkradiobox();
 
 <script>
 jQuery(document).ready(function(){
-    
-    "use strict";
-  // Basic Wizard
-  jQuery('#basicWizard').bootstrapWizard();
-  
-  // Progress Wizard
-  $('#progressWizard').bootstrapWizard({
-    'nextSelector': '.next',
-    'previousSelector': '.previous',
-    onNext: function(tab, navigation, index) {
-      var $total = navigation.find('li').length;
-      var $current = index+1;
-      var $percent = ($current/$total) * 100;
-      jQuery('#progressWizard').find('.progress-bar').css('width', $percent+'%');
-    },
-    onPrevious: function(tab, navigation, index) {
-      var $total = navigation.find('li').length;
-      var $current = index+1;
-      var $percent = ($current/$total) * 100;
-      jQuery('#progressWizard').find('.progress-bar').css('width', $percent+'%');
-    },
-    onTabShow: function(tab, navigation, index) {
-      var $total = navigation.find('li').length;
-      var $current = index+1;
-      var $percent = ($current/$total) * 100;
-      jQuery('#progressWizard').find('.progress-bar').css('width', $percent+'%');
-    }
-  });
-  
-  // Disabled Tab Click Wizard
-  jQuery('#disabledTabWizard').bootstrapWizard({
-    tabClass: 'nav nav-pills nav-justified nav-disabled-click',
-    onTabClick: function(tab, navigation, index) {
-      return false;
-    }
-  });
+
   
   // With Form Validation Wizard
   var $validator = jQuery("#firstForm").validate({

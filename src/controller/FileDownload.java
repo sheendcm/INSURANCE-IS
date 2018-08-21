@@ -22,10 +22,15 @@ import javax.servlet.http.HttpServletResponse;
  * downloads the file.
  * @author www.codejava.net
  */
-@WebServlet("/FileDownload")
+@WebServlet("/downloadServlet")
 public class FileDownload extends HttpServlet {
  
-    // size of byte buffer to send file
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	// size of byte buffer to send file
     private static final int BUFFER_SIZE = 4096;   
      
     // database connection settings
@@ -36,7 +41,7 @@ public class FileDownload extends HttpServlet {
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         // get upload id from URL's parameters
-        int f_id = Integer.parseInt(request.getParameter("f_id"));
+       String f_id = request.getParameter("f_id");
          
         Connection conn = null; // connection to the database
          
@@ -46,9 +51,9 @@ public class FileDownload extends HttpServlet {
             conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
  
             // queries the database
-            String sql = "SELECT * FROM r_file_details WHERE f_id = ?";
+            String sql = "SELECT * FROM r_file_details WHERE f_id = 1";
             PreparedStatement statement = conn.prepareStatement(sql);
-            statement.setInt(1, f_id);
+       //     statement.setInt(1, f_id);
  
             ResultSet result = statement.executeQuery();
             if (result.next()) {
@@ -89,7 +94,7 @@ public class FileDownload extends HttpServlet {
                 outStream.close();             
             } else {
                 // no file found
-                response.getWriter().print("File not found for the id: " + f_id);  
+                response.getWriter().print("File not found for the id: " );  
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

@@ -5,6 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+  <link rel="shortcut icon" href="images/prulifelogo.png" type="image/png">
 <title>Pru Life UK</title>
 </head>
 <body style="padding-left:350px; padding-right:350px; padding-top:30px;">

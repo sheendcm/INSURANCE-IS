@@ -12,6 +12,7 @@
   integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
   crossorigin="anonymous"></script>
 <meta charset="ISO-8859-1">
+  <link rel="shortcut icon" href="images/prulifelogo.png" type="image/png">
  <title>Medical Department</title>
 
   <link href="css/style.default.css" rel="stylesheet">
@@ -146,32 +147,7 @@
                         <i class="glyphicon glyphicon-remove"></i>
                     </a>
                 </td>
-      
-                <%
-				}
-				%>
-              </tr>
-            </tbody>
-          </table>
-           <%
-            rs.close();
-            stmt.close();
-			}
-			catch(Exception e)
-			{
-			e.printStackTrace();
-			}
-           %>
-          </div><!-- table-responsive -->
-			  </div>
-            </div>
-            <div class="panel-body panel-body-nopadding">
-              
-              
-              
-            </div><!-- panel-body -->
-          </div><!-- panel -->
-				<!-- MODALS-->
+      							<!-- MODALS-->
             <div class="modal fade" id="modalHealthy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content" style=" width:500px;">
@@ -179,6 +155,11 @@
         <button type="button" class="close" data-dismiss="modal" style="margin:0px" aria-hidden="true">&times;</button>
         <input id="id_healthy" type="text" class="form-control" name="id_healthy"
 				            style="color: black; width: 560px;  display:none;" maxlength="50"/>
+				            
+				            <% 
+				            	int tryme = rs.getInt("cid");
+				            	out.println(tryme);
+				            %>
       </div>
       <div class="modal-body">
       <div class="row">
@@ -205,6 +186,31 @@
     </div><!-- modal-content -->
   </div><!-- modal-dialog -->
 </div><!-- modal -->
+                <%
+				}
+				%>
+              </tr>
+            </tbody>
+          </table>
+           <%
+            rs.close();
+            stmt.close();
+			}
+			catch(Exception e)
+			{
+			e.printStackTrace();
+			}
+           %>
+          </div><!-- table-responsive -->
+			  </div>
+            </div>
+            <div class="panel-body panel-body-nopadding">
+              
+              
+              
+            </div><!-- panel-body -->
+          </div><!-- panel -->
+
 
 		<!-- MODALS-->
             <div class="modal fade" id="modalUnhealthy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
