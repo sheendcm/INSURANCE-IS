@@ -6,6 +6,8 @@ TRUNCATE TABLE r_policyowner_details;
 TRUNCATE TABLE r_medical_status_details;
 TRUNCATE TABLE r_life_insured_details;
 TRUNCATE TABLE r_client_details;
+TRUNCATE TABLE r_application_progress_details;
+TRUNCATE TABLE r_file_details;
 TRUNCATE TABLE r_beneficial_owner_details;
 TRUNCATE TABLE r_application_status_details;
 TRUNCATE TABLE r_application_requirements_details;

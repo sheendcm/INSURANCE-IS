@@ -98,7 +98,6 @@
 			
               <% 	
 					String ss =request.getParameter("id");
-					out.println("id = " + ss);
 					try{ 
 				String query = "SELECT * FROM r_application_requirements_details ar LEFT JOIN r_client_details c ON ar.ar_ref_c_id = c.c_id LEFT JOIN r_application_status_details astat ON astat.as_ref_c_id =  c.c_id LEFT JOIN r_application_form_details af ON c.c_ref_af_id = af.af_id LEFT JOIN r_agent_information_details ai ON c.c_ref_ai_id = ai.ai_id LEFT JOIN r_life_insured_details li ON c.c_ref_li_id = li.li_id LEFT JOIN r_policyowner_details p ON c.c_ref_p_id = p.p_id LEFT JOIN r_beneficial_owner_details bo ON c.c_ref_bo_id = bo.bo_id LEFT JOIN r_primary_beneficiary_details pb ON c.c_ref_pb_id = pb.pb_id LEFT JOIN r_secondary_beneficiary_details sb ON c.c_ref_sb_id = sb.sb_id LEFT JOIN r_policy_information_details PI ON c.c_ref_pi_id = PI.pi_id WHERE c.c_id="+ss+"";
 				Statement stmt = conn.createStatement();
@@ -559,7 +558,7 @@
             	 <label class="col-sm-12 control-label labelforprofile"><b>Name</b></label>
             	 </div>
           <div class="col-sm-8" style="padding-left:0px;">
-            	 <label class="col-sm-12 control-label labelforprofile">N/A</label>
+            	 <label class="col-sm-12 control-label labelforprofile"><%out.print(rs.getString("pb_name")); %></label>
             	 </div>  	 
           </div>
           <div class="row">
@@ -567,7 +566,7 @@
             	 <label class="col-sm-12 control-label labelforprofile"><b>Date of birth</b></label>
             	 </div>
           <div class="col-sm-8" style="padding-left:0px;">
-            	 <label class="col-sm-12 control-label labelforprofile">N/A</label>
+            	 <label class="col-sm-12 control-label labelforprofile"><%out.print(rs.getString("pb_birthdate")); %></label>
             	 </div>  	 
           </div>
           <div class="row">
@@ -575,7 +574,7 @@
             	 <label class="col-sm-12 control-label labelforprofile"><b>Gender</b></label>
             	 </div>
           <div class="col-sm-8" style="padding-left:0px;">
-            	 <label class="col-sm-12 control-label labelforprofile">N/A</label>
+            	 <label class="col-sm-12 control-label labelforprofile"><%out.print(rs.getString("pb_gender")); %></label>
             	 </div>  	 
           </div>
           <div class="row">
@@ -583,7 +582,7 @@
             	 <label class="col-sm-12 control-label labelforprofile"><b>Place of birth</b></label>
             	 </div>
           <div class="col-sm-8" style="padding-left:0px;">
-            	 <label class="col-sm-12 control-label labelforprofile">N/A</label>
+            	 <label class="col-sm-12 control-label labelforprofile"><%out.print(rs.getString("pb_placeofbirth")); %></label>
             	 </div>  	 
           </div>
           <div class="row">
@@ -591,7 +590,7 @@
             	 <label class="col-sm-12 control-label labelforprofile"><b>Nationality</b></label>
             	 </div>
           <div class="col-sm-8" style="padding-left:0px;">
-            	 <label class="col-sm-12 control-label labelforprofile">N/A</label>
+            	 <label class="col-sm-12 control-label labelforprofile"><%out.print(rs.getString("pb_nationality")); %></label>
             	 </div>  	 
           </div>
           <div class="row">
@@ -599,7 +598,7 @@
             	 <label class="col-sm-12 control-label labelforprofile"><b>Relationship to Insured</b></label>
             	 </div>
           <div class="col-sm-8" style="padding-left:0px;">
-            	 <label class="col-sm-12 control-label labelforprofile">N/A</label>
+            	 <label class="col-sm-12 control-label labelforprofile"><%out.print(rs.getString("pb_reltoinsured")); %></label>
             	 </div>  	 
           </div>
           <div class="row">
@@ -607,7 +606,7 @@
             	 <label class="col-sm-12 control-label labelforprofile"><b>% Share</b></label>
             	 </div>
           <div class="col-sm-8" style="padding-left:0px;">
-            	 <label class="col-sm-12 control-label labelforprofile">N/A</label>
+            	 <label class="col-sm-12 control-label labelforprofile"><%out.print(rs.getString("pb_share")); %></label>
             	 </div>  	 
           </div>
           <div class="row">
@@ -615,7 +614,7 @@
             	 <label class="col-sm-12 control-label labelforprofile"><b>Type of beneficiary</b></label>
             	 </div>
           <div class="col-sm-8" style="padding-left:0px;">
-            	 <label class="col-sm-12 control-label labelforprofile">N/A</label>
+            	 <label class="col-sm-12 control-label labelforprofile"><%out.print(rs.getString("pb_typeofbeneficiary")); %></label>
             	 </div>  	 
           </div>
           <div class="row">
@@ -623,7 +622,7 @@
             	 <label class="col-sm-12 control-label labelforprofile"><b>Beneficiary Designation</b></label>
             	 </div>
           <div class="col-sm-8" style="padding-left:0px;">
-            	 <label class="col-sm-12 control-label labelforprofile">N/A</label>
+            	 <label class="col-sm-12 control-label labelforprofile"><%out.print(rs.getString("pb_beneficiarydesignation")); %></label>
             	 </div>  	 
           </div>
           <div class="row">
@@ -631,7 +630,7 @@
             	 <label class="col-sm-12 control-label labelforprofile"><b>Address</b></label>
             	 </div>
           <div class="col-sm-8" style="padding-left:0px;">
-            	 <label class="col-sm-12 control-label labelforprofile">N/A</label>
+            	 <label class="col-sm-12 control-label labelforprofile"><%out.print(rs.getString("pb_presentaddress")); %> <%out.print(rs.getString("pb_zipcode")); %> <%out.print(rs.getString("pb_country")); %></label>
             	 </div>  	 
           </div><br>
           <div class="row">
@@ -644,7 +643,7 @@
             	 <label class="col-sm-12 control-label labelforprofile"><b>Name</b></label>
             	 </div>
           <div class="col-sm-8" style="padding-left:0px;">
-            	 <label class="col-sm-12 control-label labelforprofile">N/A</label>
+            	 <label class="col-sm-12 control-label labelforprofile"><%out.print(rs.getString("sb_name")); %></label>
             	 </div>  	 
           </div>
           <div class="row">
@@ -652,7 +651,7 @@
             	 <label class="col-sm-12 control-label labelforprofile"><b>Date of birth</b></label>
             	 </div>
           <div class="col-sm-8" style="padding-left:0px;">
-            	 <label class="col-sm-12 control-label labelforprofile">N/A</label>
+            	 <label class="col-sm-12 control-label labelforprofile"><%out.print(rs.getString("sb_birthdate")); %></label>
             	 </div>  	 
           </div>
           <div class="row">
@@ -660,7 +659,7 @@
             	 <label class="col-sm-12 control-label labelforprofile"><b>Gender</b></label>
             	 </div>
           <div class="col-sm-8" style="padding-left:0px;">
-            	 <label class="col-sm-12 control-label labelforprofile">N/A</label>
+            	 <label class="col-sm-12 control-label labelforprofile"><%out.print(rs.getString("sb_gender")); %></label>
             	 </div>  	 
           </div>
           <div class="row">
@@ -668,7 +667,7 @@
             	 <label class="col-sm-12 control-label labelforprofile"><b>Place of birth</b></label>
             	 </div>
           <div class="col-sm-8" style="padding-left:0px;">
-            	 <label class="col-sm-12 control-label labelforprofile">N/A</label>
+            	 <label class="col-sm-12 control-label labelforprofile"><%out.print(rs.getString("sb_placeofbirth")); %></label>
             	 </div>  	 
           </div>
           <div class="row">
@@ -676,7 +675,7 @@
             	 <label class="col-sm-12 control-label labelforprofile"><b>Nationality</b></label>
             	 </div>
           <div class="col-sm-8" style="padding-left:0px;">
-            	 <label class="col-sm-12 control-label labelforprofile">N/A</label>
+            	 <label class="col-sm-12 control-label labelforprofile"><%out.print(rs.getString("sb_nationality")); %></label>
             	 </div>  	 
           </div>
           <div class="row">
@@ -684,7 +683,7 @@
             	 <label class="col-sm-12 control-label labelforprofile"><b>Relationship to Insured</b></label>
             	 </div>
           <div class="col-sm-8" style="padding-left:0px;">
-            	 <label class="col-sm-12 control-label labelforprofile">N/A</label>
+            	 <label class="col-sm-12 control-label labelforprofile"><%out.print(rs.getString("sb_reltoinsured")); %></label>
             	 </div>  	 
           </div>
           <div class="row">
@@ -692,7 +691,7 @@
             	 <label class="col-sm-12 control-label labelforprofile"><b>% Share</b></label>
             	 </div>
           <div class="col-sm-8" style="padding-left:0px;">
-            	 <label class="col-sm-12 control-label labelforprofile">N/A</label>
+            	 <label class="col-sm-12 control-label labelforprofile"><%out.print(rs.getString("sb_share")); %></label>
             	 </div>  	 
           </div>
           <div class="row">
@@ -700,7 +699,7 @@
             	 <label class="col-sm-12 control-label labelforprofile"><b>Type of beneficiary</b></label>
             	 </div>
           <div class="col-sm-8" style="padding-left:0px;">
-            	 <label class="col-sm-12 control-label labelforprofile">N/A</label>
+            	 <label class="col-sm-12 control-label labelforprofile"><%out.print(rs.getString("sb_typeofbeneficiary")); %></label>
             	 </div>  	 
           </div>
           <div class="row">
@@ -708,7 +707,7 @@
             	 <label class="col-sm-12 control-label labelforprofile"><b>Beneficiary Designation</b></label>
             	 </div>
           <div class="col-sm-8" style="padding-left:0px;">
-            	 <label class="col-sm-12 control-label labelforprofile">N/A</label>
+            	 <label class="col-sm-12 control-label labelforprofile"><%out.print(rs.getString("sb_beneficiarydesignation")); %></label>
             	 </div>  	 
           </div>
           <div class="row">
@@ -716,7 +715,7 @@
             	 <label class="col-sm-12 control-label labelforprofile"><b>Address</b></label>
             	 </div>
           <div class="col-sm-8" style="padding-left:0px;">
-            	 <label class="col-sm-12 control-label labelforprofile">N/A</label>
+            	 <label class="col-sm-12 control-label labelforprofile"><%out.print(rs.getString("sb_presentaddress")); %> <%out.print(rs.getString("sb_zipcode")); %> <%out.print(rs.getString("sb_country")); %></label>
             	 </div>  	 
           </div>
           </div>
@@ -756,7 +755,6 @@
 			<div class="panel-body" style="border-style: solid; border-width: 1px; border-color: #EAECEF;">
 			<div class="row" style="padding-right:20px; padding-left:20px; padding-top:25px;">
               <div class="table-responsive">
-              <form method="get" action="downloadServlet">
           <table class="table table-bordered mb30" id="filestable">
           <col width="120">
   			<col width="80">
@@ -783,11 +781,10 @@
                 <td style="display:none;"><%out.print(rs1.getInt("f_id")); %></td>
                 <td><%out.print(rs1.getString("f_name")); %></td>
                 <td>
-                <a  title="Download File" class="btn btn-warning" id="btnDownload" href="Downloads/balbal.png" type="submit" style="padding: 4px 7px;">
+                <a  title="Download File" class="btn btn-warning" id="btnDownload" href="" type="submit" style="padding: 4px 7px;">
                         <i class="glyphicon glyphicon-save"></i>
                     </a>
                 </td>	
-  				</form>
                 <%
 				}
 				%>

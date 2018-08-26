@@ -93,7 +93,6 @@
       <div class="row">
           
           <div class="panel panel-default">
-          <form class="form" id="applicationForm">  
             <div class="panel-heading" style="background-color:#db241e; height:60px; padding:20px;">
               <h4 class="panel-title" align="center" style="font-size:90%; color:white;">APPLICATION FOR LIFE INSURANCE</h4>
             </div>
@@ -155,7 +154,7 @@
 			<div class="panel-body" style="border-style: solid; border-width: 1px; border-color: #EAECEF;">
 					<div class="col-md-2"></div>
 				<div class="col-md-8" style="padding:0;">
-				<div class="ckbox ckbox-primary" style="margin-left:20px;">
+				<div class="ckbox ckbox-default" style="margin-left:20px;">
                         <input type="checkbox" value="1" id="PI_agreepolicy" required/>
                             <label for="PI_agreepolicy" style="font-size:85%;">The application form is completed and signed.</label>
                  </div><br>
@@ -163,7 +162,7 @@
                         <label class="col-sm-5 control-label" style="font-size:85%;padding-right:0px;">Application Date</label>
                         <div class="col-sm-7" style="padding-left:0px">
                           <div class="input-group ">
-							<input type="text" class="form-control input-sm mb15"  style="margin-top: 0;" placeholder="mm/dd/yyyy" id="AF_dateapplied">
+							<input type="text" class="form-control input-sm mb15"  style="margin-top: 0;" placeholder="mm/dd/yyyy" id="AF_dateapplied" required>
 							<span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
 						  </div>
                         </div>
@@ -192,15 +191,15 @@
                       <div class="form-group"> <br> 
                         <label class="col-sm-4 control-label" style="font-size:85%;">Surname, Given Name</label>
                         <div class="col-sm-8">
-                          <input type="text" name="AI_name" id="AI_name" class="form-control input-sm mb15" style="" />
+                          <input type="text" name="AI_name" id="AI_name" class="form-control input-sm mb15" style="" required/>
                         </div>
                         <label class="col-sm-4 control-label" style="font-size:85%;">Agent Code</label>
                         <div class="col-sm-8">
-                          <input type="text" name="AI_code" id="AI_code" class="form-control input-sm mb15"  />
+                          <input type="text" name="AI_code" id="AI_code" class="form-control input-sm mb15"  required/>
                         </div>
                         <label class="col-sm-4 control-label" style="font-size:85%;">Branch</label>
                         <div class="col-sm-8">
-                          <input type="text" name="AI_branch" id="AI_branch" class="form-control input-sm mb15"  />
+                          <input type="text" name="AI_branch" id="AI_branch" class="form-control input-sm mb15"  required/>
                         </div>
                       </div>
 			 </div>
@@ -222,7 +221,7 @@
 				  <div class="form-group">
                         <label class="col-sm-4 control-label" style="font-size:85%;">Surname</label>
                         <div class="col-sm-8">
-                          <input type="text" name="LI_surname" id="LI_surname" class="form-control input-sm mb15" />
+                          <input type="text" name="LI_surname" id="LI_surname" class="form-control input-sm mb15"  required/>
                         </div>
                       </div>
 				  </div>
@@ -230,7 +229,7 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label" style="font-size:85%;">Given Name</label>
                         <div class="col-sm-8">
-                          <input type="text" name="LI_givenname" id="LI_givenname" class="form-control input-sm mb15"  />
+                          <input type="text" name="LI_givenname" id="LI_givenname" class="form-control input-sm mb15"  required />
                         </div>
                       </div>
 					  </div>
@@ -259,13 +258,14 @@
                         <label class="col-sm-5 control-label" style="font-size:85%;">Gender</label>
                         <div class="col-sm-7">
                           <div class="rdio rdio-primary">
-                      <input type="radio" id="LImale" value="Male" name="LI_gender"/>
+                      <input type="radio" id="LImale" value="Male" name="LI_gender" required/>
                       <label for="LImale" style="font-size:85%;">Male</label>
                     </div><!-- rdio -->
                        <div class="rdio rdio-primary">
-                      <input type="radio" value="Female" id="LIfemale" name="LI_gender"/>
+                      <input type="radio" value="Female" id="LIfemale" name="LI_gender" required/>
                       <label for="LIfemale" style="font-size:85%;">Female</label>
                     </div><!-- rdio -->
+                    <label class="error" for="LI_gender"></label>
                         </div>
                       </div>
 				  </div>
@@ -273,7 +273,7 @@
 				  <div class="form-group" style="margin-bottom: 0px;">
                         <label class="col-sm-5 control-label" style="font-size:85%;">Civil Status</label>
 					  <div class="col-sm-7">
-					  <select class="form-control input-sm mb15" id="LI_civilstatus" name="LI_civilstatus" onchange="LICivilStatus(this.value);">
+					  <select class="form-control input-sm mb15" id="LI_civilstatus" name="LI_civilstatus" onchange="LICivilStatus(this.value);" required>
 		                  <option selected></option>
 		                  <option value="Single">Single</option>
 		                  <option value="Married">Married</option>
@@ -301,7 +301,7 @@
 				  <div class="form-group">
                         <label class="col-sm-6 control-label" style="font-size:85%;">Salutation</label>
                         <div class="col-sm-6">
-                          <input type="text" name="LI_salutation" id="LI_salutation" class="form-control input-sm mb15"  />
+                          <input type="text" name="LI_salutation" id="LI_salutation" class="form-control input-sm mb15" />
                         </div>
                       </div>
                       </div>
@@ -322,7 +322,7 @@
 				  <div class="form-group">
                         <label class="col-sm-4 control-label" style="font-size:85%;">Age</label>
                         <div class="col-sm-8">
-                          <input type="text" name="LI_age" id="LI_age" class="form-control input-sm mb15"  />
+                          <input type="text" name="LI_age" id="LI_age" class="form-control input-sm mb15"/>
                         </div>
                       </div>
 				  </div>
@@ -330,7 +330,7 @@
 				  <div class="form-group">
                         <label class="col-sm-5 control-label" style="font-size:85%;">Nationality</label>
                         <div class="col-sm-7">
-                          <input type="text" name="LI_nationality" id="LI_nationality"  class="form-control input-sm mb15"  />
+                          <input type="text" name="LI_nationality" id="LI_nationality"  class="form-control input-sm mb15" />
                         </div>
                       </div>
                       </div>
@@ -459,7 +459,7 @@
 				  <div class="form-group">
                         <label class="col-sm-5 control-label" style="font-size:85%;">Mobile Number</label>
                         <div class="col-sm-7">
-                          <input type="text" name="LI_mobilenumber" id="LI_mobilenumber" class="form-control input-sm mb15"  />
+                          <input type="text" name="LI_mobilenumber" id="LI_mobilenumber" class="form-control input-sm mb15" />
                         </div>
                       </div>
 				  </div>
@@ -475,7 +475,7 @@
 				  <div class="form-group">
                         <label class="col-sm-4 control-label" style="font-size:85%;">Email Address</label>
                         <div class="col-sm-8">
-                          <input type="text" name="LI_emailaddress" id="LI_emailaddress" class="form-control input-sm mb15"  />
+                          <input type="text" name="LI_emailaddress" id="LI_emailaddress" class="form-control input-sm mb15" />
                         </div>
                       </div>
                       </div>
@@ -485,7 +485,7 @@
 				  <div class="form-group">
                         <label class="col-sm-2 control-label" style="font-size:85%;">Present Address</label>
                         <div class="col-sm-10">
-                          <input type="text" name="LI_presentaddress" id="LI_presentaddress" class="form-control input-sm mb15"  />
+                          <input type="text" name="LI_presentaddress" id="LI_presentaddress" class="form-control input-sm mb15" />
                         </div>
                       </div>
 				  </div>
@@ -493,7 +493,7 @@
 				  <div class="form-group">
                         <label class="col-sm-4 control-label" style="font-size:85%;">Country</label>
                         <div class="col-sm-8">
-                          <input type="text" name="LI_presentcountry" id="LI_presentcountry" class="form-control input-sm mb15"  />
+                          <input type="text" name="LI_presentcountry" id="LI_presentcountry" class="form-control input-sm mb15" />
                         </div>
                       </div>
                       </div>
@@ -501,7 +501,7 @@
 				  <div class="form-group">
                         <label class="col-sm-4 control-label" style="font-size:85%;">Zip Code</label>
                         <div class="col-sm-8">
-                          <input type="text" name="LI_presentzipcode" id="LI_presentzipcode" class="form-control input-sm mb15"  />
+                          <input type="text" name="LI_presentzipcode" id="LI_presentzipcode" class="form-control input-sm mb15" />
                         </div>
                       </div>
                       </div>
@@ -617,7 +617,7 @@
 				  <div class="form-group">
                         <label class="col-sm-4 control-label" style="font-size:85%;">Surname</label>
                         <div class="col-sm-8">
-                          <input type="text" name="P_surname" id="P_surname" class="form-control input-sm mb15" />
+                          <input type="text" name="P_surname" id="P_surname" class="form-control input-sm mb15" required/>
                         </div>
                       </div>
 				  </div>
@@ -625,7 +625,7 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label" style="font-size:85%;">Given Name</label>
                         <div class="col-sm-8">
-                          <input type="text" name="P_givenname" id="P_givenname" class="form-control input-sm mb15"  />
+                          <input type="text" name="P_givenname" id="P_givenname" class="form-control input-sm mb15" required/>
                         </div>
                       </div>
 					  </div>
@@ -661,6 +661,7 @@
                       <input type="radio" value="Female" id="Pfemale" name="P_gender"/>
                       <label for="Pfemale" style="font-size:85%;">Female</label>
                     </div><!-- rdio -->
+                    <label class="error" for="P_gender"></label>
                         </div>
                       </div>
 				  </div>
@@ -696,7 +697,7 @@
 				  <div class="form-group">
                         <label class="col-sm-6 control-label" style="font-size:85%;">Salutation</label>
                         <div class="col-sm-6">
-                          <input type="text" name="P_salutation" id="P_salutation" class="form-control input-sm mb15"  />
+                          <input type="text" name="P_salutation" id="P_salutation" class="form-control input-sm mb15" />
                         </div>
                       </div>
                       </div>
@@ -717,7 +718,7 @@
 				  <div class="form-group">
                         <label class="col-sm-4 control-label" style="font-size:85%;">Age</label>
                         <div class="col-sm-8">
-                          <input type="text" name="P_age" id="P_age" class="form-control input-sm mb15"  />
+                          <input type="text" name="P_age" id="P_age" class="form-control input-sm mb15"/>
                         </div>
                       </div>
 				  </div>
@@ -725,7 +726,7 @@
 				  <div class="form-group">
                         <label class="col-sm-5 control-label" style="font-size:85%;">Nationality</label>
                         <div class="col-sm-7">
-                          <input type="text" name="P_nationality" id="P_nationality"  class="form-control input-sm mb15"  />
+                          <input type="text" name="P_nationality" id="P_nationality"  class="form-control input-sm mb15"/>
                         </div>
                       </div>
                       </div>
@@ -735,7 +736,7 @@
 				  <div class="form-group">
                         <label class="col-sm-3 control-label" style="font-size:85%;">Place of Birth</label>
                         <div class="col-sm-9">
-                          <input type="text" name="P_placeofbirth" id="P_placeofbirth" class="form-control input-sm mb15"  />
+                          <input type="text" name="P_placeofbirth" id="P_placeofbirth" class="form-control input-sm mb15"/>
                         </div>
                       </div>
 				  </div>
@@ -854,7 +855,7 @@
 				  <div class="form-group">
                         <label class="col-sm-5 control-label" style="font-size:85%;">Mobile Number</label>
                         <div class="col-sm-7">
-                          <input type="text" name="P_mobilenumber" id="P_mobilenumber" class="form-control input-sm mb15"  />
+                          <input type="text" name="P_mobilenumber" id="P_mobilenumber" class="form-control input-sm mb15" />
                         </div>
                       </div>
 				  </div>
@@ -862,7 +863,7 @@
 				  <div class="form-group">
                         <label class="col-sm-5 control-label" style="font-size:85%;">Telephone Number</label>
                         <div class="col-sm-7">
-                          <input type="text" name="P_telephonenumber" id="P_telephonenumber" class="form-control input-sm mb15"  />
+                          <input type="text" name="P_telephonenumber" id="P_telephonenumber" class="form-control input-sm mb15" />
                         </div>
                       </div>
                       </div>
@@ -870,7 +871,7 @@
 				  <div class="form-group">
                         <label class="col-sm-4 control-label" style="font-size:85%;">Email Address</label>
                         <div class="col-sm-8">
-                          <input type="text" name="P_emailaddress" id="P_emailaddress" class="form-control input-sm mb15"  />
+                          <input type="text" name="P_emailaddress" id="P_emailaddress" class="form-control input-sm mb15" required/>
                         </div>
                       </div>
                       </div>
@@ -880,7 +881,7 @@
 				  <div class="form-group">
                         <label class="col-sm-2 control-label" style="font-size:85%;">Present Address</label>
                         <div class="col-sm-10">
-                          <input type="text" name="P_presentaddress" id="P_presentaddress" class="form-control input-sm mb15"  />
+                          <input type="text" name="P_presentaddress" id="P_presentaddress" class="form-control input-sm mb15" />
                         </div>
                       </div>
 				  </div>
@@ -888,7 +889,7 @@
 				  <div class="form-group">
                         <label class="col-sm-4 control-label" style="font-size:85%;">Country</label>
                         <div class="col-sm-8">
-                          <input type="text" name="P_presentcountry" id="P_presentcountry" class="form-control input-sm mb15"  />
+                          <input type="text" name="P_presentcountry" id="P_presentcountry" class="form-control input-sm mb15"/>
                         </div>
                       </div>
                       </div>
@@ -896,7 +897,7 @@
 				  <div class="form-group">
                         <label class="col-sm-4 control-label" style="font-size:85%;">Zip Code</label>
                         <div class="col-sm-8">
-                          <input type="text" name="P_presentzipcode" id="P_presentzipcode" class="form-control input-sm mb15"  />
+                          <input type="text" name="P_presentzipcode" id="P_presentzipcode" class="form-control input-sm mb15"/>
                         </div>
                       </div>
                       </div>
@@ -1416,7 +1417,7 @@
                       <div class="form-group">
                         <label class="col-sm-4 control-label" style="font-size:85%;">Plan Name</label>
                         <div class="col-sm-8">
-                          <input type="text" name="PI_planname" id="PI_planname" class="form-control input-sm mb15"  />
+                          <input type="text" name="PI_planname" id="PI_planname" class="form-control input-sm mb15" required />
                         </div>
                       </div>
 					  </div>
@@ -1444,7 +1445,7 @@
 				<div class="col-md-4" style="padding:0;">
                       <div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                           <input type="checkbox" value="1" id="PI_benefits1" onclick="PiBenefit1(this.checked, 'textBox')"/>
                           <label for="PI_benefits1" style="font-size:85%; display:inline;">Accelerated Total and Permanent Disability (TPD)</label>
                           </div>
@@ -1456,7 +1457,7 @@
 
 					  <div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_benefits2" onclick="PiBenefit2(this.checked, 'textBox')"/>
                             <label for="PI_benefits2" style="font-size:85%; display:inline;">Accidental Death and Disablement Benefit</label>
                           </div>
@@ -1467,7 +1468,7 @@
                       </div>
 					  <div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_benefits3" onclick="PiBenefit3(this.checked, 'textBox')"/>
                             <label for="PI_benefits3" style="font-size:85%; display:inline;">Accelerated Life Care Benefit</label>
                           </div>
@@ -1478,7 +1479,7 @@
                       </div>
 					  <div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_benefits4" onclick="PiBenefit4(this.checked, 'textBox')"/>
                             <label for="PI_benefits4" style="font-size:85%; display:inline;">Additional Term Rider</label>
                           </div>
@@ -1489,7 +1490,7 @@
                       </div>
 					  <div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_benefits5" onclick="PiBenefit5(this.checked, 'textBox')"/>
                             <label for="PI_benefits5" style="font-size:85%; display:inline;">Crisis Cover Benefit</label>
                           </div>
@@ -1500,7 +1501,7 @@
                       </div>
 					  <div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_benefits6" onclick="PiBenefit6(this.checked, 'textBox')"/>
                             <label for="PI_benefits6" style="font-size:85%; display:inline;">Crisis Cover Plus Benefit for Term</label>
                           </div>
@@ -1513,7 +1514,7 @@
 				<div class="col-md-4" style="padding:0;">
 				  <div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_benefits7" onclick="PiBenefit7(this.checked, 'textBox')"/>
                             <label for="PI_benefits7" style="font-size:85%; display:inline;">Crisis Cover Waiver</label>
                           </div>
@@ -1524,7 +1525,7 @@
                       </div>
 				<div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_benefits8" onclick="PiBenefit8(this.checked, 'textBox')"/>
                             <label for="PI_benefits8" style="font-size:85%; display:inline;">Life Care Advance Plus</label>
                           </div>
@@ -1535,7 +1536,7 @@
                       </div>
 				<div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_benefits9" onclick="PiBenefit9(this.checked, 'textBox')"/>
                             <label for="PI_benefits9" style="font-size:85%; display:inline;">Life Care Plus</label>
                           </div>
@@ -1546,7 +1547,7 @@
                       </div>
 				<div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_benefits10" onclick="PiBenefit10(this.checked, 'textBox')"/>
                             <label for="PI_benefits10" style="font-size:85%; display:inline;">Life Care Waiver</label>
                           </div>
@@ -1557,7 +1558,7 @@
                       </div>
 					  <div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_benefits11" onclick="PiBenefit11(this.checked, 'textBox')"/>
                             <label for="PI_benefits11" style="font-size:85%; display:inline;">Multiple Life Care Plus</label>
                           </div>
@@ -1568,7 +1569,7 @@
                       </div>
 					  <div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_benefits12" onclick="PiBenefit12(this.checked, 'textBox')"/>
                             <label for="PI_benefits12" style="font-size:85%; display:inline;">Non-accelerated Total and Permanent Disability Benefit</label>
                           </div>
@@ -1581,7 +1582,7 @@
 				<div class="col-md-4" style="padding:0;">
 				  <div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_benefits13" onclick="PiBenefit13(this.checked, 'textBox')"/>
                             <label for="PI_benefits13" style="font-size:85%; display:inline;">Payor Term Benefit</label>
                           </div>
@@ -1592,7 +1593,7 @@
                       </div>
 				<div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_benefits14" onclick="PiBenefit14(this.checked, 'textBox')"/>
                             <label for="PI_benefits14" style="font-size:85%; display:inline;">Payor Waiver of Regular Premium</label>
                           </div>
@@ -1603,7 +1604,7 @@
                       </div>
 				<div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_benefits15" onclick="PiBenefit15(this.checked, 'textBox')"/>
                             <label for="PI_benefits15" style="font-size:85%; display:inline;">Renewable Convertible Level Term Assurance Benefit</label>
                           </div>
@@ -1614,7 +1615,7 @@
                       </div>
 				<div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_benefits16" onclick="PiBenefit16(this.checked, 'textBox')"/>
                             <label for="PI_benefits16" style="font-size:85%; display:inline;">Waiver of Premium on TPD</label>
                           </div>
@@ -1625,7 +1626,7 @@
                       </div>
 				<div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_benefits17" onclick="PiBenefit17(this.checked, 'textBox')"/>
                             <label for="PI_benefits17" style="font-size:85%; display:inline;">Others</label>
                           </div>
@@ -1656,7 +1657,7 @@
 				<div class="col-md-4" style="padding:0;">
 				<div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_variables1" onclick="PiVariable1(this.checked, 'textBox')"/>
                             <label for="PI_variables1" style="font-size:85%; display:inline;">Variable Life Rider (One-off Premium)</label>
                           </div>
@@ -1669,7 +1670,7 @@
 				<div class="col-md-4" style="padding:0;">
 				<div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_variables2" onclick="PiVariable2(this.checked, 'textBox')"/>
                             <label for="PI_variables2" style="font-size:85%; display:inline;">Variable Life Rider (Regular Premium)</label>
                           </div>
@@ -1700,7 +1701,7 @@
 				<div class="col-md-4" style="padding:0;">
 				<div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_hospitals1" onclick="PiHospital1(this.checked, 'textBox')" />
                             <label for="PI_hospitals1" style="font-size:85%; display:inline;">Daily Hospital Income Benefit</label>
                           </div>
@@ -1711,7 +1712,7 @@
                       </div>
 					  <div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_hospitals2" onclick="PiHospital2(this.checked, 'textBox')"  />
                             <label for="PI_hospitals2" style="font-size:85%; display:inline;">Intensive Care Unit Benef</label>
                           </div>
@@ -1724,7 +1725,7 @@
 				<div class="col-md-4" style="padding:0;">
 				<div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_hospitals3" onclick="PiHospital3(this.checked, 'textBox')"  />
                             <label for="PI_hospitals3" style="font-size:85%; display:inline;">Surgical Expense Benefit</label>
                           </div>
@@ -1735,7 +1736,7 @@
                       </div>
 					  <div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_hospitals4" onclick="PiHospital4(this.checked, 'textBox')" />
                             <label for="PI_hospitals4" style="font-size:85%; display:inline;">Long-term Hospitalization Benefit</label>
                           </div>
@@ -1748,7 +1749,7 @@
 				<div class="col-md-4" style="padding:0;">
 				<div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_hospitals5" onclick="PiHospital5(this.checked, 'textBox')"  />
                             <label for="PI_hospitals5" style="font-size:85%; display:inline;">Others</label>
                           </div>
@@ -1778,7 +1779,7 @@
 				<div class="col-md-4" style="padding:0;">
 				<div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_personals1" onclick="PiPersonal1(this.checked, 'textBox')"/>
                             <label for="PI_personals1" style="font-size:85%; display:inline;">Accidental Death and Disablement Benefit</label>
                           </div>
@@ -1789,7 +1790,7 @@
                       </div>
 					  <div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_personals2" onclick="PiPersonal2(this.checked, 'textBox')"  />
                             <label for="PI_personals2" style="font-size:85%; display:inline;">Dangerous Sports Coverage</label>
                           </div>
@@ -1800,7 +1801,7 @@
                       </div>
 					  <div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_personals3" onclick="PiPersonal3(this.checked, 'textBox')" />
                             <label for="PI_personals3" style="font-size:85%; display:inline;">Double Indemnity Benefit</label>
                           </div>
@@ -1813,7 +1814,7 @@
 				<div class="col-md-4" style="padding:0;">
 				<div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_personals4" onclick="PiPersonal4(this.checked, 'textBox')" />
                             <label for="PI_personals4" style="font-size:85%; display:inline;">Field Trip Coverage</label>
                           </div>
@@ -1824,7 +1825,7 @@
                       </div>
 					  <div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_personals5" onclick="PiPersonal5(this.checked, 'textBox')"/>
                             <label for="PI_personals5" style="font-size:85%; display:inline;">Medical Reimbursement Benefit</label>
                           </div>
@@ -1835,7 +1836,7 @@
                       </div>
 					  <div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_personals6" onclick="PiPersonal6(this.checked, 'textBox')" />
                             <label for="PI_personals6" style="font-size:85%; display:inline;">Murder and Assault Benefit</label>
                           </div>
@@ -1848,7 +1849,7 @@
 				<div class="col-md-4" style="padding:0;">
 				<div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_personals7" onclick="PiPersonal7(this.checked, 'textBox')" />
                             <label for="PI_personals7" style="font-size:85%; display:inline;">Total and Permanent Disability</label>
                           </div>
@@ -1859,7 +1860,7 @@
                       </div>
 					  <div class="form-group" style="margin-bottom: 5px;">
                         <div class="col-sm-8">
-                          <div class="ckbox ckbox-primary">
+                          <div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_personals8" onclick="PiPersonal8(this.checked, 'textBox')" />
                             <label for="PI_personals8" style="font-size:85%; display:inline;">Others</label>
                           </div>
@@ -1942,12 +1943,12 @@
             </div>			<div class="panel-body" style="border-style: solid; border-width: 1px; border-color: #EAECEF;">
             <div class="row" style="padding-left:20px">
 				<div class="col-md-6" style="padding:0;">
-				<div class="ckbox ckbox-primary">
+				<div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_nonforfeiture1"  />
                             <label for="PI_nonforfeiture1" style="font-size:85%;">Premium Loan Option</label>
                  </div></div>
                  <div class="col-md-6" style="padding:0;">
-				<div class="ckbox ckbox-primary">
+				<div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_nonforfeiture2"  />
                             <label for="PI_nonforfeiture2" style="font-size:85%;">Cash Surrender Value</label>
                  </div></div>
@@ -1955,7 +1956,7 @@
 					 </div>
 			<div class="row" style="padding-left:20px">
 			 <div class="col-md-6" style="padding:0;">
-				<div class="ckbox ckbox-primary">
+				<div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_nonforfeiture3"  />
                             <label for="PI_nonforfeiture3" style="font-size:85%;">Extended Term Insurance</label>
                  </div></div>
@@ -1970,12 +1971,12 @@
             </div>			<div class="panel-body" style="border-style: solid; border-width: 1px; border-color: #EAECEF;">
             <div class="row" style="padding-left:20px">
 				<div class="col-md-5" style="padding:0;">
-				<div class="ckbox ckbox-primary">
+				<div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_dividend1" />
                             <label for="PI_dividend1" style="font-size:85%;">Paid in Cash</label>
                  </div></div>
                  <div class="col-md-7" style="padding:0;">
-				<div class="ckbox ckbox-primary">
+				<div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_dividend2" />
                             <label for="PI_dividend2" style="font-size:85%;">Used to buy Paid-up Insurance</label>
                  </div></div>
@@ -1983,7 +1984,7 @@
 					 </div>
 			<div class="row" style="padding-left:20px">
 			 <div class="col-md-7" style="padding:0;">
-				<div class="ckbox ckbox-primary">
+				<div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_dividend3"/>
                             <label for="PI_dividend3" style="font-size:85%;">Used to Pay a Portion of Premium </label>
                  </div></div>
@@ -1995,7 +1996,7 @@
 				<div class="panel-body" style="border-style: solid; border-width: 1px; border-color: #EAECEF;">
 				<div class="col-md-2"></div>
 				<div class="col-md-10" style="padding:0;">
-				<div class="ckbox ckbox-primary">
+				<div class="ckbox ckbox-default">
                         <input type="checkbox" value="1" id="PI_agreepolicy" />
                             <label for="PI_agreepolicy" style="font-size:85%;">I agree to use any dividend accumulation of the Policy towards any non-forfeiture option in effect</label>
                  </div></div>

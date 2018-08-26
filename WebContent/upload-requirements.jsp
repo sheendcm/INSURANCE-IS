@@ -114,7 +114,7 @@
             <tbody>
             <%
 			try{ 
-				String query = "SELECT c.c_id AS cid, f.f_name AS Files, af.af_applicationnumber ApplicationNumber, af.af_dateapplied AS DATE, CONCAT( p.p_givenname, ' ', p.p_middlename,' ', p.p_surname ) AS NAME, PI.pi_planname AS PlanName, astat.as_status AS Status_, CONCAT( li.li_givenname, ' ', li.li_middlename, ' ', li.li_surname ) AS li_name, li.li_alias, li.li_gender, li.li_civilstatus, li.li_salutation, li.li_birthdate, li.li_age, li.li_nationality, li.li_placeofbirth, li.li_tinsssgsis, li.li_tinsssgsis, li.li_occupation, li.li_natureofwork, li.li_employer, li.li_natureofemployer, li.li_annualincome, li.li_networth, li.li_sourceoffunds, li.li_mobilenumber, li.li_telephonenumber, li.li_emailaddress, li.li_presentaddress, li.li_presentcountry, li.li_presentzipcode, li.li_permanentaddress, li.li_permanentcountry, li.li_permanentzipcode, li.li_businessaddress, li.li_businesscountry, li.li_businesszipcode, p.p_alias, p.p_gender,  p.p_civilstatus, p.p_salutation, p.p_birthdate, p.p_age, p.p_nationality, p.p_placeofbirth, p.p_tinsssgsis, p.p_occupation, p.p_natureofwork, p.p_employer, p.p_natureofemployer, p.p_annualincome, p.p_networth, p.p_sourceoffunds, p.p_mobilenumber, p.p_telephonenumber, p.p_emailaddress, p.p_presentaddress, p.p_presentcountry, p.p_presentzipcode, p.p_permanentaddress,  p.p_permanentcountry, p.p_permanentzipcode, p.p_businessaddress, p.p_businesscountry, p.p_businesszipcode, p.p_reltolifeinsured, bo.bo_name, bo.bo_contactnumber, pb.pb_name, pb.pb_birthdate,  pb.pb_gender, pb.pb_reltoinsured, pb.pb_share, pb.pb_typeofbeneficiary, pb.pb_beneficiarydesignation, pb.pb_placeofbirth, pb.pb_nationality, pb.pb_presentaddress, pb.pb_country, pb.pb_zipcode, sb.sb_name, sb.sb_birthdate, sb.sb_gender, sb.sb_reltoinsured, sb.sb_share, sb.sb_typeofbeneficiary, sb.sb_beneficiarydesignation, sb.sb_placeofbirth, sb.sb_nationality, sb.sb_presentaddress, sb.sb_country, sb.sb_zipcode FROM r_application_requirements_details ar LEFT JOIN r_client_details c ON ar.ar_ref_c_id = c.c_id LEFT JOIN r_application_status_details astat ON astat.as_ref_c_id =  c.c_id LEFT JOIN r_file_details f ON f.f_ref_c_id = c.c_id LEFT JOIN r_application_form_details af ON c.c_ref_af_id = af.af_id LEFT JOIN r_agent_information_details ai ON c.c_ref_ai_id = ai.ai_id LEFT JOIN r_life_insured_details li ON c.c_ref_li_id = li.li_id LEFT JOIN r_policyowner_details p ON c.c_ref_p_id = p.p_id LEFT JOIN r_beneficial_owner_details bo ON c.c_ref_bo_id = bo.bo_id LEFT JOIN r_primary_beneficiary_details pb ON c.c_ref_pb_id = pb.pb_id LEFT JOIN r_secondary_beneficiary_details sb ON c.c_ref_sb_id = sb.sb_id LEFT JOIN r_policy_information_details PI ON c.c_ref_pi_id = PI.pi_id WHERE astat.as_status != 'Declined' group by c.c_id";
+				String query = "SELECT c.c_id AS cid, ar_req1+ar_req2+ar_req3+ar_req4+ar_req5 as sum, f.f_name AS Files, af.af_applicationnumber ApplicationNumber, af.af_dateapplied AS DATE, CONCAT( p.p_givenname, ' ', p.p_middlename,' ', p.p_surname ) AS NAME, PI.pi_planname AS PlanName, astat.as_status AS Status_, ap.ap_requirements as req, ap.ap_medical as med, ap.ap_status as stat, ar.ar_req1, ar.ar_req2, ar.ar_req3, ar.ar_req4, ar.ar_req5, ms.ms_status, astat.as_status FROM r_application_requirements_details ar LEFT JOIN r_client_details c ON ar.ar_ref_c_id = c.c_id LEFT JOIN r_medical_status_details ms ON ms.ms_ref_c_id=c.c_id LEFT JOIN r_application_status_details astat ON astat.as_ref_c_id =  c.c_id LEFT JOIN r_file_details f ON f.f_ref_c_id = c.c_id LEFT JOIN r_application_progress_details ap ON ap.ap_ref_c_id=c.c_id LEFT JOIN r_application_form_details af ON c.c_ref_af_id = af.af_id LEFT JOIN r_agent_information_details ai ON c.c_ref_ai_id = ai.ai_id LEFT JOIN r_life_insured_details li ON c.c_ref_li_id = li.li_id LEFT JOIN r_policyowner_details p ON c.c_ref_p_id = p.p_id LEFT JOIN r_beneficial_owner_details bo ON c.c_ref_bo_id = bo.bo_id LEFT JOIN r_primary_beneficiary_details pb ON c.c_ref_pb_id = pb.pb_id LEFT JOIN r_secondary_beneficiary_details sb ON c.c_ref_sb_id = sb.sb_id LEFT JOIN r_policy_information_details PI ON c.c_ref_pi_id = PI.pi_id WHERE astat.as_status != 'Declined' group by c.c_id";
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
 				while(rs.next())
@@ -126,6 +126,17 @@
                 <td><%out.print(rs.getString("Name")); %></td>
                 <td><%out.print(rs.getString("PlanName")); %></td>
                 <td><%out.print(rs.getString("Status_")); %></td>
+                <td style="display:none;"><%out.print(rs.getString("req")); %></td>
+                <td style="display:none;"><%out.print(rs.getString("med")); %></td>
+                <td style="display:none;"><%out.print(rs.getString("stat")); %></td>
+                <td style="display:none;"><%out.print(rs.getString("sum")); %></td>
+                <td style="display:none;"><%out.print(rs.getString("ar_req1")); %></td>
+                <td style="display:none;"><%out.print(rs.getString("ar_req2")); %></td>
+                <td style="display:none;"><%out.print(rs.getString("ar_req3")); %></td>
+                <td style="display:none;"><%out.print(rs.getString("ar_req4")); %></td>
+                <td style="display:none;"><%out.print(rs.getString("ar_req5")); %></td>
+                <td style="display:none;"><%out.print(rs.getString("ms_status")); %></td>
+                <td style="display:none;"><%out.print(rs.getString("as_status")); %></td>
                 <td>
                  <a  title="View Profile" class="btn btn-info" href="view-profile.jsp?id=<%out.print(rs.getInt("cid")); %>" type="submit" data-toggle="modal" style="padding: 4px 7px;">
                         <i class="glyphicon glyphicon-eye-open"></i>
@@ -171,7 +182,7 @@
 				            <button aria-hidden="true" data-dismiss="modal" style="margin:0px" class="close" type="button">&times;</button>
 				            <h4 class="modal-title" style="font-size:15px;color:white;">Application Status</h4>
 							<input id="stat_id" type="text" class="form-control" name="stat_id"
-				            style="color: black; width: 560px;display:none;" maxlength="50"/>
+				            style="color: black; width: 560px; display:none;" maxlength="50"/>
 				        </div>
 				        <div class="modal-body">
 				        	
@@ -191,7 +202,7 @@
 				        	<label class="control-label" >Requirements</label>
 				        	</div>
 				        	<div class="col-md-6">
-				        	<span class="label label-default" style="margin-right:10px">Pending</span><span class="label label-warning">0/5</span>
+				        	<span class="label label-warning" style="margin-right:10px" id="reqstat">0/5</span><span class="label label-default" id="requirements">Pending</span>
 				        	</div>
 				        	</div><hr style="margin-top: 0px; margin-bottom: 30px;">
 				        	<div class="row">
@@ -199,7 +210,7 @@
 				        	<label class="control-label" >Medical</label>
 				        	</div>
 				        	<div class="col-md-6">
-				        	<span class="label label-default" style="margin-right:10px">Pending</span><span class="label label-default">Pending</span>
+				        	<span class="label label-default" style="margin-right:10px" id="medstat">Pending</span><span class="label label-default" id="medical">Pending</span>
 				        	</div>
 				        	</div><hr style="margin-top: 0px; margin-bottom: 30px;">
 				        	<div class="row">
@@ -207,7 +218,7 @@
 				        	<label class="control-label">Approval</label>
 				        	</div>
 				        	<div class="col-md-6">
-				        	<span class="label label-default" style="margin-right:10px">Pending</span><span class="label label-default" style="margin-right:10px">Pending</span>
+				        	<span class="label label-default" style="margin-right:10px" id="approvalstat">Pending</span><span class="label label-default"  id="approval">Pending</span>
 				        	</div>
 				        	</div><br>
 				        	</div>
@@ -248,13 +259,58 @@ $('.btnViewStatus').click( function() {
     var table2 = document.getElementById('profiletable'); 
     for(var i = 1; i < table2.rows.length; i++)
     {
-      table2.rows[i].cells[4].onclick = function()
+      table2.rows[i].cells[15].onclick = function()
       {
 
     	  	indexedituser = this.parentElement.rowIndex;
     	  	var profile_id = document.getElementById('profiletable').rows[indexedituser].cells.item(0).innerHTML
 	        document.getElementById('stat_id').value = profile_id;
     	  	indexedituser = this.parentElement.rowIndex;
+    	  	
+    	  	var requirements = document.getElementById('profiletable').rows[indexedituser].cells.item(4).innerHTML
+	        document.getElementById('requirements').innerHTML = requirements;
+    	  	indexedituser = this.parentElement.rowIndex;
+    	  	var reqstat = document.getElementById('profiletable').rows[indexedituser].cells.item(7).innerHTML
+	        document.getElementById('reqstat').innerHTML = reqstat+"/5";
+    	  	indexedituser = this.parentElement.rowIndex;
+    	  	var medical = document.getElementById('profiletable').rows[indexedituser].cells.item(5).innerHTML
+	        document.getElementById('medical').innerHTML = medical;
+    	  	indexedituser = this.parentElement.rowIndex;
+    	  	var medstat = document.getElementById('profiletable').rows[indexedituser].cells.item(13).innerHTML
+	        document.getElementById('medstat').innerHTML = medstat;
+    	  	indexedituser = this.parentElement.rowIndex;
+    	  	var approval = document.getElementById('profiletable').rows[indexedituser].cells.item(6).innerHTML
+	        document.getElementById('approval').innerHTML = approval;
+    	  	indexedituser = this.parentElement.rowIndex;
+    	  	var approvalstat = document.getElementById('profiletable').rows[indexedituser].cells.item(14).innerHTML
+	        document.getElementById('approvalstat').innerHTML = approvalstat;
+    	  	indexedituser = this.parentElement.rowIndex;
+    	  	if (requirements=="Completed")
+    	  	document.getElementById('requirements').style.backgroundColor = "#1caf9a";
+    	  	else
+    	  	document.getElementById('requirements').style.backgroundColor = "#777777";
+    	  	if (reqstat=="5")
+    	  	document.getElementById('reqstat').style.backgroundColor = "#1caf9a";
+    	  	else
+    	  	document.getElementById('reqstat').style.backgroundColor = "#f0ad4e";
+    	  	if (medical=="Completed")
+    	  	document.getElementById('medical').style.backgroundColor = "#1caf9a";
+    	  	else
+    	  	document.getElementById('medical').style.backgroundColor = "#777777";
+    	  	if (medstat=="Healthy")
+    	  	document.getElementById('medstat').style.backgroundColor = "#1caf9a";
+    	  	if (medstat=="Unhealthy")
+    	  	document.getElementById('medstat').style.backgroundColor = "#d9534f";
+    	  	if (medstat=="Pending")
+    	  	document.getElementById('medstat').style.backgroundColor = "#777777";
+    	  	if (approval=="Completed")
+    	  	document.getElementById('approval').style.backgroundColor = "#1caf9a";
+    	  	else 
+    	  	document.getElementById('approval').style.backgroundColor = "#777777";
+    	  	if (approvalstat=="Issued")
+    	  	document.getElementById('approvalstat').style.backgroundColor = "#1caf9a";
+    	  	if (approvalstat=="Declined")
+    	  	document.getElementById('approvalstat').style.backgroundColor = "#d9534f";
       };
       
     }
@@ -262,7 +318,6 @@ $('.btnViewStatus').click( function() {
   }); 
   
 
-</script>			
-			
+</script>				
 </body>
 </html>
