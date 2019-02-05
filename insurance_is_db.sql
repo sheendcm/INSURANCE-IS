@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2018 at 04:19 PM
+-- Generation Time: Feb 06, 2019 at 12:45 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.2
 
@@ -64,7 +64,7 @@ CREATE TABLE `r_accident_info_details` (
 --
 
 INSERT INTO `r_accident_info_details` (`ai_id`, `ai_accidentdate`, `ai_accidenttime`, `ai_accidentplace`, `ai_accidentcause`, `ai_accidentextent`, `ai_accidentdetails`) VALUES
-(1, '10/16/2018', 'null', 'Quezon City', 'null', '', 'Head injury');
+(1, '10/16/2018', '18:30', 'Quezon City', 'Car crash', '', 'Head injury');
 
 -- --------------------------------------------------------
 
@@ -85,14 +85,19 @@ CREATE TABLE `r_approval_status_details` (
 --
 
 INSERT INTO `r_approval_status_details` (`as_id`, `as_completion`, `as_status`, `as_datecompleted`, `as_messagestatus`) VALUES
-(1, 'Completed', 'Issued', '2018-10-22 02:19', 'Send Message'),
-(2, 'Completed', 'Issued', '2018-10-22 02:19', 'Send Message'),
+(1, 'Pending', 'Issued', '2018-10-22 02:19', 'Send Message'),
+(2, 'Pending', 'Issued', '2018-10-22 02:19', 'Send Message'),
 (3, 'Pending', 'Pending', NULL, 'Send Message'),
 (4, 'Pending', 'Pending', NULL, 'Send Message'),
 (5, 'Pending', 'Pending', NULL, 'Send Message'),
 (6, 'Pending', 'Pending', NULL, 'Send Message'),
-(7, 'Pending', 'Pending', NULL, 'Send Message'),
-(8, 'Pending', 'Pending', NULL, 'Send Message');
+(7, 'Completed', 'Issued', '2018-10-25 10:00', 'Send Message'),
+(8, 'Pending', 'Pending', NULL, 'Send Message'),
+(9, 'Completed', 'Issued', '2018-10-25 10:00', 'Send Message'),
+(10, 'Completed', 'Issued', '2018-10-25 09:38', 'Send Message'),
+(11, 'Completed', 'Declined', '2018-10-25 09:53', 'Send Message'),
+(12, 'Completed', 'Issued', '2018-10-25 09:53', 'Send Message'),
+(13, 'Pending', 'Pending', NULL, 'Send Message');
 
 -- --------------------------------------------------------
 
@@ -114,7 +119,135 @@ CREATE TABLE `r_audit_trail_details` (
 INSERT INTO `r_audit_trail_details` (`at_id`, `at_activity`, `at_datetime`, `at_ref_sud_id`) VALUES
 (1, 'Login', '2018-10-24 08:38:32', 14),
 (3, 'Login', '2018-10-24 09:27:00', 14),
-(5, 'Login', '2018-10-24 10:40:04', 7);
+(5, 'Login', '2018-10-24 10:40:04', 7),
+(6, 'Login', '2018-10-24 22:46:18', 1),
+(7, 'Login', '2018-10-24 23:14:16', 1),
+(8, 'Login', '2018-10-24 23:24:11', 14),
+(9, 'Added application number00011', '2018-10-24 23:31:08', 14),
+(10, 'Updated requirements of an application', '2018-10-24 23:32:25', 14),
+(11, 'Updated requirements of an application', '2018-10-24 23:32:48', 14),
+(12, 'Proceeded an application in Medical Department', '2018-10-24 23:32:58', 14),
+(13, 'Login', '2018-10-24 23:33:22', 12),
+(14, 'Login', '2018-10-24 23:35:13', 14),
+(15, 'Login', '2018-10-24 23:47:27', 12),
+(16, 'Login', '2018-10-24 23:50:30', 14),
+(17, 'Login', '2018-10-24 23:56:02', 14),
+(18, 'Login', '2018-10-25 00:34:40', 8),
+(19, 'Login', '2018-10-25 00:50:19', 6),
+(20, 'Login', '2018-10-25 00:55:47', 6),
+(21, 'Login', '2018-10-25 00:56:27', 8),
+(22, 'Proceeded a claim in Legal Department', '2018-10-25 01:01:36', 8),
+(23, 'Proceeded a claim in Legal Department', '2018-10-25 01:01:43', 8),
+(24, 'Login', '2018-10-25 01:04:32', 10),
+(25, 'Login', '2018-10-25 01:08:07', 10),
+(26, 'Mark claim as Completed in Legal', '2018-10-25 01:08:32', 10),
+(27, 'Login', '2018-10-25 01:09:32', 8),
+(28, 'Login', '2018-10-25 01:13:33', 7),
+(29, 'Login', '2018-10-25 01:29:56', 14),
+(30, 'Added application number00013', '2018-10-25 01:33:42', 14),
+(31, 'Updated requirements of an application', '2018-10-25 01:34:02', 14),
+(32, 'Updated requirements of an application', '2018-10-25 01:34:24', 14),
+(33, 'Updated requirements of an application', '2018-10-25 01:34:36', 14),
+(34, 'Proceeded an application in Medical Department', '2018-10-25 01:34:45', 14),
+(35, 'Login', '2018-10-25 01:35:06', 12),
+(36, 'Login', '2018-10-25 01:36:25', 14),
+(37, 'Approved an application', '2018-10-25 01:38:13', 14),
+(38, 'Added application number00014', '2018-10-25 01:42:15', 14),
+(39, 'Added application number00015', '2018-10-25 01:44:24', 14),
+(40, 'Updated requirements of an application', '2018-10-25 01:47:37', 14),
+(41, 'Updated requirements of an application', '2018-10-25 01:47:51', 14),
+(42, 'Proceeded an application in Medical Department', '2018-10-25 01:48:40', 14),
+(43, 'Proceeded an application in Medical Department', '2018-10-25 01:49:48', 14),
+(44, 'Login', '2018-10-25 01:50:07', 12),
+(45, 'Login', '2018-10-25 01:52:56', 14),
+(46, 'Declined an application', '2018-10-25 01:53:10', 14),
+(47, 'Approved an application', '2018-10-25 01:53:24', 14),
+(48, 'Updated requirements of an application', '2018-10-25 01:57:18', 14),
+(49, 'Updated requirements of an application', '2018-10-25 01:57:45', 14),
+(50, 'Proceeded an application in Medical Department', '2018-10-25 01:57:56', 14),
+(51, 'Proceeded an application in Medical Department', '2018-10-25 01:58:03', 14),
+(52, 'Login', '2018-10-25 01:58:19', 12),
+(53, 'Login', '2018-10-25 01:59:59', 14),
+(54, 'Approved an application', '2018-10-25 02:00:15', 14),
+(55, 'Approved an application', '2018-10-25 02:00:22', 14),
+(56, 'Login', '2018-10-25 02:05:33', 8),
+(57, 'Login', '2018-10-25 02:09:16', 1),
+(58, 'Login', '2018-10-25 02:35:49', 14),
+(59, 'Login', '2018-10-25 03:17:58', 14),
+(60, 'Login', '2018-10-25 03:20:14', 8),
+(61, 'Login', '2018-10-25 03:23:13', 10),
+(62, 'Login', '2018-10-25 03:24:33', 7),
+(63, 'Login', '2018-10-25 03:27:51', 1),
+(64, 'Login', '2018-10-25 05:01:05', 14),
+(65, 'Login', '2018-10-25 05:32:43', 14),
+(66, 'Updated requirements of an application', '2018-10-25 05:47:53', 14),
+(67, 'Updated requirements of an application', '2018-10-25 05:48:19', 14),
+(68, 'Login', '2018-10-25 05:49:20', 12),
+(69, 'Login', '2018-10-25 05:50:52', 14),
+(70, 'Login', '2018-10-25 05:52:47', 12),
+(71, 'Login', '2018-10-25 05:55:10', 14),
+(72, 'Login', '2018-10-25 06:05:27', 14),
+(73, 'Login', '2018-10-25 06:38:45', 12),
+(74, 'Login', '2018-10-25 06:39:52', 14),
+(75, 'Proceeded an application in Medical Department', '2018-10-25 06:41:10', 14),
+(76, 'Login', '2018-10-25 06:42:09', 12),
+(77, 'Login', '2018-10-25 06:59:08', 14),
+(78, 'Login', '2018-10-25 07:00:35', 8),
+(79, 'Login', '2018-10-25 07:02:54', 14),
+(80, 'Login', '2018-10-25 07:10:11', 8),
+(81, 'Updated the requirements of a claim', '2018-10-25 07:29:22', 8),
+(82, 'Updated the requirements of a claim', '2018-10-25 07:29:34', 8),
+(83, 'Login', '2018-10-25 07:30:50', 10),
+(84, 'Login', '2018-10-25 07:31:31', 8),
+(85, 'Proceeded a claim in Legal Department', '2018-10-25 07:32:42', 8),
+(86, 'Login', '2018-10-25 08:19:28', 10),
+(87, 'Login', '2018-10-25 10:30:35', 14),
+(88, 'Login', '2018-10-25 10:32:26', 8),
+(89, 'Login', '2018-10-25 10:35:15', 14),
+(90, 'Login', '2018-10-25 10:37:45', 1),
+(91, 'Login', '2018-10-25 15:08:46', 6),
+(92, 'Login', '2018-10-25 15:22:05', 7),
+(93, 'Login', '2018-10-25 21:59:29', 14),
+(94, 'Login', '2018-10-25 22:00:05', 8),
+(95, 'Login', '2018-10-26 10:17:40', 10),
+(96, 'Approved a claim', '2018-10-26 10:28:40', 10),
+(97, 'Mark claim as Completed in Legal', '2018-10-26 10:29:01', 10),
+(98, 'Mark claim as Completed in Legal', '2018-10-26 10:29:11', 10),
+(99, 'Declined a claim', '2018-10-26 10:29:24', 10),
+(100, 'Mark claim as Completed in Legal', '2018-10-26 10:29:51', 10),
+(101, 'Declined a claim', '2018-10-26 10:30:03', 10),
+(102, 'Mark claim as Completed in Legal', '2018-10-26 10:30:18', 10),
+(103, 'Login', '2019-01-16 00:47:40', 14),
+(104, 'Login', '2019-01-17 00:39:59', 14),
+(105, 'Login', '2019-01-18 00:42:41', 14),
+(106, 'Added application number00100', '2019-01-18 01:02:27', 14),
+(107, 'Login', '2019-01-18 01:02:37', 14),
+(108, 'Login', '2019-01-18 04:18:55', 14),
+(109, 'Login', '2019-01-18 04:39:46', 1),
+(110, 'Login', '2019-01-18 07:43:52', 1),
+(111, 'Login', '2019-01-27 23:24:59', 14),
+(112, 'Login', '2019-01-27 23:34:57', 14),
+(113, 'Login', '2019-01-27 23:42:10', 14),
+(114, 'Login', '2019-01-27 23:43:15', 14),
+(115, 'Login', '2019-01-27 23:44:19', 14),
+(116, 'Login', '2019-01-27 23:44:54', 14),
+(117, 'Login', '2019-01-27 23:46:41', 14),
+(118, 'Login', '2019-01-27 23:47:38', 14),
+(119, 'Login', '2019-01-27 23:51:29', 14),
+(120, 'Login', '2019-01-28 01:00:09', 14),
+(121, 'Login', '2019-02-02 03:52:00', 14),
+(122, 'Login', '2019-02-02 03:59:49', 1),
+(123, 'Login', '2019-02-02 04:01:56', 14),
+(124, 'Login', '2019-02-02 05:40:38', 8),
+(125, 'Added Claim Form - Death Claim', '2019-02-02 05:50:11', 8),
+(126, 'Updated the requirements of a claim', '2019-02-02 05:50:24', 8),
+(127, 'Login', '2019-02-02 07:15:11', 14),
+(128, 'Login', '2019-02-02 07:47:11', 14),
+(129, 'Login', '2019-02-02 07:47:47', 14),
+(130, 'Login', '2019-02-02 07:52:48', 10),
+(131, 'Approved a claim', '2019-02-02 07:54:06', 10),
+(132, 'Approved a claim', '2019-02-02 07:56:27', 10),
+(133, 'Login', '2019-02-02 07:58:29', 8);
 
 -- --------------------------------------------------------
 
@@ -165,7 +298,19 @@ INSERT INTO `r_beneficiary_details` (`b_id`, `b_name`, `b_birthdate`, `b_gender`
 (23, '', '', 'null', '', '100', 'Primary', '', '', '', '', '', '', 12),
 (24, '', '', 'null', '', '100', 'Secodary', '', '', '', '', '', '', 12),
 (25, '', '', 'null', '', '100', 'Primary', '', '', '', '', '', '', 13),
-(26, '', '', 'null', '', '100', 'Secodary', '', '', '', '', '', '', 13);
+(26, '', '', 'null', '', '100', 'Secodary', '', '', '', '', '', '', 13),
+(27, '', '', 'null', '', '100', 'Primary', '', '', '', '', '', '', 14),
+(28, '', '', 'null', '', '100', 'Secodary', '', '', '', '', '', '', 14),
+(29, '', '', 'null', '', '100', 'Primary', '', '', '', '', '', '', 15),
+(30, '', '', 'null', '', '100', 'Secodary', '', '', '', '', '', '', 15),
+(31, '', '', 'null', '', '100', 'Primary', '', '', '', '', '', '', 16),
+(32, '', '', 'null', '', '100', 'Secodary', '', '', '', '', '', '', 16),
+(33, '', '', 'null', '', '100', 'Primary', '', '', '', '', '', '', 17),
+(34, '', '', 'null', '', '100', 'Secodary', '', '', '', '', '', '', 17),
+(35, '', '', 'null', '', '100', 'Primary', '', '', '', '', '', '', 18),
+(36, '', '', 'null', '', '100', 'Secodary', '', '', '', '', '', '', 18),
+(37, '', '', 'null', '', '100', 'Primary', '', '', '', '', '', '', 19),
+(38, '', '', 'null', '', '100', 'Secodary', '', '', '', '', '', '', 19);
 
 -- --------------------------------------------------------
 
@@ -199,18 +344,11 @@ INSERT INTO `r_benefit_details` (`benefit_id`, `benefit_name`, `benefit_amount`,
 (12, 'Long-term Hospitalization Benefit', '30000', 6),
 (13, 'Surgical Expense Benefit', '20000', 7),
 (14, 'Surgical Expense Benefit', '20000', 8),
-(15, 'Long-term Hospitalization Benefit', '30000', 8);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `r_claimant_details`
---
-
-CREATE TABLE `r_claimant_details` (
-  `rcd_id` int(10) UNSIGNED NOT NULL,
-  `rcd_name` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+(15, 'Long-term Hospitalization Benefit', '30000', 8),
+(16, 'Surgical Expense Benefit', '30000', 9),
+(17, 'Long-term Hospitalization Benefit', '30000', 9),
+(18, 'Accelerated Total and Permanent Disability', '20000', 14),
+(19, 'Accidental Death and Disablement Benefit', '20000', 14);
 
 -- --------------------------------------------------------
 
@@ -278,7 +416,8 @@ INSERT INTO `r_claim_approval_status_details` (`cas_id`, `cas_completion`, `cas_
 (4, 'Pending', 'Pending', '', 'Send Message'),
 (5, 'Pending', 'Pending', '', 'Send Message'),
 (6, 'Pending', 'Pending', '', 'Send Message'),
-(7, 'Pending', 'Pending', '', 'Send Message');
+(7, 'Pending', 'Pending', '', 'Send Message'),
+(8, 'Pending', 'Pending', NULL, 'Send Message');
 
 -- --------------------------------------------------------
 
@@ -303,7 +442,8 @@ INSERT INTO `r_claim_form_status_details` (`cfs_id`, `cfs_completion`, `cfs_date
 (4, 'Completed', '2018-10-23 00:43:39'),
 (10, 'Completed', '2018-10-23 15:45:24'),
 (11, 'Completed', '2018-10-23 16:30:10'),
-(12, 'Completed', '2018-10-23 17:09:54');
+(12, 'Completed', '2018-10-23 17:09:54'),
+(13, 'Completed', '2019-02-02 05:50:10');
 
 -- --------------------------------------------------------
 
@@ -325,13 +465,14 @@ CREATE TABLE `r_claim_legal_status_details` (
 --
 
 INSERT INTO `r_claim_legal_status_details` (`cls_id`, `cls_completion`, `cls_status`, `cls_remarks`, `cls_dateproceededinlegal`, `cls_datecompleted`) VALUES
-(1, 'Completed', 'Approved in Legal', 'WEWWE', '2018-10-23 16:34', '2018-10-24 11:25'),
-(2, 'Pending', 'Pending', NULL, '', NULL),
-(3, 'Pending', 'Pending', NULL, '', NULL),
-(4, 'Pending', 'Pending', NULL, '', NULL),
-(5, 'Pending', 'Pending', NULL, NULL, NULL),
-(6, 'Pending', 'Pending', NULL, NULL, NULL),
-(7, 'Pending', 'Pending', NULL, NULL, NULL);
+(1, 'Completed', 'Approved in Legal', 'WEWWE', '2018-10-25 09:01', '2018-10-26 18:29'),
+(2, 'Completed', 'Approved in Legal', 'CLAIMING', '2018-10-25 15:32', '2018-10-26 18:29'),
+(3, 'Completed', 'Declined in Legal', 'null', '2018-10-25 15:32', '2018-10-26 18:29'),
+(4, 'Completed', 'Declined in Legal', 'null', '2018-10-25 09:01', '2018-10-26 18:30'),
+(5, 'In Legal Department', 'Pending', NULL, '2018-10-25 09:01', NULL),
+(6, 'In Legal Department', 'Pending', NULL, '2018-10-25 09:01', NULL),
+(7, 'In Legal Department', 'Pending', NULL, '2018-10-25 09:01', NULL),
+(8, 'Pending', 'Pending', '', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -355,14 +496,14 @@ INSERT INTO `r_claim_requirements_checklist_details` (`crc_id`, `crc_req`, `crc_
 (2, 'Valid ID', 'checked', 1),
 (3, 'Policy Contract', 'checked', 1),
 (4, 'Valid ID of Policyowner', 'checked', 1),
-(5, 'Death Certificate', '', 2),
-(6, 'Valid ID', '', 2),
-(7, 'Policy Contract', '', 2),
-(8, 'Valid ID of Policyowner', '', 2),
+(5, 'Death Certificate', 'checked', 2),
+(6, 'Valid ID', 'checked', 2),
+(7, 'Policy Contract', 'checked', 2),
+(8, 'Valid ID of Policyowner', 'checked', 2),
 (9, 'Valid ID', '', 3),
-(10, 'Policy Contract', '', 3),
-(11, 'Valid ID of Policyowner', '', 3),
-(12, 'Attending Physicians Statement', '', 3),
+(10, 'Policy Contract', 'checked', 3),
+(11, 'Valid ID of Policyowner', 'checked', 3),
+(12, 'Attending Physicians Statement', 'checked', 3),
 (13, 'Medical Records', '', 3),
 (14, 'Valid ID', '', 4),
 (15, 'Policy Contract', '', 4),
@@ -380,7 +521,11 @@ INSERT INTO `r_claim_requirements_checklist_details` (`crc_id`, `crc_req`, `crc_
 (27, 'Valid ID', '', 8),
 (28, 'Policy Contract', '', 8),
 (29, 'Valid ID of Policyowner', '', 8),
-(30, 'Medical Records', '', 8);
+(30, 'Medical Records', '', 8),
+(31, 'Death Certificate', '', 9),
+(32, 'Valid ID', '', 9),
+(33, 'Policy Contract', 'checked', 9),
+(34, 'Valid ID of Policyowner', '', 9);
 
 -- --------------------------------------------------------
 
@@ -401,12 +546,13 @@ CREATE TABLE `r_claim_requirements_status_details` (
 
 INSERT INTO `r_claim_requirements_status_details` (`crs_id`, `crs_completion`, `crs_status`, `crs_datereqcompleted`) VALUES
 (1, 'Completed', 'Pending', '2018-10-23 16:34'),
-(2, 'Pending', 'Pending', ''),
+(2, 'Completed', 'Pending', '2018-10-25 15:29'),
 (3, 'Pending', 'Pending', ''),
 (4, 'Pending', 'Pending', ''),
 (6, 'Pending', 'Pending', NULL),
 (7, 'Pending', 'Pending', NULL),
-(8, 'Pending', 'Pending', NULL);
+(8, 'Pending', 'Pending', NULL),
+(9, 'Pending', 'Pending', NULL);
 
 -- --------------------------------------------------------
 
@@ -449,7 +595,8 @@ CREATE TABLE `r_death_claim_details` (
 INSERT INTO `r_death_claim_details` (`dc_id`, `dc_ref_d_id`, `dc_ref_h_id`, `dc_ref_pol_id`) VALUES
 (1, 4, 2, 1),
 (2, 4, 3, 2),
-(3, 4, 2, 6);
+(3, 4, 2, 6),
+(4, 5, 5, 10);
 
 -- --------------------------------------------------------
 
@@ -479,7 +626,8 @@ CREATE TABLE `r_death_details` (
 INSERT INTO `r_death_details` (`d_id`, `d_causeofdeath`, `d_dateofdeath`, `d_timeofdeath`, `d_placeofdeath`, `d_doctorcertifyingdeath`, `d_doctorcontactnumber`, `d_doctoraddress`, `d_assistantcertifyingdeath`, `d_assistantcontactnumber`, `d_assistantaddress`, `d_buriedorcremate`) VALUES
 (2, 'null', 'null', 'null', 'null', 'null', 'null', 'null', 'null', 'null', 'null', ''),
 (3, 'Anemia', '10/23/2018', 'null', 'Quezon City', 'John Doe', '09142941924', 'null', 'Jane Doe', '0972381381', 'Quezon City', ''),
-(4, 'Bone Disease', '10/08/2018', 'null', 'Quezon City', 'John Doe', '09713811871', 'null', 'Jane Doe', '0973811838', 'Quezon City', '');
+(4, 'Bone Disease', '10/08/2018', 'null', 'Quezon City', 'John Doe', '09713811871', 'null', 'Jane Doe', '0973811838', 'Quezon City', ''),
+(5, 'Heart attck', '02/18/2019', 'null', 'Philippines', 'Jon Doe', '09123891239', 'null', 'Jane Doe', '0972378178`', '123 Ajdjhajd', '');
 
 -- --------------------------------------------------------
 
@@ -496,13 +644,6 @@ CREATE TABLE `r_file_details` (
   `f_dateuploaded` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `f_ref_pol_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `r_file_details`
---
-
-INSERT INTO `r_file_details` (`f_id`, `f_file`, `f_name`, `f_description`, `f_type`, `f_dateuploaded`, `f_ref_pol_id`) VALUES
-(1, 0x89504e470d0a1a0a0000000d494844520000012c000000320806000000e6d6e62a000000017352474200aece1ce90000000467414d410000b18f0bfc6105000000097048597300000ec300000ec301c76fa864000006f249444154785eed9a6d4bdc581886f74ffb1b321f15b6e008d3529646ca40471c29230e528bb318c4888412e808468c48c088e4c3c0e28767ef73f29ec9b86dd7b173e05eb8d8e4e4bc24d97d2e9fe74cfe78fbf6ad1042c8aaa3fea1b0082146a085b5b6b6268410b2ea5058841063a0b00821c6406111428c81c22284180385450831060a8b10620c141621c418282c4288315058841063a0b00821c6b05461d927ae1cbdc171672cce899db50512dd450d3c19e931b63857f56b811ab7ed485069cbf1f6f3751a735e3962af8dc4abb665e8f9f45af3d7f3f97e2f8e4491d3d2fe3c4e1489d3d2fe32ac4bffd095c96edb35425e8fa50acbb909e5481d1f04129e59ad7d94cc82c897be3ec7f1fd5446dbb6d819ef37dbc65932be8ec4ff989e8faf6399ee9763ecbfba62cd8d5993de4524e17136df960749416c95b57a1bf3635e9fd512d6f03c92e43192e96d22d1697b1f425e8b250a6b28d31b4fba38b6bf85325df0d7b98b80884ebbd9f90f06eb96ab65a3e656e73f16ac232dc3617ebe3b95e872d8e8d3c2c6402667aeb82763b1717c74d8d7edfdc3b10c3e20733c9bc8702bedbbbe3311177d9d033b1526ae4ff6f267535832f832cee45ca163cb18d9a88bb9061bf577606d0ed3f5d53a85bcfb323e1c887de088fbf750bf87da3be8e03e4f46f25e9fafcbe0588d7764fca11c3fdaef89a5ef1fd78e07b29e8f6d6075b231a7eabfd3fc75425e93a5084b950fee792831322715c0c1632201fe5d0f5e455ffc28c8ca41b003895c4fb2e0ad06589dbe8fd2ae28df0632c51c9343046f55160dace350a2f3cafa2791c417a3420683b6ecaa7324e12c16ef333230c8681acd44329938d193ccee7c19efbc976e07d9db299ef712f320531b79318e8708f689840f3ecad37c3ec8e8de2d449bd217ef01ef07d2b0b747e25e27f2940beb23b2c087a94c76d2f583074849cb11f33ccd24f221cd2c9b2c84d5c11f0af4f33ea977d713e716d96736b7778fe33dd58ef178aee07b7abfe3cb44926fa98817426191156029c2d214652084723795414b1f2591d8af04ca360214921bab00fdec489824f399592681324bb1c543b0fa2ae340503a3708beefcdcc09627c086502b1146d5f02896f1c5d7e0e0e7d8967b90c4aba1710cf4545727b539915c28ac52de683d86af7d4851c94402c99401879e9da3dc77c55692af09e92eb7179de7121fa748d3f7721ef6cacc23a8b3369a4e2ab8a590b4bcb0a82d5b242fbd7c6fb45191c2333d5e31fd2ec57b757d65c0885455680a509ab7b8132704f1d433c3747b56b295d71ef1a1269d20c66a04ac8621faa95b1044920e36adb7e806ce4f90c624e4e607819d5858932b2145696d1e4edc878120836670601baef710d6bab6c4b3faf9258f379e744009914f2b050f67912dc04125c817b6455b9b01a827190fdcd1291c4cb7f5450f73f93273496f7853e918b52b1393e3faffee891ff109241619115e0e58595fda297cc66f86b8effc91164b3c7960040202757a3da586bb3a7cbaba2ed9d27492db046282f2b25a4a2d3955e6d63be271ed62bf7b49428900d35b2a7f577bdfabecd975092c69ed6f0529550953e8b84b58d0cedb64dca8aec9ed526ffed64be5c8508e2da0f12a54c544696f895fda5421a6dc24ac4fb00e1dce5659fda3b8c25fc5af6295924ac6a9f06141659015e5e581a5bfc9bb40cb4ce42090e9ad7eba5528e2e992e7ac5b92e19bf9519437adec894b650cedc7bd2cbcf9bfb461f5399344531ba4a705fa528fa7e4b70a3a4aa4acc82d4f2fda59ab074c90929becbcfd7a40779e46beab96f9119b6c943c90e7316e55945d275615a3a635a2cacec7eb23d2c47dd8b7a76948ec5bb81cc6dbd2f486111335992b0ca32707c1d56f67a32b4445ab20dbd499c487ce58b87722c7998cab018dbb20f95a136bc93fb40fc8ba944499961a8203f6a11a34605f67d22e1a507b9a25cba752a819dd393c935ae410611329718fd9ff41e50535890d927645028bb42dfd39f00c497a332338294927f1a656a0144844c2841b9a84ab118ebe459dcdaae27f1639c966890d014f79996adcf084b81f79b24eadd5932b8509f2584fadd84986bbabfde329ec22266b02461fd4f50e6757ffa9b284bba9b2a18dbae3dc306d66a91608dbccfde34db8f6a5caf606d76e73f118040a246f93bc7c267fec5e7aaf1127310f2fb594d61ad0a6f9029de79fafb27f53d94fe2ce067bef6468663756c719135b5667984909f82c2fa0ff4879b7e80d2d15df85dd86286e2de04e2ed97fb7284905f87c22284180385450831060a8b10620c141621c418282c4288315058841063a0b00821c6406111428c81c22284180385450831060a8b10620c141621c418282c4288315058841063a0b00821c6406111428c81c22284180385450831060a8b10620c141621c418282c4288315058841063a0b00821c6406111428c81c22284188388c8bf92512c89898745250000000049454e44ae426082, 'color.PNG', '', 'Legal', '2018-10-23 01:45:36', 1);
 
 -- --------------------------------------------------------
 
@@ -521,14 +662,19 @@ CREATE TABLE `r_form_status_details` (
 --
 
 INSERT INTO `r_form_status_details` (`fs_id`, `fs_completion`, `fs_dateformcompleted`) VALUES
-(1, 'Pending', '2018-10-22 00:56'),
-(2, 'Pending', '2018-10-22 01:35'),
-(3, 'Pending', '2018-10-22 01:52'),
-(4, 'Pending', '2018-10-22 01:56'),
-(5, 'Pending', '2018-10-22 02:01'),
-(6, 'Pending', '2018-10-22 02:05'),
-(7, 'Pending', '2018-10-22 02:09'),
-(8, 'Pending', '2018-10-24 16:58');
+(1, 'Completed', '2018-10-22 00:56'),
+(2, 'Completed', '2018-10-22 01:35'),
+(3, 'Completed', '2018-10-22 01:52'),
+(4, 'Completed', '2018-10-22 01:56'),
+(5, 'Completed', '2018-10-22 02:01'),
+(6, 'Completed', '2018-10-22 02:05'),
+(7, 'Completed', '2018-10-22 02:09'),
+(8, 'Completed', '2018-10-24 16:58'),
+(9, 'Completed', '2018-10-25 07:31'),
+(10, 'Completed', '2018-10-25 09:33'),
+(11, 'Completed', '2018-10-25 09:42'),
+(12, 'Completed', '2018-10-25 09:44'),
+(13, 'Completed', '2019-01-18 09:02');
 
 -- --------------------------------------------------------
 
@@ -549,7 +695,7 @@ CREATE TABLE `r_health_details` (
 --
 
 INSERT INTO `r_health_details` (`hl_id`, `hl_detailsofillness`, `hl_firstconsultation`, `hl_symptomsexperienced`, `hl_symptomsbegin`) VALUES
-(1, 'Dehydration, Diarrhea, Loose Bowel Movement', '', 'Stomachache, Vomitting', '');
+(1, 'Dehydration, Diarrhea, Loose Bowel Movement', '2018-10-25 09:01', 'Stomachache, Vomitting', '2018-10-25 09:01');
 
 -- --------------------------------------------------------
 
@@ -578,7 +724,8 @@ INSERT INTO `r_hospitalization_details` (`h_id`, `h_hospitalname`, `h_hospitalad
 (1, 'UST Hospital', 'España Blvd, Sampaloc, Manila, 1008 Metro Manila', '10/02/2018', '0001', '3', '10/21/2018', 'A4-003', 'Cancer', 'Cancer'),
 (2, 'University of Santo Tomas Hospital', 'España Blvd, Sampaloc, Manila, 1008 Metro Manila', '10/01/2018', '00005', '30', '10/15/2018', 'A4-09', 'Bone Cancer', 'John Doe'),
 (3, 'University of Santo Tomas Hospital', 'España Blvd, Sampaloc, Manila, 1008 Metro Manila', '10/10/2018', '00006', '20', '10/22/2018', 'A4-01', 'Cancer', 'John Doe'),
-(4, 'University of Santo Tomas Hospital', 'España Blvd, Sampaloc, Manila, 1008 Metro Manila', '10/01/2018', '00007', '30', '10/20/2018', 'AI-06', 'null', 'John Doe');
+(4, 'University of Santo Tomas Hospital', 'España Blvd, Sampaloc, Manila, 1008 Metro Manila', '10/01/2018', '00007', '30', '10/20/2018', 'AI-06', 'null', 'John Doe'),
+(5, 'General Hospital', '134 hsjjsd', '02/01/2019', '9012390', '20', '02/05/2019', '019', '', 'John Doe');
 
 -- --------------------------------------------------------
 
@@ -607,7 +754,13 @@ INSERT INTO `r_life_insured_details` (`lid_id`, `lid_ref_li_id`, `lid_ref_nmid_i
 (10, 10, 10),
 (11, 11, 11),
 (12, 12, 12),
-(13, 13, 13);
+(13, 13, 13),
+(14, 14, 14),
+(15, 15, 15),
+(16, 16, 16),
+(17, 17, 17),
+(18, 18, 18),
+(19, 19, 19);
 
 -- --------------------------------------------------------
 
@@ -664,7 +817,13 @@ INSERT INTO `r_life_insured_personal_details` (`li_id`, `li_surname`, `li_givenn
 (10, 'Bernal', 'Keith', '', '', 'Female', 'Single', '', '2018-10-14', 'Filipino', 'Quezon CIty', '', '', '', '', '', '', '', '0928781272', '02376371', 'kethbernal@gmail.com', 'Quezon CIty', '', '', '', '', '', '', '', '', 'Emplyee'),
 (11, '', '', '', '', 'null', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
 (12, '', '', '', '', 'null', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
-(13, '', '', '', '', 'null', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+(13, '', '', '', '', 'null', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(14, 'Asusula', 'Mary Joy', '', '', 'Female', 'Married', '', '2018-10-23', 'Filipino', 'Quezon City', '', '', '', '', '', '', '', '', '097263183', 'maryasusula@gmail.com', 'Quezon City', '', '', '', '', '', '', '', '', 'Employee'),
+(15, 'Andress', 'Mariette', '', '', 'Female', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''),
+(16, 'Geronimo', 'Janae ', '', '', 'Female', 'Single', '', '2018-10-08', 'Filipino', '', '', '', '', '', '', '', '', '', '098738271', 'janae@gmail.com', 'Quezon City', '', '', '', '', '', '', '', '', 'Sister'),
+(17, 'Gayton', 'Sergio ', '', '', 'Male', 'Single', '', '2018-10-10', 'Filipino', 'Quezon City', '', '', '', '', '', '', '', '', '0923871832', 'sergiogayton@gmail.com', 'Quezon City', '', '', '', '', '', '', '', '', 'Brother'),
+(18, 'Bing', 'Oda ', '', '', 'Female', 'Single', '', '2018-10-15', 'Filipino', 'Quezon City', '', '', '', '', '', '', '', '', '0972818731', 'odabing@gmail.cm', 'Quezon City', '', '', '', '', '', '', '', '', 'Sister'),
+(19, 'Bautista', 'Sara', '', '', 'Female', 'Single', '', '2019-01-06', 'American', 'Novaliches, QC', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -688,12 +847,17 @@ CREATE TABLE `r_medical_status_details` (
 INSERT INTO `r_medical_status_details` (`ms_id`, `ms_completion`, `ms_status`, `ms_remarks`, `ms_dateproceededinmedical`, `ms_datecompletedmedical`) VALUES
 (1, 'Completed', 'In good health', 'Approve By Medical Department\nThis person is healthy', '2018-10-22 02:16', '2018-10-22 02:19'),
 (2, 'Completed', 'In good health', 'This person is healthy\nApproved in medical dept', '2018-10-22 02:16', '2018-10-22 02:19'),
-(3, 'Pending', 'Pending', '', '', ''),
+(3, 'In Medical Department', 'In good health', 'Approved in Medical', '2018-10-25 07:32', ''),
 (4, 'Pending', 'Pending', '', '', ''),
 (5, 'Pending', 'Pending', '', '', ''),
-(6, 'Pending', 'Pending', '', '', ''),
-(7, 'Pending', 'Pending', '', '', ''),
-(8, 'Pending', 'Pending', '', '', '');
+(6, 'In Medical Department', 'Pending', '', '2018-10-25 14:41', ''),
+(7, 'Completed', 'In good health', 'Approved in Med dept', '2018-10-25 09:57', '2018-10-25 09:59'),
+(8, 'Pending', 'Pending', '', '', ''),
+(9, 'Completed', 'In good health', 'Approved in med dept', '2018-10-25 09:58', '2018-10-25 09:59'),
+(10, 'Completed', 'In good health', 'Approved in Medical Dept\n', '2018-10-25 09:34', '2018-10-25 09:36'),
+(11, 'Completed', 'In poor health', 'Poor health', '2018-10-25 09:48', '2018-10-25 09:52'),
+(12, 'Completed', 'In good health', 'In good health\nApproved in medical department', '2018-10-25 09:49', '2018-10-25 09:52'),
+(13, 'Pending', 'Pending', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -742,7 +906,13 @@ INSERT INTO `r_non_medical_information_details` (`nmid_id`, `nmid_height`, `nmid
 (10, '160', '100', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', ''),
 (11, '', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', ''),
 (12, '', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', ''),
-(13, '', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '');
+(13, '', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', '', 'null', ''),
+(14, '170', '120', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', ''),
+(15, '170', '90', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', ''),
+(16, '180', '100', 'No', '', 'No', '', 'No', '', 'Yes', 'Weekly', 'Yes', 'Everyday', 'No', '', 'No', '', 'No', '', 'No', '', 'No', ''),
+(17, '170', '100', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', ''),
+(18, '170', '100', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', ''),
+(19, '150', '50', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '', 'No', '');
 
 -- --------------------------------------------------------
 
@@ -767,7 +937,8 @@ CREATE TABLE `r_plan_details` (
 
 INSERT INTO `r_plan_details` (`plan_id`, `plan_name`, `plan_description`, `plan_period`, `plan_dateadded`, `plan_datelastmodified`, `plan_addedby`, `plan_activeflag`) VALUES
 (1, 'La Vie Health Protect', 'La Vie Health Protect', 4, '2018-10-15 16:06:45', '2018-10-17 13:36:27', 'Remmel Ocay', b'1'),
-(2, 'La Vie Max Life', 'La Vie Max Life', 8, '2018-10-16 16:06:45', '2018-10-17 13:36:38', 'Remmel Ocay', b'1');
+(2, 'La Vie Max Life', 'La Vie Max Life', 8, '2018-10-16 16:06:45', '2018-10-17 13:36:38', 'Remmel Ocay', b'1'),
+(3, 'La Vie Assurance', 'La Vie Assurance', 7, '2018-10-25 00:02:40', '2018-10-25 00:02:40', 'Remmel Ocay', b'1');
 
 -- --------------------------------------------------------
 
@@ -815,7 +986,8 @@ CREATE TABLE `r_policyowner_details` (
 
 INSERT INTO `r_policyowner_details` (`p_id`, `p_clientnumber`, `p_surname`, `p_givenname`, `p_middlename`, `p_alias`, `p_gender`, `p_civilstatus`, `p_salutation`, `p_birthdate`, `p_nationality`, `p_placeofbirth`, `p_occupation`, `p_natureofwork`, `p_employer`, `p_natureofemployer`, `p_annualincome`, `p_networth`, `p_sourceoffunds`, `p_mobilenumber`, `p_telephonenumber`, `p_emailaddress`, `p_presentaddress`, `p_presentcountry`, `p_presentzipcode`, `p_permanentaddress`, `p_permanentcountry`, `p_permanentzipcode`, `p_businessaddress`, `p_businesscountry`, `p_businesszipcode`) VALUES
 (1, 'CLIENT-001', 'Mape', 'Sheena Mae', '', 'null', 'Female', 'Single', '', '2018-10-05', 'Filipino', 'Quezon City', '', '', '', '', '', '', '', '09987654321', '', 'sheenmape09@gmail.com', 'Quezon City', 'Philippines', '', '', '', '', '', '', ''),
-(3, 'CLIENT-002', 'Ocay', 'Remmel', '', 'null', 'Male', 'Single', '', '2018-10-07', 'Filipino', 'Quezon City', '', '', '', '', '', '', '', '0998634672', '', 'remmelocay@gmail.com', 'Quezon City', '', '', '', '', '', '', '', '');
+(3, 'CLIENT-002', 'Ocay', 'Remmel', '', 'null', 'Male', 'Single', '', '2018-10-07', 'Filipino', 'Quezon City', '', '', '', '', '', '', '', '0998634672', '', 'remmelocay@gmail.com', 'Quezon City', '', '', '', '', '', '', '', ''),
+(4, 'CLIENT-004', 'Andress', 'Mariette', '', 'null', 'Female', 'Single', '', '2018-10-08', 'Filipino', 'Quezon City', '', '', '', '', '', '', '', '', '0932831823', 'mariette@gmail.com', 'Quezon City', '', '', '', '', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -835,7 +1007,8 @@ CREATE TABLE `r_policyowner_login_details` (
 
 INSERT INTO `r_policyowner_login_details` (`pl_id`, `pl_password`, `pl_ref_p_id`) VALUES
 (1, 'LqLJweprh4nXXSuKOf', 1),
-(3, 'S4YjDtC7zSO7jJRVqC', 3);
+(3, 'S4YjDtC7zSO7jJRVqC', 3),
+(4, '7LHLTmlirSvt4UndEp', 4);
 
 -- --------------------------------------------------------
 
@@ -864,7 +1037,13 @@ INSERT INTO `r_policy_information_details` (`pi_id`, `pi_ref_plan_id`, `pi_sumas
 (5, 2, '600000', '550000', '5000', 'Quarterly'),
 (6, 2, '500000', '450000', '3000', 'Quarterly'),
 (7, 1, '100000', '90000', '2000', 'Monthly'),
-(8, 2, '100000', '980000', '10000', 'Quarterly');
+(8, 2, '100000', '980000', '10000', 'Quarterly'),
+(9, 2, '700000', '670000', '5000', 'Quarterly'),
+(10, 3, '200000', '190000', '2000', 'Monthly'),
+(11, 3, '200000', '190000', '2000', 'Monthly'),
+(12, 3, '200000', '190000', '2000', 'Monthly'),
+(13, 1, '200000', '190000', '2000', 'Monthly'),
+(14, 1, '1500000', '1000000', '50000', 'Quarterly');
 
 -- --------------------------------------------------------
 
@@ -893,30 +1072,50 @@ INSERT INTO `r_requirements_checklist_details` (`rc_id`, `rc_req`, `rc_status`, 
 (7, 'NSO or Birth Certificate', 'checked', 2),
 (8, 'ID with Address or Proof of Billing', 'checked', 2),
 (9, 'Medical Examination Result', 'checked', 2),
-(10, '2 Valid IDs', '', 3),
-(11, 'NSO or Birth Certificate', '', 3),
+(10, '2 Valid IDs', 'checked', 3),
+(11, 'NSO or Birth Certificate', 'checked', 3),
 (12, 'ID with Address or Proof of Billing', 'checked', 3),
-(13, 'Medical Examination Result', '', 3),
-(14, '2 Valid IDs', '', 4),
-(15, 'NSO or Birth Certificate', '', 4),
+(13, 'Medical Examination Result', 'checked', 3),
+(14, '2 Valid IDs', 'checked', 4),
+(15, 'NSO or Birth Certificate', 'checked', 4),
 (16, 'ID with Address or Proof of Billing', '', 4),
 (17, 'Medical Examination Result', '', 4),
 (18, '2 Valid IDs', '', 5),
 (19, 'NSO or Birth Certificate', '', 5),
 (20, 'ID with Address or Proof of Billing', '', 5),
 (21, 'Medical Examination Result', '', 5),
-(22, '2 Valid IDs', '', 6),
-(23, 'NSO or Birth Certificate', '', 6),
-(24, 'ID with Address or Proof of Billing', '', 6),
-(25, 'Medical Examination Result', '', 6),
-(26, '2 Valid IDs', '', 7),
-(27, 'NSO or Birth Certificate', '', 7),
-(28, 'ID with Address or Proof of Billing', '', 7),
-(29, 'Medical Examination Result', '', 7),
+(22, '2 Valid IDs', 'checked', 6),
+(23, 'NSO or Birth Certificate', 'checked', 6),
+(24, 'ID with Address or Proof of Billing', 'checked', 6),
+(25, 'Medical Examination Result', 'checked', 6),
+(26, '2 Valid IDs', 'checked', 7),
+(27, 'NSO or Birth Certificate', 'checked', 7),
+(28, 'ID with Address or Proof of Billing', 'checked', 7),
+(29, 'Medical Examination Result', 'checked', 7),
 (30, '2 Valid IDs', '', 8),
 (31, 'NSO or Birth Certificate', '', 8),
 (32, 'ID with Address or Proof of Billing', '', 8),
-(33, 'Medical Examination Result', '', 8);
+(33, 'Medical Examination Result', '', 8),
+(34, '2 Valid IDs', 'checked', 9),
+(35, 'NSO or Birth Certificate', 'checked', 9),
+(36, 'ID with Address or Proof of Billing', 'checked', 9),
+(37, 'Medical Examination Result', 'checked', 9),
+(38, '2 Valid IDs', 'checked', 10),
+(39, 'NSO or Birth Certificate', 'checked', 10),
+(40, 'ID with Address or Proof of Billing', 'checked', 10),
+(41, 'Medical Examination Result', 'checked', 10),
+(42, '2 Valid IDs', 'checked', 11),
+(43, 'NSO or Birth Certificate', 'checked', 11),
+(44, 'ID with Address or Proof of Billing', 'checked', 11),
+(45, 'Medical Examination Result', 'checked', 11),
+(46, '2 Valid IDs', 'checked', 12),
+(47, 'NSO or Birth Certificate', 'checked', 12),
+(48, 'ID with Address or Proof of Billing', 'checked', 12),
+(49, 'Medical Examination Result', 'checked', 12),
+(50, '2 Valid IDs', '', 13),
+(51, 'NSO or Birth Certificate', '', 13),
+(52, 'ID with Address or Proof of Billing', '', 13),
+(53, 'Medical Examination Result', '', 13);
 
 -- --------------------------------------------------------
 
@@ -968,7 +1167,12 @@ INSERT INTO `r_requirements_status_details` (`rs_id`, `rs_completion`, `rs_dater
 (5, 'Pending', NULL),
 (6, 'Pending', NULL),
 (7, 'Pending', NULL),
-(8, 'Pending', NULL);
+(8, 'Pending', NULL),
+(9, 'Pending', NULL),
+(10, 'Pending', NULL),
+(11, 'Pending', NULL),
+(12, 'Pending', NULL),
+(13, 'Pending', NULL);
 
 -- --------------------------------------------------------
 
@@ -989,9 +1193,9 @@ CREATE TABLE `r_system_user_details` (
 --
 
 INSERT INTO `r_system_user_details` (`sud_id`, `sud_department`, `sud_usertype`, `sud_ref_supd_id`, `sud_ref_suld_id`) VALUES
-(1, '', 'Admin', 1, 1),
-(3, NULL, 'Admin', 3, 3),
-(5, '', 'Agent', 5, 5),
+(1, 'Maintenance', 'Admin', 1, 1),
+(3, 'Maintenance', 'Admin', 3, 3),
+(5, 'Agent', 'Agent', 5, 5),
 (6, 'Cashier', 'Manager', 6, 6),
 (7, 'Cash Disbursement', 'Manager', 7, 7),
 (8, 'Claiming', 'Manager', 8, 8),
@@ -1195,84 +1399,6 @@ INSERT INTO `r_system_user_personal_details` (`supd_id`, `supd_employeenumber`, 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `try`
---
-
-CREATE TABLE `try` (
-  `trythis` varchar(500) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `try`
---
-
-INSERT INTO `try` (`trythis`) VALUES
-('0000-00-00'),
-('0000-00-00'),
-('0000-00-00'),
-('2018-10-15'),
-('0000-00-00'),
-('0000-00-00'),
-('0000-00-00'),
-('0000-00-00'),
-('0000-00-00'),
-('0000-00-00'),
-('0000-00-00'),
-('0000-00-00'),
-('0000-00-00'),
-('0000-00-00'),
-('0000-00-00'),
-('0000-00-00'),
-('0000-00-00'),
-('0000-00-00'),
-('0000-00-00'),
-('0000-00-00'),
-('0000-00-00'),
-('0000-00-00'),
-('2018-10-09'),
-('2018-10-16'),
-('2018-10-01'),
-('10'),
-('13'),
-('10'),
-('[Ljava.lang.String;@67cb59f'),
-('[Ljava.lang.String;@66ec3e00'),
-('[Ljava.lang.String;@2b1bfcc2'),
-('[Ljava.lang.String;@35e16337'),
-('10'),
-('10'),
-('10'),
-('[Ljava.lang.String;@6bbe1335[Ljava.lang.String;@6579f032[Ljava.lang.String;@61467845[Ljava.lang.String;@2444fa09'),
-('10'),
-('11'),
-('12'),
-('13'),
-('15'),
-('16'),
-('17'),
-('asdads'),
-('asdads'),
-('asdads'),
-('asdads'),
-('asdads'),
-('asdads'),
-('asdads'),
-('aAAAAAsdads'),
-('aAAAAAsdads'),
-('Sat Dec 01 21:00:52 SGT 2018'),
-('2018-12-01 21:04'),
-('2018-10-31 21:04'),
-('2018-12-31 21:05'),
-('2018-11-30 21:06'),
-('13'),
-('2019-10-31'),
-('10000'),
-('AAAA'),
-('AAAA');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `t_application_form_details`
 --
 
@@ -1296,7 +1422,12 @@ INSERT INTO `t_application_form_details` (`af_id`, `af_applicationnumber`, `af_d
 (5, '00005', '2018-10-21', 5, 14),
 (6, '00006', '2018-10-22', 6, 14),
 (7, '00007', '2018-10-22', 7, 14),
-(8, '00010', '2018-10-24', 8, 14);
+(8, '00010', '2018-10-24', 8, 14),
+(9, '00011', '2018-10-16', 9, 14),
+(10, '00013', '2018-10-23', 10, 14),
+(11, '00014', '2018-10-22', 11, 14),
+(12, '00015', '2018-10-24', 12, 14),
+(13, '00100', '2019-01-18', 13, 14);
 
 -- --------------------------------------------------------
 
@@ -1323,7 +1454,8 @@ INSERT INTO `t_claiming_details` (`c_id`, `c_ref_dc_id`, `c_ref_ci_id`, `c_ref_a
 (4, NULL, NULL, 2, 'Accident'),
 (5, 3, NULL, NULL, 'Death Claim'),
 (7, NULL, 2, NULL, 'Critical Illness'),
-(8, NULL, NULL, 6, 'Accident');
+(8, NULL, NULL, 6, 'Accident'),
+(9, 4, NULL, NULL, 'Death Claim');
 
 -- --------------------------------------------------------
 
@@ -1351,7 +1483,8 @@ INSERT INTO `t_claim_status_details` (`cs_id`, `cs_ref_c_id`, `cs_ref_cfs_id`, `
 (4, 4, 4, 4, 4, 4),
 (5, 5, 10, 6, 5, 5),
 (6, 7, 11, 7, 6, 6),
-(7, 8, 12, 8, 7, 7);
+(7, 8, 12, 8, 7, 7),
+(8, 9, 13, 9, 8, 8);
 
 -- --------------------------------------------------------
 
@@ -1375,7 +1508,7 @@ CREATE TABLE `t_payment_details` (
 
 INSERT INTO `t_payment_details` (`payment_id`, `payment_amount`, `payment_due_date`, `payment_date_of_payment`, `payment_method`, `payment_status`, `payment_ref_pol_id`) VALUES
 (1, '237500', '2019-01-31', '2018-10-24 15:47', 'Paypal', 'Paid', 1),
-(2, '237500', '2019-04-30', NULL, '', 'Pending', 1),
+(2, '237500', '2019-04-30', '2018-10-25 08:54', 'Paypal', 'Paid', 1),
 (3, '237500', '2019-07-31', NULL, '', 'Pending', 1),
 (4, '237500', '2019-10-31', NULL, '', 'Pending', 1),
 (5, '37500', '2018-10-31', NULL, '', 'Pending', 2),
@@ -1389,7 +1522,47 @@ INSERT INTO `t_payment_details` (`payment_id`, `payment_amount`, `payment_due_da
 (13, '37500', '2019-06-30', NULL, '', 'Pending', 2),
 (14, '37500', '2019-07-31', NULL, '', 'Pending', 2),
 (15, '37500', '2019-08-31', NULL, '', 'Pending', 2),
-(16, '37500', '2019-09-30', NULL, '', 'Pending', 2);
+(16, '37500', '2019-09-30', NULL, '', 'Pending', 2),
+(17, '15833', '2018-10-31', NULL, '', 'Pending', 10),
+(18, '15833', '2018-11-30', NULL, '', 'Pending', 10),
+(19, '15833', '2018-12-31', NULL, '', 'Pending', 10),
+(20, '15833', '2019-01-31', NULL, '', 'Pending', 10),
+(21, '15833', '2019-02-28', NULL, '', 'Pending', 10),
+(22, '15833', '2019-03-31', NULL, '', 'Pending', 10),
+(23, '15833', '2019-04-30', NULL, '', 'Pending', 10),
+(24, '15833', '2019-05-31', NULL, '', 'Pending', 10),
+(25, '15833', '2019-06-30', NULL, '', 'Pending', 10),
+(26, '15833', '2019-07-31', NULL, '', 'Pending', 10),
+(27, '15833', '2019-08-31', NULL, '', 'Pending', 10),
+(28, '15833', '2019-09-30', NULL, '', 'Pending', 10),
+(29, '15833', '2018-10-31', NULL, '', 'Pending', 12),
+(30, '15833', '2018-11-30', NULL, '', 'Pending', 12),
+(31, '15833', '2018-12-31', NULL, '', 'Pending', 12),
+(32, '15833', '2019-01-31', NULL, '', 'Pending', 12),
+(33, '15833', '2019-02-28', NULL, '', 'Pending', 12),
+(34, '15833', '2019-03-31', NULL, '', 'Pending', 12),
+(35, '15833', '2019-04-30', NULL, '', 'Pending', 12),
+(36, '15833', '2019-05-31', NULL, '', 'Pending', 12),
+(37, '15833', '2019-06-30', NULL, '', 'Pending', 12),
+(38, '15833', '2019-07-31', NULL, '', 'Pending', 12),
+(39, '15833', '2019-08-31', NULL, '', 'Pending', 12),
+(40, '15833', '2019-09-30', NULL, '', 'Pending', 12),
+(41, '7500', '2018-10-31', NULL, '', 'Pending', 7),
+(42, '7500', '2018-11-30', NULL, '', 'Pending', 7),
+(43, '7500', '2018-12-31', NULL, '', 'Pending', 7),
+(44, '7500', '2019-01-31', NULL, '', 'Pending', 7),
+(45, '7500', '2019-02-28', NULL, '', 'Pending', 7),
+(46, '7500', '2019-03-31', NULL, '', 'Pending', 7),
+(47, '7500', '2019-04-30', NULL, '', 'Pending', 7),
+(48, '7500', '2019-05-31', NULL, '', 'Pending', 7),
+(49, '7500', '2019-06-30', NULL, '', 'Pending', 7),
+(50, '7500', '2019-07-31', NULL, '', 'Pending', 7),
+(51, '7500', '2019-08-31', NULL, '', 'Pending', 7),
+(52, '7500', '2019-09-30', NULL, '', 'Pending', 7),
+(53, '167500', '2019-01-31', NULL, '', 'Pending', 9),
+(54, '167500', '2019-04-30', NULL, '', 'Pending', 9),
+(55, '167500', '2019-07-31', NULL, '', 'Pending', 9),
+(56, '167500', '2019-10-31', NULL, '', 'Pending', 9);
 
 -- --------------------------------------------------------
 
@@ -1417,7 +1590,12 @@ INSERT INTO `t_policy_details` (`pol_id`, `pol_ref_ai_id`, `pol_ref_li_id`, `pol
 (5, 5, 7, 3, 5),
 (6, 5, 8, 1, 6),
 (7, 5, 9, 3, 7),
-(8, 5, 10, 3, 8);
+(8, 5, 10, 3, 8),
+(9, 5, 14, 3, 9),
+(10, 5, 15, 4, 10),
+(11, 5, 16, 4, 11),
+(12, 5, 17, 4, 12),
+(13, 5, 19, 4, 14);
 
 -- --------------------------------------------------------
 
@@ -1446,7 +1624,12 @@ INSERT INTO `t_policy_status_details` (`ps_id`, `ps_ref_fs_id`, `ps_ref_rs_id`, 
 (5, 5, 5, 5, 5, 5),
 (6, 6, 6, 6, 6, 6),
 (7, 7, 7, 7, 7, 7),
-(8, 8, 8, 8, 8, 8);
+(8, 8, 8, 8, 8, 8),
+(9, 9, 9, 9, 9, 9),
+(10, 10, 10, 10, 10, 10),
+(11, 11, 11, 11, 11, 11),
+(12, 12, 12, 12, 12, 12),
+(13, 13, 13, 13, 13, 13);
 
 --
 -- Indexes for dumped tables
@@ -1457,9 +1640,9 @@ INSERT INTO `t_policy_status_details` (`ps_id`, `ps_ref_fs_id`, `ps_ref_rs_id`, 
 --
 ALTER TABLE `r_accident_details`
   ADD PRIMARY KEY (`a_id`),
-  ADD KEY `a_ref_ah_id` (`a_ref_h_id`),
   ADD KEY `a_ref_pol_id` (`a_ref_pol_id`),
-  ADD KEY `a_ref_ai_id` (`a_ref_ai_id`);
+  ADD KEY `a_ref_ai_id` (`a_ref_ai_id`),
+  ADD KEY `a_ref_h_id` (`a_ref_h_id`);
 
 --
 -- Indexes for table `r_accident_info_details`
@@ -1493,12 +1676,6 @@ ALTER TABLE `r_beneficiary_details`
 ALTER TABLE `r_benefit_details`
   ADD PRIMARY KEY (`benefit_id`),
   ADD KEY `r_benefit_details_ibfk_1` (`benefit_ref_pi_id`);
-
---
--- Indexes for table `r_claimant_details`
---
-ALTER TABLE `r_claimant_details`
-  ADD PRIMARY KEY (`rcd_id`);
 
 --
 -- Indexes for table `r_claiming_or_details`
@@ -1558,9 +1735,9 @@ ALTER TABLE `r_critical_illness_details`
 --
 ALTER TABLE `r_death_claim_details`
   ADD PRIMARY KEY (`dc_id`),
-  ADD KEY `dc_ref_dch_id` (`dc_ref_h_id`),
   ADD KEY `dc_ref_pol_id` (`dc_ref_pol_id`),
-  ADD KEY `dc_ref_d_id` (`dc_ref_d_id`);
+  ADD KEY `dc_ref_d_id` (`dc_ref_d_id`),
+  ADD KEY `dc_ref_h_id` (`dc_ref_h_id`);
 
 --
 -- Indexes for table `r_death_details`
@@ -1767,31 +1944,25 @@ ALTER TABLE `r_accident_info_details`
 -- AUTO_INCREMENT for table `r_approval_status_details`
 --
 ALTER TABLE `r_approval_status_details`
-  MODIFY `as_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `as_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `r_audit_trail_details`
 --
 ALTER TABLE `r_audit_trail_details`
-  MODIFY `at_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `at_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 
 --
 -- AUTO_INCREMENT for table `r_beneficiary_details`
 --
 ALTER TABLE `r_beneficiary_details`
-  MODIFY `b_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `b_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `r_benefit_details`
 --
 ALTER TABLE `r_benefit_details`
-  MODIFY `benefit_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
-
---
--- AUTO_INCREMENT for table `r_claimant_details`
---
-ALTER TABLE `r_claimant_details`
-  MODIFY `rcd_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `benefit_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `r_claiming_or_details`
@@ -1809,31 +1980,31 @@ ALTER TABLE `r_claiming_requirements_details`
 -- AUTO_INCREMENT for table `r_claim_approval_status_details`
 --
 ALTER TABLE `r_claim_approval_status_details`
-  MODIFY `cas_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `cas_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `r_claim_form_status_details`
 --
 ALTER TABLE `r_claim_form_status_details`
-  MODIFY `cfs_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `cfs_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `r_claim_legal_status_details`
 --
 ALTER TABLE `r_claim_legal_status_details`
-  MODIFY `cls_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `cls_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `r_claim_requirements_checklist_details`
 --
 ALTER TABLE `r_claim_requirements_checklist_details`
-  MODIFY `crc_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `crc_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `r_claim_requirements_status_details`
 --
 ALTER TABLE `r_claim_requirements_status_details`
-  MODIFY `crs_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `crs_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `r_critical_illness_details`
@@ -1845,25 +2016,25 @@ ALTER TABLE `r_critical_illness_details`
 -- AUTO_INCREMENT for table `r_death_claim_details`
 --
 ALTER TABLE `r_death_claim_details`
-  MODIFY `dc_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `dc_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `r_death_details`
 --
 ALTER TABLE `r_death_details`
-  MODIFY `d_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `d_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `r_file_details`
 --
 ALTER TABLE `r_file_details`
-  MODIFY `f_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `f_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `r_form_status_details`
 --
 ALTER TABLE `r_form_status_details`
-  MODIFY `fs_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `fs_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `r_health_details`
@@ -1875,61 +2046,61 @@ ALTER TABLE `r_health_details`
 -- AUTO_INCREMENT for table `r_hospitalization_details`
 --
 ALTER TABLE `r_hospitalization_details`
-  MODIFY `h_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `h_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `r_life_insured_details`
 --
 ALTER TABLE `r_life_insured_details`
-  MODIFY `lid_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `lid_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `r_life_insured_personal_details`
 --
 ALTER TABLE `r_life_insured_personal_details`
-  MODIFY `li_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `li_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `r_medical_status_details`
 --
 ALTER TABLE `r_medical_status_details`
-  MODIFY `ms_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ms_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `r_non_medical_information_details`
 --
 ALTER TABLE `r_non_medical_information_details`
-  MODIFY `nmid_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `nmid_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `r_plan_details`
 --
 ALTER TABLE `r_plan_details`
-  MODIFY `plan_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `plan_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `r_policyowner_details`
 --
 ALTER TABLE `r_policyowner_details`
-  MODIFY `p_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `p_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `r_policyowner_login_details`
 --
 ALTER TABLE `r_policyowner_login_details`
-  MODIFY `pl_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `pl_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `r_policy_information_details`
 --
 ALTER TABLE `r_policy_information_details`
-  MODIFY `pi_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `pi_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `r_requirements_checklist_details`
 --
 ALTER TABLE `r_requirements_checklist_details`
-  MODIFY `rc_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `rc_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT for table `r_requirements_details`
@@ -1941,7 +2112,7 @@ ALTER TABLE `r_requirements_details`
 -- AUTO_INCREMENT for table `r_requirements_status_details`
 --
 ALTER TABLE `r_requirements_status_details`
-  MODIFY `rs_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `rs_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `r_system_user_details`
@@ -1971,37 +2142,37 @@ ALTER TABLE `r_system_user_personal_details`
 -- AUTO_INCREMENT for table `t_application_form_details`
 --
 ALTER TABLE `t_application_form_details`
-  MODIFY `af_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `af_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `t_claiming_details`
 --
 ALTER TABLE `t_claiming_details`
-  MODIFY `c_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `c_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `t_claim_status_details`
 --
 ALTER TABLE `t_claim_status_details`
-  MODIFY `cs_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `cs_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `t_payment_details`
 --
 ALTER TABLE `t_payment_details`
-  MODIFY `payment_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `payment_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=57;
 
 --
 -- AUTO_INCREMENT for table `t_policy_details`
 --
 ALTER TABLE `t_policy_details`
-  MODIFY `pol_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `pol_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `t_policy_status_details`
 --
 ALTER TABLE `t_policy_status_details`
-  MODIFY `ps_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ps_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables
@@ -2011,7 +2182,9 @@ ALTER TABLE `t_policy_status_details`
 -- Constraints for table `r_accident_details`
 --
 ALTER TABLE `r_accident_details`
-  ADD CONSTRAINT `r_accident_details_ibfk_2` FOREIGN KEY (`a_ref_pol_id`) REFERENCES `t_policy_details` (`pol_id`);
+  ADD CONSTRAINT `r_accident_details_ibfk_2` FOREIGN KEY (`a_ref_pol_id`) REFERENCES `t_policy_details` (`pol_id`),
+  ADD CONSTRAINT `r_accident_details_ibfk_3` FOREIGN KEY (`a_ref_ai_id`) REFERENCES `r_accident_info_details` (`ai_id`),
+  ADD CONSTRAINT `r_accident_details_ibfk_4` FOREIGN KEY (`a_ref_h_id`) REFERENCES `r_hospitalization_details` (`h_id`);
 
 --
 -- Constraints for table `r_audit_trail_details`
@@ -2049,13 +2222,16 @@ ALTER TABLE `r_claim_requirements_checklist_details`
 --
 ALTER TABLE `r_critical_illness_details`
   ADD CONSTRAINT `r_critical_illness_details_ibfk_1` FOREIGN KEY (`ci_ref_h_id`) REFERENCES `r_hospitalization_details` (`h_id`),
-  ADD CONSTRAINT `r_critical_illness_details_ibfk_2` FOREIGN KEY (`ci_ref_pol_id`) REFERENCES `t_policy_details` (`pol_id`);
+  ADD CONSTRAINT `r_critical_illness_details_ibfk_2` FOREIGN KEY (`ci_ref_pol_id`) REFERENCES `t_policy_details` (`pol_id`),
+  ADD CONSTRAINT `r_critical_illness_details_ibfk_3` FOREIGN KEY (`ci_ref_hl_id`) REFERENCES `r_health_details` (`hl_id`);
 
 --
 -- Constraints for table `r_death_claim_details`
 --
 ALTER TABLE `r_death_claim_details`
-  ADD CONSTRAINT `r_death_claim_details_ibfk_2` FOREIGN KEY (`dc_ref_pol_id`) REFERENCES `t_policy_details` (`pol_id`);
+  ADD CONSTRAINT `r_death_claim_details_ibfk_2` FOREIGN KEY (`dc_ref_pol_id`) REFERENCES `t_policy_details` (`pol_id`),
+  ADD CONSTRAINT `r_death_claim_details_ibfk_3` FOREIGN KEY (`dc_ref_d_id`) REFERENCES `r_death_details` (`d_id`),
+  ADD CONSTRAINT `r_death_claim_details_ibfk_4` FOREIGN KEY (`dc_ref_h_id`) REFERENCES `r_hospitalization_details` (`h_id`);
 
 --
 -- Constraints for table `r_file_details`
@@ -2107,6 +2283,14 @@ ALTER TABLE `r_system_user_log_details`
 ALTER TABLE `t_application_form_details`
   ADD CONSTRAINT `t_application_form_details_ibfk_1` FOREIGN KEY (`af_ref_pol_id`) REFERENCES `t_policy_details` (`pol_id`),
   ADD CONSTRAINT `t_application_form_details_ibfk_2` FOREIGN KEY (`af_ref_sud_id`) REFERENCES `r_system_user_details` (`sud_id`);
+
+--
+-- Constraints for table `t_claiming_details`
+--
+ALTER TABLE `t_claiming_details`
+  ADD CONSTRAINT `t_claiming_details_ibfk_1` FOREIGN KEY (`c_ref_a_id`) REFERENCES `r_accident_details` (`a_id`),
+  ADD CONSTRAINT `t_claiming_details_ibfk_2` FOREIGN KEY (`c_ref_ci_id`) REFERENCES `r_critical_illness_details` (`ci_id`),
+  ADD CONSTRAINT `t_claiming_details_ibfk_3` FOREIGN KEY (`c_ref_dc_id`) REFERENCES `r_death_claim_details` (`dc_id`);
 
 --
 -- Constraints for table `t_claim_status_details`
