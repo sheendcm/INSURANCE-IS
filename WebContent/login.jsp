@@ -11,9 +11,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="description" content="">
   <meta name="author" content="">
-  <link rel="shortcut icon" href="images/prulifelogo.png" type="image/png">
+  <link rel="shortcut icon" href="images/lavienew.png" type="image/png">
 
-  <title>Pru Life UK - Login</title>
+  <title>La Vie Insurance - Login</title>
 
   <link href="css/style.default.css" rel="stylesheet">
 
@@ -39,15 +39,17 @@
             <div class="col-md-3" ></div>
             <div class="col-md-6" >
                 
-                <form method="post" action="login">
-                <img alt="" src="images/prulifelogo.png" class="media-object" style="margin-left:100px;"><br>
+                <form method="post" action="LoginServlet">
+                <div class="row" align="center">
+                <img alt="" src="images/lavienew.png" class="media-object" style="width:170px;">
+                </div><br>
                 	
                     <input type="text" name="username" id="username" class="form-control uname" placeholder="Username" />
                     <input type="password" name="password" id="password" class="form-control pword" placeholder="Password" /><br>
                     <input type="hidden" class="form-control" placeholder="error" name="error" value="Username or password incorrect!">
 
-    					<p style="color: red"><%=(request.getAttribute("error") == null) ? "": request.getAttribute("error")%></p>
-                    <button class="btn btn-success btn-block" type="submit" name="btnLogin" id="btnLogin"  style="background-color:#db241e; border-color:#db241e;">Login</button>
+    					<p style="color: red"><%=request.getAttribute("Message")%></p>
+                    <button class="btn btn-block" name="btnLogin" type="submit" id="btnLogin" style="background-color:#3F729B; border-color:#3F729B; color:white;">Login</button>
                     
                 </form>
             </div><!-- col-sm-5 -->
@@ -92,7 +94,18 @@
         }
     });
 </script>
-
+<script>
+			$(document).ready(function (){
+				
+				var p = document.getElementsByTagName("p");
+					for (var i = 0; i < p.length; i++) {
+					    if (p[i].innerHTML == "null") {
+					        p[i].style.display = "none";
+					    }
+					}
+							});
+									
+			</script>
 </body>
 </html>
     

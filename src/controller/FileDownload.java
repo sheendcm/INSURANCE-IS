@@ -41,7 +41,7 @@ public class FileDownload extends HttpServlet {
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
         // get upload id from URL's parameters
-       String f_id = request.getParameter("f_id");
+       int f_id = Integer.parseInt(request.getParameter("id"));
          
         Connection conn = null; // connection to the database
          
@@ -51,9 +51,9 @@ public class FileDownload extends HttpServlet {
             conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
  
             // queries the database
-            String sql = "SELECT * FROM r_file_details WHERE f_id = 1";
+            String sql = "SELECT * FROM r_file_details WHERE f_id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
-       //     statement.setInt(1, f_id);
+            statement.setInt(1, f_id);
  
             ResultSet result = statement.executeQuery();
             if (result.next()) {

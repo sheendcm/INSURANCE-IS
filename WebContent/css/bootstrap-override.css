@@ -174,7 +174,7 @@ h4, .h4 {
 }
 
 .btn-default {
-   background: #e4e7ea;
+   background: ##ffffff;
    color: #636e7b;
 }
 
@@ -183,11 +183,12 @@ h4, .h4 {
 .btn-default:active,
 .btn-default.active,
 .open .dropdown-toggle.btn-default {
-   background: #f7f7f7;
-   border-color: #ccc;
+   background: #e4e7ea;
+   border-color: #636e7b;
    -moz-box-shadow: none;
    -webkit-box-shadow: none;
    box-shadow: none;
+   color: #636e7b;
 }
 
 .btn-primary:active,
@@ -552,7 +553,7 @@ h4, .h4 {
 .nav-pills > li > a {
    -moz-border-radius: 3px;
    -webkit-border-radius: 3px;
-   border-radius: 3px;
+   border-radius: 0px;
 }
 
 .nav-tabs > li > a {
@@ -992,7 +993,7 @@ h4, .h4 {
 }
 
 .nav-tabs {
-   background: #d8dbde;
+   background: #e4e7ea;
    border: 0;
    -moz-border-radius: 3px 3px 0 0;
    -webkit-border-radius: 3px 3px 0 0;
@@ -1024,7 +1025,7 @@ h4, .h4 {
 .nav-tabs > li.active > a,
 .nav-tabs > li.active > a:hover,
 .nav-tabs > li.active > a:focus {
-   background-color: #fcfcfc;
+   background-color: #3F729B;
    border: 0;
 }
 

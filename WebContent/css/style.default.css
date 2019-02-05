@@ -76,7 +76,7 @@
 /*************************************/
 
 body {
-    background: #1d2939;
+    background: #1C2331;
     font-family: 'LatoRegular', 'Lucida Grande', 'Lucida Sans Unicode', Helvetica, sans-serif !important;
     line-height: 21px;
     color: #636e7b;
@@ -322,7 +322,7 @@ strong {
 }
 
 .headermenu .dropdown-menu li a:hover {
-    background: #1caf9a;
+    background: #3F729B;
     color: #fff;
 }
 
@@ -357,7 +357,7 @@ strong {
 }
 
 .headermenu .dropdown-menu-usermenu {
-    background: #1d2939;
+    background: #1C2331;
     min-width: 200px;
 }
 
@@ -484,7 +484,7 @@ strong {
 }
 
 .logopanel h1 span {
-    color: #1caf9a;
+    color: #3F729B;
 }
 
 .leftpanelinner {
@@ -565,7 +565,7 @@ strong {
 
 .nav-bracket > li > a {
     color: #8f939e;
-    padding: 7px 10px;
+    padding: 15px 10px;
 }
 
 .nav-bracket > li > a:hover,
@@ -618,7 +618,7 @@ strong {
 .nav-bracket > li.active > a,
 .nav-bracket > li.active > a:hover,
 .nav-bracket > li.active > a:focus {
-    background-color: #DB241E;
+    background-color: #3F729B;
     color: #fff;
 }
 
@@ -678,7 +678,7 @@ strong {
 .nav-bracket .children > li > a:active,
 .nav-bracket .children > li > a:focus {
     text-decoration: none;
-    color: #1caf9a;
+    color: #3F729B;
 }
 
 .nav-bracket .children > li .fa {
@@ -691,7 +691,7 @@ strong {
 }
 
 .nav-bracket .children > li.active > a {
-    color: #1caf9a;
+    color: #3F729B;
 }
 
 .nav-bracket .children ul {
@@ -1053,8 +1053,8 @@ p {
 }
 
 .ckbox-primary input[type="checkbox"]:checked + label:before {
-    border-color: green;
-    background-color: green;
+    border-color: #428bca;
+    background-color: #428bca;
 }
 
 .ckbox-warning input[type="checkbox"]:checked + label:before {
@@ -1161,7 +1161,7 @@ pre {
 label.error {
     color: #B94A48;
     margin-top: 2px;
-	font-size: 10px !important;
+	font-size: 11px !important;
 }
 
 label.error:empty {
@@ -1274,9 +1274,9 @@ div.error label.error:before {
 .basic-wizard .nav li.active a,
 .basic-wizard .nav li.active a:focus,
 .basic-wizard .nav li.active a:active {
-    background: #fcfcfc;
-    border-bottom-color: #fcfcfc;
-    color: #333;
+    background: #3F729B;
+    border-bottom-color: #1caf9a;
+    color: #ffffff;
     opacity: 1;
 }
 
@@ -1295,8 +1295,8 @@ div.error label.error:before {
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     border-radius: 2px;
-    border-color: #DB241E;
-    background-color: #DB241E;
+    border-color: #3F729B;
+    background-color: #3F729B;
     color: #fff;
 }
 

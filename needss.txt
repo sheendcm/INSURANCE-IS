@@ -1,16 +1,21 @@
 SET FOREIGN_KEY_CHECKS = 0; -- Disable foreign key checking.
-TRUNCATE TABLE r_secondary_beneficiary_details;
-TRUNCATE TABLE r_primary_beneficiary_details;
-TRUNCATE TABLE r_policy_information_details;
-TRUNCATE TABLE r_policyowner_details;
-TRUNCATE TABLE r_medical_status_details;
-TRUNCATE TABLE r_life_insured_details;
-TRUNCATE TABLE r_client_details;
-TRUNCATE TABLE r_application_progress_details;
+TRUNCATE TABLE r_approval_status_details;
+TRUNCATE TABLE r_beneficiary_details;
+TRUNCATE TABLE r_benefit_details;
 TRUNCATE TABLE r_file_details;
-TRUNCATE TABLE r_beneficial_owner_details;
-TRUNCATE TABLE r_application_status_details;
-TRUNCATE TABLE r_application_requirements_details;
-TRUNCATE TABLE r_application_form_details;
-TRUNCATE TABLE r_agent_information_details;
+TRUNCATE TABLE r_form_status_details;
+TRUNCATE TABLE r_life_insured_details;
+TRUNCATE TABLE r_life_insured_personal_details;
+TRUNCATE TABLE r_medical_status_details;
+TRUNCATE TABLE r_non_medical_information_details;
+TRUNCATE TABLE r_policyowner_details;
+TRUNCATE TABLE r_policyowner_login_details;
+TRUNCATE TABLE r_policy_information_details;
+TRUNCATE TABLE r_requirements_checklist_details;
+TRUNCATE TABLE r_requirements_status_details;
+TRUNCATE TABLE t_application_form_details;
+TRUNCATE TABLE t_payment_details;
+TRUNCATE TABLE t_policy_details;
+TRUNCATE TABLE t_policy_status_details;
+
 SET FOREIGN_KEY_CHECKS = 1; -- Enable foreign key checking.

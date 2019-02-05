@@ -3,6 +3,8 @@ package underwriting_update;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +18,7 @@ import db.Conn;
 /**
  * Servlet implementation class updatereqstatus
  */
-@WebServlet("/updatestatusinmed")
+@WebServlet("/proceedtomedical")
 public class UpdateStatusInMedical extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,9 +45,11 @@ public class UpdateStatusInMedical extends HttpServlet {
 		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
 		
-		String reqstatus_id = request.getParameter("reqstatus_id");
+		String ms_id = request.getParameter("ms_id");
+		String sud_id = request.getParameter("sud_id");
 		
-		
+		Date date = new Date();
+		String modifiedDate= new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
 
 		
 		
@@ -54,10 +58,13 @@ public class UpdateStatusInMedical extends HttpServlet {
         
         
 		try
-		{		PreparedStatement reqstatusupdate = (PreparedStatement) conn.prepareStatement("update r_application_progress_details \r\n" + 
-				"set ap_requirements = 'Completed' where ap_ref_c_id ='"+reqstatus_id+"' ");
-				reqstatusupdate.executeUpdate();
+		{		
+						PreparedStatement reqstatusupdate2 = (PreparedStatement) conn.prepareStatement("update r_medical_status_details \r\n" + 
+								"set ms_dateproceededinmedical = '"+modifiedDate+"', ms_completion ='In Medical Department' where ms_id ="+ms_id+" ");
+								reqstatusupdate2.executeUpdate();				
 				
+								PreparedStatement atdetails = (PreparedStatement) conn.prepareStatement("INSERT INTO r_audit_trail_details(at_activity, at_ref_sud_id) VALUES ('Proceeded an application in Medical Department',"+sud_id+")");
+								atdetails.executeUpdate();
 				
 			
 		} 

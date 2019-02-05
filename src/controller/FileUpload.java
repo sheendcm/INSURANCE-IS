@@ -28,10 +28,12 @@ public class FileUpload extends HttpServlet {
             HttpServletResponse response) throws ServletException, IOException {
         
 
-        String c_id = request.getParameter("c_id");
+        String pol_id = request.getParameter("pol_id");
         String filereq_name = request.getParameter("filereqname");
-        int cid = Integer.parseInt(c_id);	
+        String filedesc = request.getParameter("filedesc");
+        String filetype = request.getParameter("filetype");
         
+        int polid = Integer.parseInt(pol_id);	
         
         InputStream inputStream = null; // input stream of the upload file
         String fileName = null;
@@ -56,10 +58,10 @@ public class FileUpload extends HttpServlet {
             conn = DriverManager.getConnection(dbURL, dbUser, dbPass);
  
             // constructs SQL statement
-            String sql = "INSERT INTO r_file_details ( f_ref_c_id, f_file, f_name) values (?, ?, ?)";
+            String sql = "INSERT INTO r_file_details ( f_ref_pol_id, f_file, f_name, f_description, f_type) values (?, ?, ?, ?, ?)";
             PreparedStatement statement = conn.prepareStatement(sql);
              
-            statement.setInt(1, cid);
+            statement.setInt(1, polid);
              
             if (inputStream != null) {
                 // fetches input stream of the upload file for the blob column
@@ -67,6 +69,8 @@ public class FileUpload extends HttpServlet {
             }
             
             statement.setString(3, filereq_name);
+            statement.setString(4, filedesc);
+            statement.setString(5, filetype);
  
             // sends the statement to the database server
             int row = statement.executeUpdate();
@@ -89,7 +93,7 @@ public class FileUpload extends HttpServlet {
             request.setAttribute("Message", message);
              
             // forwards to the message page
-            getServletContext().getRequestDispatcher("/Message.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/underwriting-with-pending-requirements-view.jsp").forward(request, response);
         }
     }
 }

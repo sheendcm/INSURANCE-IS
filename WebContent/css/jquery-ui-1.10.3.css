@@ -787,19 +787,21 @@ body .ui-tooltip {
 /* JQUERY UI THEME */
 
 .ui-datepicker {
-	background: #1D2939;
+	background: #1C2331;
 	margin-top: 1px;
 	z-index: 100000;
 	-moz-border-radius: 2px;
 	-webkit-border-radius: 2px;
 	border-radius: 2px;
-	width: 280px;
+	width: 200px;
+    line-height: 15px;
+    font-size: 90%;
 }
 
 .ui-datepicker-title {
 	text-transform: uppercase;
 	font-family: 'LatoBold';
-	color: #1CAF9A;
+	color: #3F729B;
 }
 
 .ui-datepicker th {
@@ -826,7 +828,7 @@ body .ui-tooltip {
 }
 
 .ui-datepicker td a:hover {
-	background: #1CAF9A;
+	background: #3F729B;
 	color: #fff;
 }
 

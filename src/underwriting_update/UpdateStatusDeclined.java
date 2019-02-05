@@ -3,6 +3,8 @@ package underwriting_update;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,7 +18,7 @@ import db.Conn;
 /**
  * Servlet implementation class updatereqstatus
  */
-@WebServlet("/updatestatusdeclined")
+@WebServlet("/declinepolicy")
 public class UpdateStatusDeclined extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -43,9 +45,11 @@ public class UpdateStatusDeclined extends HttpServlet {
 		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
 		
-		String decline_id = request.getParameter("decline_id");
+		String asid1 = request.getParameter("asid1");
+		String sud_id = request.getParameter("sud_id");
 		
-		
+		Date date = new Date();
+		String modifiedDate1= new SimpleDateFormat("yyyy-MM-dd HH:mm").format(date);
 
 		
 		
@@ -54,14 +58,12 @@ public class UpdateStatusDeclined extends HttpServlet {
         
         
 		try
-		{		PreparedStatement statusupdate = (PreparedStatement) conn.prepareStatement("update r_application_status_details \r\n" + 
-				"set as_status = 'Declined' where as_ref_c_id ='"+decline_id+"' ");
+		{		PreparedStatement statusupdate = (PreparedStatement) conn.prepareStatement("update r_approval_status_details \r\n" + 
+				"set as_status = 'Declined', as_completion='Completed', as_datecompleted='"+modifiedDate1+"' where as_id ='"+asid1+"' ");
 				statusupdate.executeUpdate();
-				PreparedStatement updatestatus = (PreparedStatement) conn.prepareStatement("update r_application_progress_details \r\n" + 
-						"set ap_status = 'Completed' where ap_ref_c_id ='"+decline_id+"' ");
-						updatestatus.executeUpdate();
 				
-				
+				PreparedStatement atdetails = (PreparedStatement) conn.prepareStatement("INSERT INTO r_audit_trail_details(at_activity, at_ref_sud_id) VALUES ('Declined an application',"+sud_id+")");
+				atdetails.executeUpdate();	
 			
 		} 
 		catch (Exception e)

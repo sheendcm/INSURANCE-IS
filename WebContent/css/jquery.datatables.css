@@ -57,7 +57,7 @@
 
 .dataTables_filter input {
 	border: 1px solid #ddd;
-	padding: 10px;
+	padding: 5px;
 	font-zize: 13px;
 	-moz-border-radius: 3px;
 	-webkit-border-radius: 3px;
@@ -112,8 +112,8 @@
 
 .dataTables_paginate a.current,
 .dataTables_paginate a.current:hover {
-	background-color: #1CAF9A;
-	border-color: #1CAF9A;
+	background-color: #3F729B;
+	border-color: #3F729B;
 	color: #fff;
 }
 
