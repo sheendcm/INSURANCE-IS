@@ -182,7 +182,7 @@
               <thead>
                  <tr>
                  	<th style="display:none;"></th>
-                 	<th>Date Completed Medical</th>
+                 	<th>Date Proceeded to Medical</th>
                  	<th>Insured</th>
                  	<th>Policyowner</th>
                  	<th>Plan</th>
