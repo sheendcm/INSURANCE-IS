@@ -1180,7 +1180,7 @@
                     <input type="text" name="PB_reltoinsured" id="PB_reltoinsured" class="form-control mytextbox" />
                   </div>
                 </div>
-				<div class="form-group myfg">
+				<!-- <div class="form-group myfg">
                   <label class="col-sm-4 control-label mylabel" align="right">% Share</label>
                   <div class="col-sm-8">
                     <input type="number" name="PB_share" id="PB_share" class="form-control mytextbox" value="100" disabled/>
@@ -1195,7 +1195,7 @@
                             <option value="Secodary">Secodary</option>
                           </select>
                         </div>
-                      </div>
+                      </div> -->
 				<div class="form-group myfg">
                         <label class="col-sm-4 mylabel"align="right">Beneficiary Designation</label>
                         <div class="col-sm-8">
@@ -1206,15 +1206,16 @@
                           </select>
                         </div>
                       </div>
-                </div>
-				
-			<div class="form-group col-md-4 myfg">
-                  <div class="form-group myfg">
+                      <div class="form-group myfg">
 						  <label class="col-sm-4 control-label mylabel" align="right">Address</label>
 						  <div class="col-sm-8">
 							<textarea name="PB_presentaddress" id="PB_presentaddress" class="form-control" rows="4"></textarea>
 						  </div>
 						</div>
+                </div>
+				
+			<div class="form-group col-md-4 myfg">
+                  
 						<div class="form-group myfg">
 						  <label class="col-sm-4 control-label mylabel" align="right">Country</label>
 						  <div class="col-sm-8">
@@ -1328,7 +1329,7 @@
                     <input type="text" name="SB_reltoinsured" id="SB_reltoinsured" class="form-control mytextbox" />
                   </div>
                 </div>
-				<div class="form-group myfg">
+				<!-- <div class="form-group myfg">
                   <label class="col-sm-4 control-label mylabel" align="right">% Share</label>
                   <div class="col-sm-8">
                     <input type="number" name="SB_share" id="SB_share" class="form-control mytextbox" value="100" disabled/>
@@ -1343,7 +1344,7 @@
                             <option value="Secodary" selected>Secodary</option>
                           </select>
                         </div>
-                      </div>
+                      </div> -->
 				<div class="form-group myfg">
                         <label class="col-sm-4 mylabel"align="right">Beneficiary Designation</label>
                         <div class="col-sm-8">
@@ -1354,15 +1355,16 @@
                           </select>
                         </div>
                       </div>
-                </div>
-				
-			<div class="form-group col-md-4 myfg">
-                  <div class="form-group myfg">
+                      <div class="form-group myfg">
 						  <label class="col-sm-4 control-label mylabel" align="right">Address</label>
 						  <div class="col-sm-8">
 							<textarea name="SB_presentaddress" id="SB_presentaddress" class="form-control" rows="4"></textarea>
 						  </div>
 						</div>
+                </div>
+				
+			<div class="form-group col-md-4 myfg">
+                  
 						<div class="form-group myfg">
 						  <label class="col-sm-4 control-label mylabel" align="right">Country</label>
 						  <div class="col-sm-8">
@@ -1691,7 +1693,7 @@
 						  <span class="input-group-addon myspan1">.00</span>
 						</div>
                       </div>
-					  <div class="form-group myfm">
+					 <!--   <div class="form-group myfm">
                         <div class="col-sm-7">
                           <div class="ckbox ckbox-default">
                         <input type="checkbox" value="Others" id="PI_benefit17" name="PI_Name" onclick="PiBenefit17(this.checked, 'textBox')" />
@@ -1709,7 +1711,7 @@
 						  <input type="number" class="form-control mytextbox"  id="PI_benefit_amount17" name="PI_Amount"  disabled/>
 						  <span class="input-group-addon myspan1">.00</span>
 						</div>
-                      </div>
+                      </div>-->
                       <script type="text/javascript">
 						 function benefit17other()
 						 {	
@@ -1820,7 +1822,7 @@
                       </div>
                 </div>
 			<div class="form-group col-md-4">
-                  <div class="form-group myfm">
+                 <!--  <div class="form-group myfm">
                         <div class="col-sm-7">
                           <div class="ckbox ckbox-default">
                         <input type="checkbox" value="Others" id="PI_hospital5" name="PI_Name" onclick="PiHospital5(this.checked, 'textBox')" />
@@ -1838,7 +1840,7 @@
 						  <input type="number" class="form-control mytextbox"  id="PI_hospital_amount5" name="PI_Amount"  disabled/>
 						  <span class="input-group-addon myspan1">.00</span>
 						</div>
-                      </div>
+                      </div> -->
                       <script type="text/javascript">
 						 function hospital5other()
 						 {	
@@ -1948,7 +1950,7 @@
 						  <span class="input-group-addon myspan1">.00</span>
 						</div>
                       </div>
-                  <div class="form-group myfm">
+                  <!-- <div class="form-group myfm">
                         <div class="col-sm-7">
                           <div class="ckbox ckbox-default">
                         <input type="checkbox" value="Others" id="PI_personal8" name="PI_Name" onclick="PiPersonal8(this.checked, 'textBox')" />
@@ -1966,7 +1968,7 @@
 						  <input type="number" class="form-control mytextbox" id="PI_personal_amount8" name="PI_Amount"  disabled />
 						  <span class="input-group-addon myspan1">.00</span>
 						</div>
-                      </div>
+                      </div> -->
                        <script type="text/javascript">
 						 function personal8other()
 						 {	
