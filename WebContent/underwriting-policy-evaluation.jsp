@@ -318,10 +318,6 @@
 					<a class ="btn btn-danger mybtn tooltips btnViewRemarks" data-placement="top" data-toggle="modal" title="Decline" href="#modalDeclinePolicy" ><i class="glyphicon glyphicon-remove"></i></a>
 					</td>
 					
-					
-			  
-			
-					
 					<%
 				}
 				%>

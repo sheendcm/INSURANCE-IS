@@ -565,7 +565,7 @@ $(function() {
                     <td><%out.print(rs.getString("p_givenname")); %> <%out.print(rs.getString("p_middlename")); %> <%out.print(rs.getString("p_surname")); %></td>
                     <td><%out.print(rs.getString("plan_name")); %></td>
                     <td>
-					<a class ="btn btn-darkblue mybtn tooltips btnViewRemarks" data-placement="top" data-toggle="modal" title="View Progress" href="#modalViewProgress<%out.print(rs.getInt("pol_id")); %>" ><i class="fa fa-check-square-o"></i></a>
+					<a class ="btn btn-darkblue mybtn tooltips btnViewRemarks" data-placement="top" data-toggle="modal" title="View Progress" href="#modalViewProgress<%out.print(rs.getInt("pol_id")); %>" ><i class="fa fa-eye"></i></a>
 					</td>
 					
 					 <div class="modal fade" id="modalViewProgress<%out.print(rs.getInt("pol_id")); %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
