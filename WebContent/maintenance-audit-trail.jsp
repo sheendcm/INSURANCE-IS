@@ -182,7 +182,7 @@
               <tbody>
               <%
 			try{ 
-				String query = "SELECT * FROM r_audit_trail_details atd LEFT JOIN r_system_user_details sud ON sud.sud_id=atd.at_ref_sud_id LEFT JOIN r_system_user_personal_details supd ON supd.supd_id=sud.sud_ref_supd_id ";
+				String query = "SELECT * FROM r_audit_trail_details atd LEFT JOIN r_system_user_details sud ON sud.sud_id=atd.at_ref_sud_id LEFT JOIN r_system_user_personal_details supd ON supd.supd_id=sud.sud_ref_supd_id ORDER BY at_datetime DESC";
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
 				while(rs.next())
