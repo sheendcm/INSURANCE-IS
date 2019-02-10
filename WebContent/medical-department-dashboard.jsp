@@ -48,77 +48,27 @@
 <section>
   
   <div class="leftpanel">
-    <%
-			try{ 
-				String query5 = " SELECT COUNT(pol_id) as countme FROM t_policy_details pd LEFT JOIN t_policy_status_details psd ON psd.ps_ref_pol_id=pd.pol_id LEFT JOIN r_medical_status_details msd ON msd.ms_id=psd.ps_ref_ms_id LEFT JOIN r_approval_status_details asd ON asd.as_id=psd.ps_ref_as_id where ms_completion='Completed' and as_completion='Pending'";
-				Statement stmt5 = conn.createStatement();
-				ResultSet rs5 = stmt5.executeQuery(query5);
-				while(rs5.next())
-				{
-				
-			%>
+    
     <div class="logopanel" style="margin-bottom:20px;">
         <img src="images/lavie-logo.png" class="width100p" alt="" />
     </div><!-- logopanel -->
     
     <div class="leftpanelinner" style="padding: 0px 0px;">
-       <h5 class="sidebartitle" style="padding-left: 15px;"> UNDERWRITING DEPARTMENT </h5><br>
+       <h5 class="sidebartitle" style="padding-left: 15px;"> MEDICAL DEPARTMENT</h5><br>
       <ul class="nav nav-pills nav-stacked nav-bracket">
-      
-        <li class="active"
-        <%-- style="display:<%
-			try{ 
-				
-				String query9 = "SELECT * FROM r_system_user_details sud INNER JOIN r_system_user_personal_details supd on supd.supd_id=sud.sud_ref_supd_id INNER JOIN r_system_user_login_details suld ON suld.suld_id=sud.sud_ref_suld_id where sud.sud_id="+userid+"";
-				Statement stmt9 = conn.createStatement();
-				ResultSet rs9 = stmt9.executeQuery(query9);
-				if(rs9.next())
-				{	
-					
-					if("Manager".equals(rs9.getString("sud_usertype")))
-					{
-						
-					}
-					else
-					{
-						out.print("none");
-					}
-				}
-				
-				
-	            rs9.close();
-	            stmt9.close();
-				}
-				
-				catch(Exception e)
-				{
-				e.printStackTrace();
-				}
-			%>;" --%>
-			><a href="underwriting-progress-view.jsp"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-		<li><a href="underwriting-new-application-form.jsp"><i class="fa fa-plus"></i> <span>Application Form</span></a></li>
-        <li><a href="underwriting-with-pending-requirements-view.jsp"><i class="fa fa-check-square-o"></i> <span>With Pending Requirements</span></a></li>
-        <li><a href="underwriting-policy-evaluation.jsp"><span class="pull-right badge badge-success" style="background-color:#d1423e; color:white;"><%out.print(rs5.getInt("countme")); %></span><i class="fa fa-file-text-o"></i> <span>Policy Evaluation</span></a></li>
-        <li class="nav-parent"><a href=""><i class="fa fa-list"></i> <span>List of Policy</span></a>
+        <li class="active"><a href="medical-department-dashboard.jsp"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+        <li ><a href="medical-department.jsp"><span class="pull-right badge badge-danger" style="background-color:#d9534f; color:white;">new</span><i class="fa fa-edit"></i> <span>Medical Evaluation</span></a></li>
+        
+        <li class="nav-parent"><a href=""><i class="fa fa-list"></i> <span>List of Completed Medical</span></a>
           <ul class="children">
-            <li><a href="underwriting-issued-policy-view.jsp"><i class="fa fa-caret-right"></i> Issued Policy</a></li>
-            <li><a href="underwriting-declined-policy-view.jsp"><i class="fa fa-caret-right"></i> Declined Policy</a></li>
+            <li><a href="medical-department-approved.jsp"><i class="fa fa-caret-right"></i> Approved in Medical</a></li>
+            <li><a href="medical-department-declined.jsp"><i class="fa fa-caret-right"></i> Declined in Medical</a></li>
           </ul>
         </li>
-        <li><a href="underwriting-audit-trail.jsp"><i class="glyphicon glyphicon-list"></i> <span>Audit Trail</span></a></li>
       </ul>
 
       
     </div><!-- leftpanelinner -->
-    <%	}
-            rs5.close();
-            stmt5.close();
-			}
-			catch(Exception e)
-			{
-			e.printStackTrace();
-			}
-           %>
   </div><!-- leftpanel -->
   
   <div class="mainpanel">
@@ -208,10 +158,10 @@
             type:'bar'
         },
         title: {
-            text: 'Underwriting Report'
+            text: 'Medical Reports'
         },
         xAxis: {
-            categories: ['La Vie Health Protect', 'La Vie Max Life', 'La Vie Assurance']
+            categories: ['Approved','Declined','Pending']
         },
         yAxis: {
             title: {
@@ -222,46 +172,12 @@
             name: 'Approved',
             data: [ <%
 			try{ 
-				String query7 = "SELECT COUNT(pol_id) as countme FROM t_policy_details pd LEFT JOIN r_policy_information_details pid ON pid.pi_id=pd.pol_ref_pi_id LEFT JOIN r_plan_details plan ON plan.plan_id=pid.pi_ref_plan_id LEFT JOIN t_policy_status_details ps  ON ps.ps_ref_pol_id=pd.pol_id LEFT JOIN r_approval_status_details asd ON asd.as_id=ps.ps_ref_as_id where plan.plan_name='La Vie Health Protect' and asd.as_status='Issued' ";
+				String query7 = "select COUNT(pd.pol_id) AS count_me from t_policy_details pd LEFT JOIN t_application_form_details afd on afd.af_ref_pol_id=pd.pol_id LEFT JOIN r_life_insured_details lid ON lid.lid_id=pd.pol_ref_li_id LEFT JOIN r_life_insured_personal_details lipd ON lipd.li_id=lid.lid_ref_li_id LEFT JOIN t_policy_status_details psd ON psd.ps_ref_pol_id=pd.pol_id LEFT JOIN r_medical_status_details msd ON msd.ms_id=psd.ps_ref_ms_id where ms_completion='Completed' and ms_status='In good health'";
 				Statement stmt7 = conn.createStatement();
 				ResultSet rs7 = stmt7.executeQuery(query7);
 				while(rs7.next())
 				{
-					out.print(rs7.getInt("countme"));
-				}
-            rs7.close();
-            stmt7.close();
-			}
-			catch(Exception e)
-			{
-			e.printStackTrace();
-			}
-				
-			%>, <%
-			try{ 
-				String query7 = "SELECT COUNT(pol_id) as countme FROM t_policy_details pd LEFT JOIN r_policy_information_details pid ON pid.pi_id=pd.pol_ref_pi_id LEFT JOIN r_plan_details plan ON plan.plan_id=pid.pi_ref_plan_id LEFT JOIN t_policy_status_details ps  ON ps.ps_ref_pol_id=pd.pol_id LEFT JOIN r_approval_status_details asd ON asd.as_id=ps.ps_ref_as_id where plan.plan_name='La Vie Max Life' and asd.as_status='Issued' ";
-				Statement stmt7 = conn.createStatement();
-				ResultSet rs7 = stmt7.executeQuery(query7);
-				while(rs7.next())
-				{
-					out.print(rs7.getInt("countme"));
-				}
-            rs7.close();
-            stmt7.close();
-			}
-			catch(Exception e)
-			{
-			e.printStackTrace();
-			}
-				
-			%>, <%
-			try{ 
-				String query7 = "SELECT COUNT(pol_id) as countme FROM t_policy_details pd LEFT JOIN r_policy_information_details pid ON pid.pi_id=pd.pol_ref_pi_id LEFT JOIN r_plan_details plan ON plan.plan_id=pid.pi_ref_plan_id LEFT JOIN t_policy_status_details ps  ON ps.ps_ref_pol_id=pd.pol_id LEFT JOIN r_approval_status_details asd ON asd.as_id=ps.ps_ref_as_id where plan.plan_name='La Vie Assurance' and asd.as_status='Issued'";
-				Statement stmt7 = conn.createStatement();
-				ResultSet rs7 = stmt7.executeQuery(query7);
-				while(rs7.next())
-				{
-					out.print(rs7.getInt("countme"));
+					out.print(rs7.getInt("count_me"));
 				}
             rs7.close();
             stmt7.close();
@@ -276,46 +192,12 @@
             name: 'Declined',
             data: [<%
 			try{ 
-				String query7 = "SELECT COUNT(pol_id) as countme FROM t_policy_details pd LEFT JOIN r_policy_information_details pid ON pid.pi_id=pd.pol_ref_pi_id LEFT JOIN r_plan_details plan ON plan.plan_id=pid.pi_ref_plan_id LEFT JOIN t_policy_status_details ps  ON ps.ps_ref_pol_id=pd.pol_id LEFT JOIN r_approval_status_details asd ON asd.as_id=ps.ps_ref_as_id where plan.plan_name='La Vie Health Protect' and asd.as_status='Declined' ";
+				String query7 = "select COUNT(pd.pol_id) AS count_me from t_policy_details pd LEFT JOIN t_application_form_details afd on afd.af_ref_pol_id=pd.pol_id LEFT JOIN r_life_insured_details lid ON lid.lid_id=pd.pol_ref_li_id LEFT JOIN r_life_insured_personal_details lipd ON lipd.li_id=lid.lid_ref_li_id LEFT JOIN t_policy_status_details psd ON psd.ps_ref_pol_id=pd.pol_id LEFT JOIN r_medical_status_details msd ON msd.ms_id=psd.ps_ref_ms_id where ms_status='In poor health' ";
 				Statement stmt7 = conn.createStatement();
 				ResultSet rs7 = stmt7.executeQuery(query7);
 				while(rs7.next())
 				{
-					out.print(rs7.getInt("countme"));
-				}
-            rs7.close();
-            stmt7.close();
-			}
-			catch(Exception e)
-			{
-			e.printStackTrace();
-			}
-				
-			%>, <%
-			try{ 
-				String query7 = "SELECT COUNT(pol_id) as countme FROM t_policy_details pd LEFT JOIN r_policy_information_details pid ON pid.pi_id=pd.pol_ref_pi_id LEFT JOIN r_plan_details plan ON plan.plan_id=pid.pi_ref_plan_id LEFT JOIN t_policy_status_details ps  ON ps.ps_ref_pol_id=pd.pol_id LEFT JOIN r_approval_status_details asd ON asd.as_id=ps.ps_ref_as_id where plan.plan_name='La Vie Max Life' and asd.as_status='Declined' ";
-				Statement stmt7 = conn.createStatement();
-				ResultSet rs7 = stmt7.executeQuery(query7);
-				while(rs7.next())
-				{
-					out.print(rs7.getInt("countme"));
-				}
-            rs7.close();
-            stmt7.close();
-			}
-			catch(Exception e)
-			{
-			e.printStackTrace();
-			}
-				
-			%>, <%
-			try{ 
-				String query7 = "SELECT COUNT(pol_id) as countme FROM t_policy_details pd LEFT JOIN r_policy_information_details pid ON pid.pi_id=pd.pol_ref_pi_id LEFT JOIN r_plan_details plan ON plan.plan_id=pid.pi_ref_plan_id LEFT JOIN t_policy_status_details ps  ON ps.ps_ref_pol_id=pd.pol_id LEFT JOIN r_approval_status_details asd ON asd.as_id=ps.ps_ref_as_id where plan.plan_name='La Vie Assurance' and asd.as_status='Declined' ";
-				Statement stmt7 = conn.createStatement();
-				ResultSet rs7 = stmt7.executeQuery(query7);
-				while(rs7.next())
-				{
-					out.print(rs7.getInt("countme"));
+					out.print(rs7.getInt("count_me"));
 				}
             rs7.close();
             stmt7.close();
@@ -326,6 +208,26 @@
 			}
 				
 			%>]
+        },{
+            name: 'Pending',
+            data: [ <%
+      try{ 
+        String query7 = "select COUNT(pd.pol_id) AS count_me from t_policy_details pd LEFT JOIN t_application_form_details afd on afd.af_ref_pol_id=pd.pol_id LEFT JOIN r_life_insured_details lid ON lid.lid_id=pd.pol_ref_li_id LEFT JOIN r_life_insured_personal_details lipd ON lipd.li_id=lid.lid_ref_li_id LEFT JOIN t_policy_status_details psd ON psd.ps_ref_pol_id=pd.pol_id LEFT JOIN r_medical_status_details msd ON msd.ms_id=psd.ps_ref_ms_id where ms_status='pending'";
+        Statement stmt7 = conn.createStatement();
+        ResultSet rs7 = stmt7.executeQuery(query7);
+        while(rs7.next())
+        {
+          out.print(rs7.getInt("count_me"));
+        }
+            rs7.close();
+            stmt7.close();
+      }
+      catch(Exception e)
+      {
+      e.printStackTrace();
+      }
+        
+      %>]
         }]
     });
 });
@@ -342,7 +244,9 @@ $(function() {
          }]
       });
    });
-   </script> 
+   </script>
+
+    
    <div class="panel panel-default">
         <div class="panel-body">
         <div class="col-sm-3">

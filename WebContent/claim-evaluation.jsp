@@ -312,6 +312,7 @@
                     <td style="display:none;"><%out.print(rs.getString("cls_remarks")); %></td>
                     <td style="display:none;"><%out.print(rs.getString("cas_id")); %></td>
                     <td>
+                       <a class ="btn btn-info mybtn tooltips btnViewRemarks" data-placement="top" data-toggle="modal" title="View Remarks" href="#modalViewRemarks" ><i class="glyphicon glyphicon-eye-open"></i></a>
 					<a class ="btn btn-success mybtn tooltips btnViewRemarks" data-placement="top" data-toggle="modal" title="Approve" href="#modalApprovePolicy" ><i class="glyphicon glyphicon-ok"></i></a>
 					<a class ="btn btn-danger mybtn tooltips btnViewRemarks" data-placement="top" data-toggle="modal" title="Decline" href="#modalDeclinePolicy" ><i class="glyphicon glyphicon-remove"></i></a>
 					</td>
@@ -355,6 +356,65 @@
 			e.printStackTrace();
 			}
            %>
+<!-- MODAL PROCEED TO MEDICAL -->
+            <div class="modal fade" id="modalViewRemarks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content" style="width:500px;">
+            <div class="modal-header" style="background-color:#3F729B; height:50px;">
+              <button type="button" class="close" data-dismiss="modal" style="margin:0px" aria-hidden="true">&times;</button>
+              <h4 class="modal-title" id="myModalLabel" style="color:white;font-size:100%;"> Medical Department</h4>
+              <input id="ms_id" type="text" class="form-control" name="ms_id"
+                          style="color: black; width: 560px; display:none;" maxlength="50"/>
+                          
+                                                                    
+            </div>
+            <div class="modal-body">
+      
+      <div class="row" style="padding-top:20px;">
+          
+          <div class="col-md-2"></div>
+          <div class="form-group myfg col-md-8"> 
+          <div class="row" style="padding-top:10px;">
+           <label class="col-sm-6 control-label mylabel" align="right"><strong>Date Completed Medical</strong></label>
+                  <div class="col-sm-6">
+                    <label class="col-sm-12 control-label mylabel" id="modifieddate" align="left"></label>
+                  </div>
+          </div>
+          
+          <div class="row" style="padding-top:10px;">
+           <label class="col-sm-6 control-label mylabel" align="right"><strong>Name of Insured</strong></label>
+                  <div class="col-sm-6">
+                    <label class="col-sm-12 control-label mylabel" id="nameofinsured" align="left"></label>
+                  </div>
+          </div>
+          <div class="row" style="padding-top:10px;">
+           <label class="col-sm-6 control-label mylabel" align="right"><strong>Status</strong></label>
+                  <div class="col-sm-6">
+                    <label class="col-sm-12 control-label mylabel" id="msstatus" align="left"></label>
+                  </div>
+          </div>
+          <div class="row" style="padding-top:10px;">
+           <label class="col-sm-6 control-label mylabel" align="right"><strong>Remarks</strong></label>
+                  <div class="col-sm-6">
+                    <label class="col-sm-12 control-label mylabel" id="msremarks" align="left"></label>
+                  </div>
+          </div>
+              
+                </div>
+            
+          </div>
+      </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div><!-- modal-content -->
+        </div><!-- modal-dialog -->
+      </div><!-- modal -->   
+
+      <!-- modal remarks -->
+
+
+
        <div class="modal fade" id="modalApprovePolicy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 			  <div class="modal-dialog">
 			    <div class="modal-content" style="width:500px;">

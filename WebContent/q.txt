@@ -1,0 +1,25 @@
+-SELECT * FROM r_plan_details pD LEFT JOIN r_policyowner_details pOD ON pD.plan_id = pOD.p_id 
+
+-SELECT plan_name, p_id, p_surname + p_givenname AS name FROM r_plan_details pD LEFT JOIN r_policyowner_details pOD ON pD.plan_id = pOD.p_id where
+
+
+-select plan_name,p_id,p_surname from t_policy_details pd LEFT JOIN t_application_form_details afd on afd.af_ref_pol_id=pd.pol_id LEFT JOIN r_life_insured_details lid ON lid.lid_id=pd.pol_ref_li_id LEFT JOIN r_life_insured_personal_details lipd ON lipd.li_id=lid.lid_ref_li_id LEFT JOIN t_policy_status_details psd ON psd.ps_ref_pol_id=pd.pol_id LEFT JOIN r_medical_status_details msd ON msd.ms_id=psd.ps_ref_ms_id LEFT JOIN r_policyowner_details p ON p.p_id=pd.pol_ref_p_id LEFT JOIN r_policyowner_login_details pld ON pld.pl_ref_p_id=p.p_id LEFT JOIN r_policy_information_details pid ON pid.pi_id=pd.pol_ref_pi_id LEFT JOIN r_plan_details plan ON plan.plan_id=pid.pi_ref_plan_id LEFT JOIN r_approval_status_details asd ON asd.as_id=psd.ps_ref_as_id where as_completion='Completed' and as_status='Issued' GROUP BY pd.
+
+
+
+// for all peding driil down for La Vie Health Protect.
+	-SELECT * FROM r_medical_status_details msd where msd.ms_status = 'pending'
+	-SELECT plan_name FROM r_plan_details pD WHERE pD.plan_name = 'La Vie Health Protect'
+	-SELECT CONCAT(p_surname, ',', p_givenname) AS Name FROM r_policyowner_details
+	-SELECT rc_status FROM r_requirements_checklist_details WHERE rc_status != 'checked'
+
+
+	SELECT msd.ms_status,pld.plan_name FROM r_medical_status_details msd INNER JOIN t_policy_details pd ON msd.ms_id = pd.pol_id INNER JOIN r_plan_details pld ON pld.plan_id = pd.pol_id WHERE msd.ms_status = 'pending' AND pld.plan_name ='La Vie Health Protect'
+
+
+
+La Vie Health Protect
+La Vie Max Life
+La Vie Assurance
+
+SELECT CONCAT(pod.p_surname, ', ', pod.p_givenname) AS Name ,msd.ms_status,pld.plan_name FROM r_medical_status_details msd INNER JOIN t_policy_details pd ON msd.ms_id = pd.pol_id INNER JOIN r_plan_details pld ON pld.plan_id = pd.pol_id INNER JOIN r_policyowner_details pod ON pod.p_id = pd.pol_id WHERE msd.ms_status = 'pending' AND pld.plan_name ='La Vie Health Protect'

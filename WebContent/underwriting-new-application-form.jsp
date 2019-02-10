@@ -181,6 +181,8 @@
 			background-color:#356083;
 		}
 		</style>
+
+		<form action="underwriting-new-application-form.jsp" method="post" class="simpleform"> 
             <div class="row">
             <div class="col-md-8">
             <div class="form-group col-md-6"style="padding-left:0px;">
@@ -200,7 +202,7 @@
             
             <div class="col-md-4" align="right">
             <input type="text" name="Added_By" id="Added_By" value="<%out.print(rs1.getInt("sud_id")); %>" style="display:none;" />
-                  <button class="btn btn-primary mybutton1" id="btnSubmitAF" style="margin-right:10px;"> Save</button>
+                  <button type="submit" class="btn btn-primary mybutton1" id="btnSubmitAF" style="margin-right:10px;"> Save</button>
                 </div>
             </div>
 </div>
@@ -231,28 +233,31 @@
           <div class="form-group myfg">
                   <label class="col-sm-3 control-label mylabel" align="right">Agent Name</label>
                   <div class="col-sm-5">
-                     <select class="select2 mytextbox" style="font-size:85%;padding-left:7px;padding-top:7px;"  id="agent_id" name="agent_id" >
-                  <option value="" selected>Choose agent here ...</option>
+                     <select class="select2 mytextbox" style="font-size:85%;padding-left:7px;padding-top:7px;"  id="agent_id" name="agent_id" required>
+                  
+                  <option value="" >Choose agent here ...</option>
 				  <%
-			try{ 
-				String query4 = "select * from r_system_user_details sud inner join r_system_user_personal_details supd on sud.sud_ref_supd_id=supd.supd_id inner join r_system_user_login_details suld on sud.sud_ref_suld_id=suld.suld_id WHERE sud.sud_usertype ='Agent'";
-				Statement stmt4 = conn.createStatement();
-				ResultSet rs4 = stmt4.executeQuery(query4);
-				while(rs4.next())
-				{
-			%>
+				try{ 
+					String query4 = "select * from r_system_user_details sud inner join r_system_user_personal_details supd on sud.sud_ref_supd_id=supd.supd_id inner join r_system_user_login_details suld on sud.sud_ref_suld_id=suld.suld_id WHERE sud.sud_usertype ='Agent'";
+					Statement stmt4 = conn.createStatement();
+					ResultSet rs4 = stmt4.executeQuery(query4);
+					while(rs4.next())
+					{
+					%>
                   <option value="<%out.print(rs4.getInt("sud_id")); %>"><%out.print(rs4.getString("supd_name")); %></option>
                   <%
                   }
-            rs4.close();
-            stmt4.close();
-			}
-			catch(Exception e)
-			{
-			e.printStackTrace();
-			}
-           %>
+		            rs4.close();
+		            stmt4.close();
+					}
+					catch(Exception e)
+					{
+					e.printStackTrace();
+					}
+		           %>
                 </select>
+                 <p id="agentNameValidation" class="error"></p>
+
                   </div>
                 </div>
             
@@ -793,7 +798,7 @@
                   <div class="form-group myfg">
                   <label class="col-sm-4 control-label mylabel" align="right">Surname</label>
                   <div class="col-sm-8">
-                    <input type="text" name="LI_surname" id="LI_surname" class="form-control mytextbox" />
+                    <input type="text" name="LI_surname" id="LI_surname" class="form-control mytextbox" required/>
                   </div>
                 </div>
 				<div class="form-group myfg">
@@ -2378,6 +2383,7 @@ document.getElementById('PI_personal_amount8').value = ""; document.getElementBy
 
       
     </div><!-- contentpanel -->
+</form>
     
      <%	}
             rs1.close();
@@ -2470,7 +2476,8 @@ jQuery(document).ready(function(){
   
 });
 </script>
- <script type="text/javascript">
+ 
+ <script src="validate.js" type="text/javascript">
 	$(document).ready(function (){
 
 		
@@ -2478,6 +2485,7 @@ jQuery(document).ready(function(){
 		
 		$("#btnSubmitAF").click(function() {
 		
+
 			var sud_id = $('#sud_id').val();
 			
 			var AF_applicationnumber = $('#AF_applicationnumber').val();

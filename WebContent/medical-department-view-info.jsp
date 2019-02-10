@@ -212,6 +212,7 @@
             <div class="row" align="right" style="margin-right:1px;">
             
             <a class="btn btn-white mybtn1 btnGetRemarks" id="btnDecline" href="#modalDeclineMedical" data-toggle="modal" ><i class="fa fa-times"></i> Decline</a>
+            <!-- medical-department.jsp -->
             
             <a class="btn btn-primary mybtn1 mr5 btnGetRemarks" id="btnApprove" href="#modalApproveMedical" data-toggle="modal"><i class="fa fa-check"></i> Approve</a>
             </div>
@@ -414,8 +415,16 @@
           </div>
       </div>
 			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			        <button type="button" class="btn btn-primary" id="btnMedicalApprove">Mark as Approved</button>
+               <div class="row">
+               <div class="col-sm-10">
+               <form action="medical-department.jsp" method="post" onsubmit="">
+  			        <button type="submit" class="btn btn-primary" id="btnMedicalApprove">Mark as Approved</button>
+              </form> 
+              </div>
+              <div class="col-sm-2">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+             </div>
 			      </div>
 			    </div><!-- modal-content -->
 			  </div><!-- modal-dialog -->
@@ -460,12 +469,22 @@
           </div>
       </div>
 			      <div class="modal-footer">
-			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			        <button type="button" class="btn btn-primary" id="btnMedicalDecline">Mark as Declined</button>
-			      </div>
+			         <div class="row">
+			         <div class="col-sm-10">
+               <form action="medical-department.jsp" method="post" onsubmit="">
+                <button type="submit" class="btn btn-primary" id="btnMedicalDecline">Mark as Declined</button>
+              </form>
+                </div>
+                <div class="col-sm-2">
+               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+             </div>
+			       </div>
+            </div>
 			    </div><!-- modal-content -->
 			  </div><!-- modal-dialog -->
-			</div><!-- modal -->     
+			</div><!-- modal -->
+
+
       <%
 				}
 				rs.close();
