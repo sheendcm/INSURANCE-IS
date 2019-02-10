@@ -29,20 +29,20 @@
 
 <body style="background-color:#1C2331;">
 <% 
-	
-	Conn db = new Conn();
-	Connection conn = db.getConnection();
+  
+  Conn db = new Conn();
+  Connection conn = db.getConnection();
 
 %>
-<%		int userid=0;
-		if (session != null) {
-			if (session.getAttribute("e_id") != null) {
-				userid = (Integer) session.getAttribute("e_id");
-			} else {
-				response.sendRedirect("login.jsp");
-			}
-		}
-	%>
+<%    int userid=0;
+    if (session != null) {
+      if (session.getAttribute("e_id") != null) {
+        userid = (Integer) session.getAttribute("e_id");
+      } else {
+        response.sendRedirect("login.jsp");
+      }
+    }
+  %>
 
 <section>
   
@@ -55,28 +55,26 @@
        <h5 class="sidebartitle" style="padding-left: 15px;"> POLICYOWNER</h5><br>
       <ul class="nav nav-pills nav-stacked nav-bracket">
         <li><a href="#"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-        <li class="active"><a href="client-life-insured-view.jsp"><i class="fa fa-home"></i> <span>Plans</span></a></li>
+        <li><a href="client-life-insured-view.jsp"><i class="fa fa-home"></i> <span>Plans</span></a></li>
        <li><a href="client-account.jsp"><i class="glyphicon glyphicon-user"></i> <span>Account</span></a></li>
         <li><a href="about-lavie.jsp"><i class="glyphicon glyphicon-book"></i> <span>About</span></a></li>
-        <li><a href="faq-lavie.jsp"><i class="glyphicon glyphicon-question-sign"></i> <span>FAQ</span></a></li>
+        <li class="active"><a href="faq-lavie.jsp"><i class="glyphicon glyphicon-question-sign"></i> <span>FAQ</span></a></li>
           </ul>
-    
 
-      
     </div><!-- leftpanelinner -->
   </div><!-- leftpanel -->
   
   <div class="mainpanel">
     
     <%
-			try{ 
-				String query1 = " SELECT * FROM r_policyowner_details where p_id="+userid+" ";
-				Statement stmt1 = conn.createStatement();
-				ResultSet rs1 = stmt1.executeQuery(query1);
-				while(rs1.next())
-				{
-				
-			%>
+      try{ 
+        String query1 = " SELECT * FROM r_policyowner_details where p_id="+userid+" ";
+        Statement stmt1 = conn.createStatement();
+        ResultSet rs1 = stmt1.executeQuery(query1);
+        while(rs1.next())
+        {
+        
+      %>
     
     <div class="headerbar">
        
@@ -111,12 +109,12 @@
     </div><!-- headerbar -->
         
     <div class="pageheader">
-      <h2><i class="fa fa-file-text-o"></i> Plans</h2>
+      <h2><i class="glyphicon glyphicon-question-sign"></i> FAQs</h2>
       <div class="breadcrumb-wrapper">
         <span class="label">You are here:</span>
         <ol class="breadcrumb">
           <li><a href="#">La Vie Insurance</a></li>
-          <li class="active">Plans</li>
+          <li class="active">FAQs</li>
         </ol>
       </div>
     </div>
@@ -124,110 +122,86 @@
     
     </div>
    <div class="contentpanel">
-   
-      
-      
-      <div class="panel panel-default">
-       <style>
-					
-					.mylabel
-					{
-						font-size:90%;
-					}
-					.mytextbox
-					{
-						font-size:90%;
-						padding:7px 10px;
-					}
-					.mybtn
-					{
-						padding:3px 7px;
-						font-size:85%;
-					}
-					.datepicker{ z-index:99999 !important; }
-					</style>
-        <div class="panel-body">
-          <div class="table-responsive">
-            <table class="table" id="table1" style="font-size:85%;">
-            <col width="20%">
-            <col width="17%">
-            <col width="17%">
-            <col width="17%">
-            <col width="15%">
-            <col width="25%">
-              <thead>
-                 <tr>
-                 	<th style="display:none;"></th>
-                 	<th>Policy Number</th>
-                 	<th>Plan</th>
-                 	<th>Insured</th>
-                 	<th>Relationship</th>
-                    <th>Action</th>
-                 </tr>
-              </thead>
-              <tbody>
-              <%
-			try{ 
-				String query = "SELECT * from t_policy_details pd INNER JOIN r_life_insured_details lid ON lid.lid_id=pd.pol_ref_li_id INNER JOIN r_life_insured_personal_details lipd ON lipd.li_id=lid.lid_ref_li_id INNER JOIN r_policy_information_details pid ON pid.pi_id=pd.pol_ref_pi_id INNER JOIN r_plan_details plan ON plan.plan_id=pid.pi_ref_plan_id INNER JOIN r_policyowner_details p ON p.p_id=pd.pol_ref_p_id LEFT JOIN t_policy_status_details ps ON ps.ps_ref_pol_id=pd.pol_id LEFT JOIN r_approval_status_details asd ON asd.as_id=ps.ps_ref_as_id where p.p_id = 1 AND asd.as_status='Issued'  group by pd.pol_id  ";
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(query);
-				while(rs.next())
-				{
-				
-				
-			%>
-                 <tr>
-                    <td style="display:none;"><%out.print(rs.getInt("pol_id")); %></td>
-                    <td>0000<%out.print(rs.getInt("pol_id")); %></td>
-                    <td><%out.print(rs.getString("plan_name")); %></td>
-                    <td><%out.print(rs.getString("li_givenname")); %> <%out.print(rs.getString("li_middlename")); %> <%out.print(rs.getString("li_surname")); %></td>
-                    <td><%out.print(rs.getString("li_rel_to_policyowner")); %></td>
-                    <td>
-					<a class ="btn btn-darkblue mybtn tooltips" data-placement="top" data-toggle="modal" title="View" href="client-statement-of-account-view.jsp?id=<%out.print(rs.getInt("pol_id")); %>" ><i class="glyphicon glyphicon-eye-open"></i></a>
-					</td>
-					
-					
-			  
-			
-					
-					<%
-				}
-				%>
-                 </tr>
-                
-              </tbody>
-           </table>
-           <%
-            rs.close();
-            stmt.close();
-			}
-			catch(Exception e)
-			{
-			e.printStackTrace();
-			}
-           %>
-          </div><!-- table-responsive -->
-        
-          
-        </div><!-- panel-body -->
-      </div><!-- panel -->
-      
-    </div><!-- contentpanel -->
+      <div class="panel-body" style="background-color: white" >
+
+            <img src="images/lavie-logo.png" style="margin-left: 25%; object-position: center; height: 30%; width: 50%" />
     
-     <%	}
+          <h2>What is life insurance?</h2>
+
+          <p>
+        Life insurance can protect the financial security of the people you love by giving them a tax-free payment after you die. The amount and type of coverage you choose will depend on your circumstances and needs. The cost of life insurance you buy as an individual depends on your age, gender, health, medical history and lifestyle.</p>
+        
+
+<div class="panel-group panel-group-dark" id="accordion2">
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" data-parent="#accordion2" href="#collapseOne2" class="collapsed">
+                    What is underwriting?
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseOne2" class="panel-collapse collapse" style="height: 0px;">
+                <div class="panel-body">
+                 Underwriting is the process of assessing the risk people applying for insurance present, to determine the coverage they are eligible for and ensure their premium cost reflects their level of risk. In short, your risk level ultimately decides your premium.
+
+The underwriting process can be used for various types of insurance, such as life insurance, health insurance, mortgage protection insurance and property and casualty insurance.
+
+After you or your advisor completes your application, it goes to the insurance company's underwriters, who are experts in assessing risk. Underwriters use manuals that provide guidelines to evaluate your risk level based on your medical, health, and lifestyle risk factors.
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" class="" data-parent="#accordion2" href="#collapseTwo2">
+                    Change beneficiaries?
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseTwo2" class="panel-collapse collapse in" style="">
+                <div class="panel-body">
+                    Most common beneficiaries are emmidiate family members, decendants, heirs, employers, business and charities of the insured.
+                </div>
+              </div>
+            </div>
+            <div class="panel panel-default">
+              <div class="panel-heading">
+                <h4 class="panel-title">
+                  <a data-toggle="collapse" class="collapsed" data-parent="#accordion2" href="#collapseThree2">
+                    Submitting claims?
+                  </a>
+                </h4>
+              </div>
+              <div id="collapseThree2" class="panel-collapse collapse" style="height: 0px;">
+                <div class="panel-body">
+                 <div class="content">
+<p><strong>If you haven't yet signed up for direct deposit or online claims,</strong> please take a few minutes to <a href="https://www.sunnet.sunlife.com/mysunlife/signin/register/bregister.asp" target="_blank">register now.</a> You will need your contract number and member ID number, which you will find on your coverage card, your claim statement or your new plan member welcome letter.</p>
+<h4>If you are already registered:</h4>
+<ol>
+<li>Sign in to <a data-target="#signin-widget-modal" data-toggle="modal" href="javascript:void(0)">lavie.ca</a>.</li>
+<li>Under <strong>my health and well-being</strong>, click my claims.</li>
+<li>If the header <strong>Submit a claim</strong> appears, you can submit a claim online.</li>
+<li>Choose the appropriate claim type (e.g., paramedical, vision) and follow the steps to submit.</li>
+</ol>
+<p>If the <strong>Submit a claim</strong> header does not appear, you can’t submit a claim online. Return to the previous screen and select <strong>I want to submit a paper claim.</strong></p>
+<p>If you have more questions about submitting a claim online, contact your plan administrator or call us at 1-345-678-9101 Monday to Friday, 8am to 8pm ET, or sign in to <a data-target="#signin-widget-modal" data-toggle="modal" href="javascript:void(0)">levie.ca</a> to send us a secure message.</p>
+</div>
+              </div>
+            </div>
+          </div>
+        </div><!-- cntentpanel -->
+
+     <% }
             rs1.close();
             stmt1.close();
-			}
-			catch(Exception e)
-			{
-			e.printStackTrace();
-			}
+      }
+      catch(Exception e)
+      {
+      e.printStackTrace();
+      }
            %>
-  
-                    
-  
- 
-    
+
   </div><!-- mainpanel -->
   
   <div class="rightpanel">
@@ -284,7 +258,7 @@
     numberOfMonths: 3,
     showButtonPanel: true
   });
-	
+  
   $( ".dateselector" ).datepicker({ dateFormat: 'yy-mm-dd' });
     
     // Delete row in a table

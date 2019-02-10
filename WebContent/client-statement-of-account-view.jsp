@@ -55,7 +55,11 @@
        <h5 class="sidebartitle" style="padding-left: 15px;"> POLICYOWNER</h5><br>
       <ul class="nav nav-pills nav-stacked nav-bracket">
         <li><a href="#"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
-        <li class="active"><a href="client-life-insured-view.jsp"><i class="fa fa-home"></i> <span>Plans</span></a></li>
+        <li class="active"><a href="client-life-insured-view.jsp"><i class="fa fa-home"></i> <span>Plans</span></a>
+        </li>
+        <li><a href="client-account.jsp"><i class="glyphicon glyphicon-user"></i> <span>Account</span></a></li>
+        <li><a href="about-lavie.jsp"><i class="glyphicon glyphicon-book"></i> <span>About</span></a></li>
+        <li><a href="faq-lavie.jsp"><i class="glyphicon glyphicon-question-sign"></i> <span>FAQ</span></a></li>
           </ul>
         </li>
       </ul>

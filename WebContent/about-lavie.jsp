@@ -29,20 +29,20 @@
 
 <body style="background-color:#1C2331;">
 <% 
-	
-	Conn db = new Conn();
-	Connection conn = db.getConnection();
+  
+  Conn db = new Conn();
+  Connection conn = db.getConnection();
 
 %>
-<%		int userid=0;
-		if (session != null) {
-			if (session.getAttribute("e_id") != null) {
-				userid = (Integer) session.getAttribute("e_id");
-			} else {
-				response.sendRedirect("login.jsp");
-			}
-		}
-	%>
+<%    int userid=0;
+    if (session != null) {
+      if (session.getAttribute("e_id") != null) {
+        userid = (Integer) session.getAttribute("e_id");
+      } else {
+        response.sendRedirect("login.jsp");
+      }
+    }
+  %>
 
 <section>
   
@@ -55,28 +55,26 @@
        <h5 class="sidebartitle" style="padding-left: 15px;"> POLICYOWNER</h5><br>
       <ul class="nav nav-pills nav-stacked nav-bracket">
         <li><a href="#"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-        <li class="active"><a href="client-life-insured-view.jsp"><i class="fa fa-home"></i> <span>Plans</span></a></li>
+        <li><a href="client-life-insured-view.jsp"><i class="fa fa-home"></i> <span>Plans</span></a></li>
        <li><a href="client-account.jsp"><i class="glyphicon glyphicon-user"></i> <span>Account</span></a></li>
-        <li><a href="about-lavie.jsp"><i class="glyphicon glyphicon-book"></i> <span>About</span></a></li>
+        <li class="active"><a href="about-lavie.jsp"><i class="glyphicon glyphicon-book"></i> <span>About</span></a></li>
         <li><a href="faq-lavie.jsp"><i class="glyphicon glyphicon-question-sign"></i> <span>FAQ</span></a></li>
           </ul>
-    
-
-      
+       
     </div><!-- leftpanelinner -->
   </div><!-- leftpanel -->
   
   <div class="mainpanel">
     
     <%
-			try{ 
-				String query1 = " SELECT * FROM r_policyowner_details where p_id="+userid+" ";
-				Statement stmt1 = conn.createStatement();
-				ResultSet rs1 = stmt1.executeQuery(query1);
-				while(rs1.next())
-				{
-				
-			%>
+      try{ 
+        String query1 = " SELECT * FROM r_policyowner_details where p_id="+userid+" ";
+        Statement stmt1 = conn.createStatement();
+        ResultSet rs1 = stmt1.executeQuery(query1);
+        while(rs1.next())
+        {
+        
+      %>
     
     <div class="headerbar">
        
@@ -111,12 +109,12 @@
     </div><!-- headerbar -->
         
     <div class="pageheader">
-      <h2><i class="fa fa-file-text-o"></i> Plans</h2>
+      <h2><i class="glyphicon glyphicon-book"></i>About</h2>
       <div class="breadcrumb-wrapper">
         <span class="label">You are here:</span>
         <ol class="breadcrumb">
           <li><a href="#">La Vie Insurance</a></li>
-          <li class="active">Plans</li>
+          <li class="active">About</li>
         </ol>
       </div>
     </div>
@@ -124,104 +122,104 @@
     
     </div>
    <div class="contentpanel">
-   
-      
-      
-      <div class="panel panel-default">
-       <style>
-					
-					.mylabel
-					{
-						font-size:90%;
-					}
-					.mytextbox
-					{
-						font-size:90%;
-						padding:7px 10px;
-					}
-					.mybtn
-					{
-						padding:3px 7px;
-						font-size:85%;
-					}
-					.datepicker{ z-index:99999 !important; }
-					</style>
-        <div class="panel-body">
-          <div class="table-responsive">
-            <table class="table" id="table1" style="font-size:85%;">
-            <col width="20%">
-            <col width="17%">
-            <col width="17%">
-            <col width="17%">
-            <col width="15%">
-            <col width="25%">
-              <thead>
-                 <tr>
-                 	<th style="display:none;"></th>
-                 	<th>Policy Number</th>
-                 	<th>Plan</th>
-                 	<th>Insured</th>
-                 	<th>Relationship</th>
-                    <th>Action</th>
-                 </tr>
-              </thead>
-              <tbody>
-              <%
-			try{ 
-				String query = "SELECT * from t_policy_details pd INNER JOIN r_life_insured_details lid ON lid.lid_id=pd.pol_ref_li_id INNER JOIN r_life_insured_personal_details lipd ON lipd.li_id=lid.lid_ref_li_id INNER JOIN r_policy_information_details pid ON pid.pi_id=pd.pol_ref_pi_id INNER JOIN r_plan_details plan ON plan.plan_id=pid.pi_ref_plan_id INNER JOIN r_policyowner_details p ON p.p_id=pd.pol_ref_p_id LEFT JOIN t_policy_status_details ps ON ps.ps_ref_pol_id=pd.pol_id LEFT JOIN r_approval_status_details asd ON asd.as_id=ps.ps_ref_as_id where p.p_id = 1 AND asd.as_status='Issued'  group by pd.pol_id  ";
-				Statement stmt = conn.createStatement();
-				ResultSet rs = stmt.executeQuery(query);
-				while(rs.next())
-				{
-				
-				
-			%>
-                 <tr>
-                    <td style="display:none;"><%out.print(rs.getInt("pol_id")); %></td>
-                    <td>0000<%out.print(rs.getInt("pol_id")); %></td>
-                    <td><%out.print(rs.getString("plan_name")); %></td>
-                    <td><%out.print(rs.getString("li_givenname")); %> <%out.print(rs.getString("li_middlename")); %> <%out.print(rs.getString("li_surname")); %></td>
-                    <td><%out.print(rs.getString("li_rel_to_policyowner")); %></td>
-                    <td>
-					<a class ="btn btn-darkblue mybtn tooltips" data-placement="top" data-toggle="modal" title="View" href="client-statement-of-account-view.jsp?id=<%out.print(rs.getInt("pol_id")); %>" ><i class="glyphicon glyphicon-eye-open"></i></a>
-					</td>
-					
-					
-			  
-			
-					
-					<%
-				}
-				%>
-                 </tr>
-                
-              </tbody>
-           </table>
-           <%
-            rs.close();
-            stmt.close();
-			}
-			catch(Exception e)
-			{
-			e.printStackTrace();
-			}
-           %>
-          </div><!-- table-responsive -->
-        
-          
-        </div><!-- panel-body -->
-      </div><!-- panel -->
-      
+       <div class="contentpanel">
+         <div class="panel-body" style="background-color: white" >
+
+            <img src="images/lavie-logo.png" style="margin-left: 25%; object-position: center; height: 30%; width: 50%" />
+          <h2>What is life insurance?</h2>
+
+          <p>
+        Life insurance can protect the financial security of the people you love by giving them a tax-free payment after you die. The amount and type of coverage you choose will depend on your circumstances and needs. The cost of life insurance you buy as an individual depends on your age, gender, health, medical history and lifestyle.</p>
+       
+
+        <div class="panel-heading">
+                <h5 class="panel-title" style="text-align: center;">Types of life insurance:</h5>
+            </div>
+            <div class="panel-body">
+                <div id="carousel-example-generic2" class="carousel slide" data-ride="carousel">
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner">
+                      <div class="item active">
+                        <div class="media">
+                            <a href="#" class="pull-left">
+                              <img alt="80x60" src="images/lavie-logo.png" style="width:50% height: 40%;">
+                            </a>
+                            <div class="media-body">
+                              <h3 class="media-heading">Term life insurance</h2>
+                              <small class="media-desc"><ul>
+<li>Term life insurance is simple and affordable , providing a fixed amount of insurance for a specific period of time</li>
+
+<li>In the event of your death, the policy pays a tax-free benefit, to your beneficiaries</li>
+
+<li>Term life provides temporary protection you can customize to meet your changing needs</li>
+</ul></small>
+                            </div>
+                        </div><!-- media -->
+                      </div><!-- item -->
+                      <div class="item">
+                        <div class="media">
+                            <a href="#" class="pull-left">
+                              <img alt="80x60" src="images/lavie-logo.png": style="width: 50%; height: 40%;">
+                            </a>
+                            <div class="media-body">
+                              <h3 class="media-heading">Permanent life insurance</h3>
+                              <small class="media-desc"><ul>
+<li>Permanent life insurance is often called whole life insurance because it covers you for your whole life – and some types can build cash value over time.</li>
+
+<li>Permanent insurance costs are usually guaranteed not to increase from the time you first buy the policy.</li>
+
+<li>Some permanent insurance plans let you pay for a limited time and and then you don't have to pay any more.</li>
+</ul></small>
+                            </div>
+                        </div>
+                      </div>
+                      
+                      <div class="item">
+                        <div class="media">
+                            <a href="#" class="pull-left">
+                              <img alt="80x60" src="images/lavie-logo.png"AOA0kQJAAGP8NaSYqyzWYrR8AAAAASUVORK5CYII=" class="media-object" data-src="holder.js/80x60/#777:#fff" style="width: 50%; height: 40%;">
+                            </a>
+                            <div class="media-body">
+                              <h3 class="media-heading">Participating life insurance</h3>
+                              <small class="media-desc"><ul>
+<li>Participating life insurance is a type of permanent whole life insurance coverage that can be eligible to receive dividends.</li>
+
+<li>The amount of coverage you choose and your premiums are guaranteed for life.</li>
+
+<li>You can use the dividends to buy more coverage, reduce your annual premium cost or earn interest inside the plan. Or you can take them in cash. Dividends are not guaranteed.</li>
+</ul></small>
+                            </div>
+                        </div>
+                      </div>
+                      
+                    </div><!-- carousel-inner -->
+
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators" style="color: black;">
+                      <li data-target="#carousel-example-generic2" data-slide-to="0" class="active"></li>
+                      <li data-target="#carousel-example-generic2" data-slide-to="1" class=""></li>
+                      <li data-target="#carousel-example-generic2" data-slide-to="2" class=""></li>
+                    </ol>
+                    
+                </div><!-- carousel -->
+
+            </div>
+
+        </div><!-- cntentpanel -->
+
+
+  </div>
     </div><!-- contentpanel -->
     
-     <%	}
+     <% }
             rs1.close();
             stmt1.close();
-			}
-			catch(Exception e)
-			{
-			e.printStackTrace();
-			}
+      }
+      catch(Exception e)
+      {
+      e.printStackTrace();
+      }
            %>
   
                     
@@ -284,7 +282,7 @@
     numberOfMonths: 3,
     showButtonPanel: true
   });
-	
+  
   $( ".dateselector" ).datepicker({ dateFormat: 'yy-mm-dd' });
     
     // Delete row in a table
