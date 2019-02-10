@@ -58,7 +58,7 @@
         <li><a href="cash-disbursement-new.jsp"><span class="pull-right badge badge-danger" style="background-color:#d9534f; color:white;">new</span><i class="fa fa-money"></i> <span>New Claim</span></a></li>
         <li class="active"><a href="cash-disbursement-release.jsp"><i class="fa fa-check"></i> <span>Released Claim</span></a></li>
         <li><a href="cash-disbursement-release.jsp"><i class="glyphicon glyphicon-file"></i> <span>Reports</span></a></li>
-          </ul>
+        <li><a href="cash-disbursement-audit-trail.jsp"><i class="glyphicon glyphicon-list"></i> <span>Audit Trail</span></a>
         </li>
       </ul>
 

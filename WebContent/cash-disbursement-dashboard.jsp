@@ -66,7 +66,8 @@
        
         <li class="active"><a href="cash-disbursement-dashboard.jsp"><i class="fa fa-plus"></i> <span>Dashboard</span></a></li>
 		<li><a href="cash-disbursement-new.jsp"><i class="fa fa-plus"></i> <span>New Claim</span></a></li>
-        <li><a href="cash-disbursement-released.jsp"><i class="fa fa-check-square-o"></i> <span>Released Claim</span></a></li>
+        <li><a href="cash-disbursement-release.jsp"><i class="fa fa-check-square-o"></i> <span>Released Claim</span></a></li>
+        <li><a href="cash-disbursement-audit-trail.jsp"><i class="glyphicon glyphicon-list"></i> <span>Audit Trail</span></a></li>
       </ul>
 
       

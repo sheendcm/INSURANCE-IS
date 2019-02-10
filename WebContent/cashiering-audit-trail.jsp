@@ -3,7 +3,6 @@
 <%@page import="java.sql.DriverManager" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,10 +13,11 @@
   <link rel="shortcut icon" href="images/lavienew.png" type="image/png">
 
   <title>La Vie Insurance</title>
-
+       
   <link href="css/style.default.css" rel="stylesheet">
   <link href="css/jquery.datatables.css" rel="stylesheet">
   
+
     <!-- Debug -->
     <script src="https://localhost:32123/livereload.js"></script>
 
@@ -27,7 +27,7 @@
     
 </head>
 
-<body style="background-color:#1C2331;">
+<body>
 <% 
 	
 	Conn db = new Conn();
@@ -43,28 +43,28 @@
 			}
 		}
 	%>
-
+	
 <section>
   
   <div class="leftpanel">
+    
     <div class="logopanel" style="margin-bottom:20px;">
         <img src="images/lavie-logo.png" class="width100p" alt="" />
     </div><!-- logopanel -->
     
-    <div class="leftpanelinner" style="padding: 0px 0px;">
+       <div class="leftpanelinner" style="padding: 0px 0px;">
        <h5 class="sidebartitle" style="padding-left: 15px;"> CASHIER</h5><br>
       <ul class="nav nav-pills nav-stacked nav-bracket">
         <li><a href="#"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
         <li><a href="cashiering-policyowner-view.jsp"><i class="fa fa-user"></i> <span>Policyowners</span></a></li>
         <li><a href="#"><i class="fa fa-plus"></i> <span>Add Payments</span></a></li>
-        <li class="active"><a href="cashiering-payments-view.jsp"><i class="fa fa-money"></i> <span>Payments</span></a></li>
-         <li><a href="cashiering-audit-trail.jsp"><i class="glyphicon glyphicon-list"></i> <span>Audit-Trail</span></a></li>
+        <li><a href="cashiering-payments-view.jsp"><i class="fa fa-money"></i> <span>Payments</span></a></li>
+         <li class="active"><a href="cashiering-audit-trail.jsp"><i class="glyphicon glyphicon-list"></i> <span>Audit-Trail</span></a></li>
       </ul>
     </div><!-- leftpanelinner -->
   </div><!-- leftpanel -->
   
   <div class="mainpanel">
-    
     <%
 			try{ 
 				String query1 = " SELECT * FROM r_system_user_details sud INNER JOIN r_system_user_personal_details supd on supd.supd_id=sud.sud_ref_supd_id INNER JOIN r_system_user_login_details suld ON suld.suld_id=sud.sud_ref_suld_id where sud.sud_id="+userid+" ";
@@ -74,7 +74,6 @@
 				{
 				
 			%>
-    
     <div class="headerbar">
        
       
@@ -108,33 +107,25 @@
     </div><!-- headerbar -->
         
     <div class="pageheader">
-      <h2><i class="fa  fa-money"></i> Payments</h2>
+      <h2><i class="glyphicon glyphicon-list-alt"></i> Audit Log</h2>
       <div class="breadcrumb-wrapper">
         <span class="label">You are here:</span>
         <ol class="breadcrumb">
           <li><a href="#">La Vie Insurance</a></li>
-           <li><a href="#">Cashier</a></li>
-          <li class="active">Payments</li>
+          <li><a href="#">Maintenance</a></li>
+          <li class="active">Audit Log</li>
         </ol>
       </div>
     </div>
     
     <div class="contentpanel">
-      <input id="sud_id" type="text" class="form-control" name="sud_id" value="<%out.print(rs1.getInt("sud_id")); %>"
-							            style="color: black; display:none; "/>
-							            
+      
       <div class="panel panel-default">
-       <label class="col-sm-4 control-label mylabel" align="right" id="alertUpload" style="display:none;"><%=request.getAttribute("Message")%></label>
-       <script>
-       var uploadalert = document.getElementById('alertUpload').innerHTML;
-       if(uploadalert=='File uploaded!')
-       {	
-       		swal("Success!", "Successfully uploaded file!", "success")
-       		document.getElementById('alertUpload').innerHTML="";
-       }
-       		
-       </script>
-       <style>
+      <div class="panel-heading">
+            
+            <div class="row">
+            
+					<style>
 					
 					.mylabel
 					{
@@ -152,49 +143,49 @@
 					}
 					.datepicker{ z-index:99999 !important; }
 					</style>
+</div>
         <div class="panel-body">
           <div class="table-responsive">
-            <table class="table" id="table1" style="font-size:85%;">
-            <col width="14%">
-            <col width="12%">
-            <col width="16%">
-            <col width="16%">
+            <table class="table" id="table1" style="font-size:90%;">
             <col width="15%">
-  			<col width="12%">
-  			<col width="12%">
+            <col width="12%">
+            <col width="17%">
+            <col width="20%">
+  			<col width="36%">
               <thead>
                  <tr>
                  	<th style="display:none;"></th>
-                 	<th>Payment Number</th>
-                 	<th>Payment Date</th>
-                 	<th>Policyowner</th>
-                 	<th>Amount</th>
-                 	<th>Method</th>
+                 	<th>Date</th>
+                 	<th>Time</th>
+                 	<th>Department</th>
+                 	<th>User</th>
                     <th>Action</th>
                  </tr>
               </thead>
               <tbody>
               <%
 			try{ 
-				String query = "select * FROM t_payment_details pay LEFT JOIN t_policy_details pd ON pd.pol_id=pay.payment_ref_pol_id LEFT JOIN r_policyowner_details p ON p.p_id=pd.pol_ref_p_id where payment_status='Paid' ";
+				String query = "SELECT * FROM r_audit_trail_details atd LEFT JOIN r_system_user_details sud ON sud.sud_id=atd.at_ref_sud_id LEFT JOIN r_system_user_personal_details supd ON supd.supd_id=sud.sud_ref_supd_id WHERE sud.sud_department='Cashier' ORDER BY at_datetime DESC";
 				Statement stmt = conn.createStatement();
 				ResultSet rs = stmt.executeQuery(query);
 				while(rs.next())
 				{
-				
+				String dateindb = rs.getString("at_datetime");
+    			String modifieddate = dateindb.substring(0, 10);
+    			String modifiedtime = dateindb.substring(11, 19);
 			%>
                  <tr>
-                    <td style="display:none;"><%out.print(rs.getInt("payment_id")); %></td>
-                    <td>0000-<%out.print(rs.getInt("payment_id")); %></td>
-                    <td><%out.print(rs.getString("payment_date_of_payment")); %></td>
-                    <td><%out.print(rs.getString("p_givenname")); %> <%out.print(rs.getString("p_middlename")); %> <%out.print(rs.getString("p_surname")); %></td>
-                    <td><%out.print(rs.getString("payment_amount")); %></td>
-                    <td><%out.print(rs.getString("payment_method")); %></td>
-                    <td>
-					<a class ="btn btn-info mybtn tooltips" data-placement="top" data-toggle="modal" title="View Payment Info" href="#" ><i class="glyphicon glyphicon-eye-open"></i></a>
-					</td>
+                    <td style="display:none;"><%out.print(rs.getInt("at_id")); %></td>
+                    <td><%out.print(modifieddate); %></td>
+                    <td><%out.print(modifiedtime); %></td>
+                    <td><%out.print(rs.getString("sud_department")); %></td>
+                    <td><%out.print(rs.getString("supd_name")); %></td>
+                    <td><%out.print(rs.getString("at_activity")); %></td>
 					
 					
+					
+			  
+			
 					
 					<%
 				}
@@ -217,10 +208,12 @@
           
         </div><!-- panel-body -->
       </div><!-- panel -->
+
+			
+			
       
     </div><!-- contentpanel -->
-    
-     <%	}
+    <%	}
             rs1.close();
             stmt1.close();
 			}
@@ -229,21 +222,8 @@
 			e.printStackTrace();
 			}
            %>
-           
- 
-    
   </div><!-- mainpanel -->
   
-  <div class="rightpanel">
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs nav-justified">
-        <li class="active"><a href="#rp-alluser" data-toggle="tab"><i class="fa fa-users"></i></a></li>
-        <li><a href="#rp-favorites" data-toggle="tab"><i class="fa fa-heart"></i></a></li>
-        <li><a href="#rp-history" data-toggle="tab"><i class="fa fa-clock-o"></i></a></li>
-        <li><a href="#rp-settings" data-toggle="tab"><i class="fa fa-gear"></i></a></li>
-    </ul>
-
-  </div><!-- rightpanel -->
   
 </section>
 
@@ -264,14 +244,16 @@
 <script src="js/jquery.validate.min.js"></script>
 
 <script src="js/custom.js"></script>
+
 <script>
   jQuery(document).ready(function() {
     
     "use strict";
     jQuery('#table1').dataTable();
-    jQuery('#table2').dataTable();
     
-  
+    jQuery('#table2').dataTable({
+      "sPaginationType": "full_numbers"
+    });
     
     // Select2
     jQuery('select').select2({
@@ -314,6 +296,9 @@
   
   });
 </script>
+
+
+
 
 </body>
 </html>
