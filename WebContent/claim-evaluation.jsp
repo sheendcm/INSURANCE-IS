@@ -187,7 +187,7 @@
                  <tr>
                  	<th style="display:none;"></th>
                  	<th>Policy Number</th>
-                 	<th>Date Completed Legal</th>
+                 	<th>Date Proceeded to Legal</th>
                  	<th>Insured</th>
                  	<th>Type of Claim</th>
                  	<th>Status</th>

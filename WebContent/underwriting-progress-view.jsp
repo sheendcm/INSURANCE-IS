@@ -7,6 +7,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
   <meta charset="ISO-8859-1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
   <meta name="description" content="">
@@ -26,6 +28,16 @@
     <link rel="stylesheet" href="./SweetAlert for Bootstrap_files/sweetalert.css">
     <script src = "jquery/jquery.min.js"></script>
 	<script src = "highcharts/highcharts.js"></script>
+<style type="text/css">
+#container {
+	min-width: 310px;
+	max-width: 800px;
+	height: 400px;
+	margin: 0 auto
+}
+		</style>	
+	
+	
 </head>
 
 <body style="background-color:#1C2331;">
@@ -44,7 +56,10 @@
 			}
 		}
 	%>
-
+<script src="../../code/highcharts.js"></script>
+<script src="../../code/modules/series-label.js"></script>
+<script src="../../code/modules/exporting.js"></script>
+<script src="../../code/modules/export-data.js"></script>
 <section>
   
   <div class="leftpanel">
@@ -198,9 +213,75 @@
 
             });
          </script>
-         
-         
+ <!-- NEW CHART    
+ <script type="text/javascript">
 
+Highcharts.chart('container', {
+
+    title: {
+        text: 'Solar Employment Growth by Sector, 2010-2016'
+    },
+
+    subtitle: {
+        text: 'Source: thesolarfoundation.com'
+    },
+
+    yAxis: {
+        title: {
+            text: 'Number of Employees'
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        series: {
+            label: {
+                connectorAllowed: false
+            },
+            pointStart: 2010
+        }
+    },
+
+    series: [{
+        name: 'Installation',
+        data: [43934, 52503, 57177, 69658, 97031, 119931, 137133, 154175]
+    }, {
+        name: 'Manufacturing',
+        data: [24916, 24064, 29742, 29851, 32490, 30282, 38121, 40434]
+    }, {
+        name: 'Sales & Distribution',
+        data: [11744, 17722, 16005, 19771, 20185, 24377, 32147, 39387]
+    }, {
+        name: 'Project Development',
+        data: [null, null, 7988, 12169, 15112, 22452, 34400, 34227]
+    }, {
+        name: 'Other',
+        data: [12908, 5948, 8105, 11248, 8989, 11816, 18274, 18111]
+    }],
+
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
+
+});
+		</script>   --> 
+         
+<!-- OLD CHART -->
    <script language = "JavaScript">
       $(function () { 
     var myChart = Highcharts.chart('container1', {
@@ -348,7 +429,7 @@ $(function() {
         <div class="col-sm-3">
        <div class="panel panel-success panel-stat">
             <div class="panel-heading">
-
+			<a href="underwriting-issued-policy-view.jsp">
               <div class="stat">
                 <div class="row">
                   <div class="col-xs-4">
@@ -389,12 +470,12 @@ $(function() {
                   </div>
                 </div><!-- row -->
               </div><!-- stat -->
-
+			</a>
             </div><!-- panel-heading -->
           </div><!-- panel -->
           <div class="panel panel-danger panel-stat">
             <div class="panel-heading">
-
+			<a href="underwriting-declined-policy-view.jsp">
               <div class="stat">
                 <div class="row">
                   <div class="col-xs-4">
@@ -435,7 +516,7 @@ $(function() {
                   </div>
                 </div><!-- row -->
               </div><!-- stat -->
-
+			</a>
             </div><!-- panel-heading -->
           </div><!-- panel -->
           <div class="panel panel-primary panel-stat">
@@ -565,7 +646,7 @@ $(function() {
                     <td><%out.print(rs.getString("p_givenname")); %> <%out.print(rs.getString("p_middlename")); %> <%out.print(rs.getString("p_surname")); %></td>
                     <td><%out.print(rs.getString("plan_name")); %></td>
                     <td>
-					<a class ="btn btn-darkblue mybtn tooltips btnViewRemarks" data-placement="top" data-toggle="modal" title="View Progress" href="#modalViewProgress<%out.print(rs.getInt("pol_id")); %>" ><i class="fa fa-check-square-o"></i></a>
+					<a class ="btn btn-darkblue mybtn tooltips btnViewRemarks" data-placement="top" data-toggle="modal" title="View Progress" href="#modalViewProgress<%out.print(rs.getInt("pol_id")); %>" ><i class="fa fa-eye"></i></a>
 					</td>
 					
 					 <div class="modal fade" id="modalViewProgress<%out.print(rs.getInt("pol_id")); %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -581,39 +662,43 @@ $(function() {
 			      </div>
 			      <div class="modal-body">
       
-      <div class="row" style="padding-top:20px;">
-          
-          <div class="col-md-2"></div>
-          <div class="form-group myfg col-md-8"> 
-          
+      <div class="row">   
+          <div class="form-group myfg col-md-12"> 
+          <div class="well col-md-4" style="padding:5px"><h5 style="padding-left:20px;"><strong><%out.print(rs.getString("af_applicationnumber")); %></strong> </h5>
+          </div>
+          <div class="well col-md-7" style="padding:5px; margin-left: 10px;"><h5 style="padding-left:20px"><strong><%out.print(rs.getString("p_givenname")); %> <%out.print(rs.getString("p_middlename")); %> <%out.print(rs.getString("p_surname")); %></strong> </h5>
+          </div>
           <div class="row" style="padding-top:10px;">
-           <label class="col-sm-5 control-label mylabel" align="right"><strong>Name of Insured</strong></label>
+           <label class="col-sm-3 mylabel" align="right"><strong>Name of Insured</strong></label>
                   <div class="col-sm-7">
                     <label class="col-sm-12 control-label mylabel" id="nameofinsured1" align="left"><%out.print(rs.getString("li_givenname")); %> <%out.print(rs.getString("li_middlename")); %> <%out.print(rs.getString("li_surname")); %></label>
                   </div>
           </div>
           <div class="row" style="padding-top:10px;">
-           <label class="col-sm-5 control-label mylabel" align="right"><strong>Form Completion</strong></label>
+           <label class="col-sm-3 control-label mylabel" align="right"><strong>Form Completion</strong></label>
                   <div class="col-sm-7">
-                    <span class="label label-default myspan"><%out.print(rs.getString("fs_completion")); %></span>
-                  </div>
+                    
+           <div class="progress progress-striped active progress-sm">
+              <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100" style="width: 85%">
+              </div> </div>
+              </div>
           </div>
           <div class="row" style="padding-top:10px;">
-           <label class="col-sm-5 control-label mylabel" align="right"><strong>Requirements</strong></label>
+           <label class="col-sm-3 control-label mylabel" align="right"><strong>Requirements</strong></label>
                   <div class="col-sm-7">
                     <span class="label label-default myspan"><%out.print(countreq); %>/<%out.print(allcountreq); %></span>
                     <span class="label label-default myspan"><%out.print(rs.getString("rs_completion")); %></span>
                   </div>
           </div>
           <div class="row" style="padding-top:10px;">
-           <label class="col-sm-5 control-label mylabel" align="right"><strong>Medical</strong></label>
+           <label class="col-sm-3 control-label mylabel" align="right"><strong>Medical</strong></label>
                   <div class="col-sm-7">
                   <span class="label label-default myspan"><%out.print(rs.getString("ms_status")); %></span>
                     <span class="label label-default myspan"><%out.print(rs.getString("ms_completion")); %></span>
                   </div>
           </div>
           <div class="row" style="padding-top:10px;">
-           <label class="col-sm-5 control-label mylabel" align="right"><strong>Approval</strong></label>
+           <label class="col-sm-3 control-label mylabel" align="right"><strong>Approval</strong></label>
                   <div class="col-sm-7">
                     <span class="label label-default myspan"><%out.print(rs.getString("as_status")); %></span>
                     <span class="label label-default myspan"><%out.print(rs.getString("as_completion")); %></span>

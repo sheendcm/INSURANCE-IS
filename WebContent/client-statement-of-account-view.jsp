@@ -186,9 +186,9 @@
 				while(rs2.next())
 				{
 			%>
-         <div class="row" align="right">
+          <!--   <div class="row" align="right">
         <button class="btn btn-primary" href="#modalAddPayment<%out.print(rs2.getInt("payment_id")); %>" data-toggle="modal" style="margin-right:10px; margin-bottom:10px;"> Add Payment</button>
-        </div>
+        </div>-->
          <div class="table-responsive">
           <table class="table table-bordered mb30">
             <col width="40%">
@@ -210,7 +210,7 @@
                 <td>Total</td>
                 <td><%out.print(rs2.getString("payment_amount")); %>.00</td>
               </tr>
-              <div class="modal fade" id="modalAddPayment<%out.print(rs2.getInt("payment_id")); %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal fade" id="modalAddPayment<%out.print(rs2.getInt("payment_id")); %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header" style="background-color:#3F729B; color:white; height:50px;">

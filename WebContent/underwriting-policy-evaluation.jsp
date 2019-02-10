@@ -182,7 +182,7 @@
               <thead>
                  <tr>
                  	<th style="display:none;"></th>
-                 	<th>Date Completed Medical</th>
+                 	<th>Date Proceeded to Medical</th>
                  	<th>Insured</th>
                  	<th>Policyowner</th>
                  	<th>Plan</th>
@@ -319,10 +319,6 @@
 					<a class ="btn btn-success mybtn tooltips btnViewRemarks" data-placement="top" data-toggle="modal" title="Approve" href="#modalApprovePolicy" ><i class="glyphicon glyphicon-ok"></i></a>
 					<a class ="btn btn-danger mybtn tooltips btnViewRemarks" data-placement="top" data-toggle="modal" title="Decline" href="#modalDeclinePolicy" ><i class="glyphicon glyphicon-remove"></i></a>
 					</td>
-					
-					
-			  
-			
 					
 					<%
 				}
