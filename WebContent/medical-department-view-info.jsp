@@ -495,7 +495,7 @@
 			e.printStackTrace();
 			}
 				%>  
-    </div><!-- contentpanel -->cc
+    </div><!-- contentpanel -->
     
      <%	}
             rs1.close();

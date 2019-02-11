@@ -483,17 +483,9 @@
 			}
            %>
             </div><!-- table-responsive -->
-                  </div>
-                 
-                  
-                  
-                </div><!-- tab-content -->
-                
-                
+                  </div>  
+            </div><!-- tab-content -->
               </div><!-- #basicWizard -->
-          
-         
-          
       </div><!-- row -->
           
         </div><!-- panel-body -->
@@ -539,8 +531,11 @@
           </div>
       </div>
 			      <div class="modal-footer">
+              <form action="legal-department.jsp" method="post" onsubmit="">
+                <button type="submit" class="btn btn-primary" id="btnMedicalApprove">Mark as Approved</button>
+              </form> 
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			        <button type="button" class="btn btn-primary" id="btnMedicalApprove">Mark as Approved</button>
+			        <!-- <button type="button" class="btn btn-primary" id="btnMedicalApprove">Mark as Approved</button> -->
 			      </div>
 			    </div><!-- modal-content -->
 			  </div><!-- modal-dialog -->
@@ -586,7 +581,11 @@
       </div>
 			      <div class="modal-footer">
 			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-			        <button type="button" class="btn btn-primary" id="btnMedicalDecline">Mark as Declined</button>
+              
+              <form action="legal-department.jsp" method="post" onsubmit="">
+			        <button type="submit" class="btn btn-primary" id="btnMedicalDecline">Mark as Approved</button>
+            </form>
+
 			      </div>
 			    </div><!-- modal-content -->
 			  </div><!-- modal-dialog -->
