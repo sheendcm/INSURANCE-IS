@@ -39,25 +39,32 @@ public class ChangePass extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
 	
         
         String userid = request.getParameter("userid");
 		String newPass = request.getParameter("newPass");
-
-			Conn databases = new Conn(); 
-		Connection conn = databases.getConnection();
+//cwp1 red
+//cwp2 green	
+//cwp3 gold
 		
+		
+		
+
+		// UPDATE r_policyowner_login_details SET pl_password = '123' WHERE pl_id=1	
+
 		try
-		{		PreparedStatement changePass = (PreparedStatement) conn.prepareStatement("update r_policyowner_login_details \r\n" + 
-				"set pl_password ='"+newPass+"' where pl_id ='"+userid+"' ");
+		{		
+			Conn databases = new Conn(); 
+			Connection conn = databases.getConnection();
+			PreparedStatement changePass = (PreparedStatement) conn.prepareStatement("UPDATE r_policyowner_login_details SET pl_password = '"+newPass+"' where pl_id = "+userid+"");
+				// changePass.setString(1,userid);
+				// changePass.setString(2,newPass);
 				changePass.executeUpdate();
-				
-				// PreparedStatement atdetails = (PreparedStatement) conn.prepareStatement("INSERT INTO r_audit_trail_details(at_activity, at_ref_sud_id) VALUES ('Approved Application',"+sud_id+")");
-				// atdetails.executeUpdate();	
+					
 			
 		} 
 		catch (Exception e)

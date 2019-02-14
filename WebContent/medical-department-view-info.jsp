@@ -386,8 +386,7 @@
 			        <h4 class="modal-title" id="myModalLabel" style="color:white;font-size:100%;"> Medical Department</h4>
 			        <input id="ms_id" type="text" class="form-control" name="ms_id"
 							            style="color: black; width: 560px; display:none;" maxlength="50"/>
-							            
-							            							            		            
+								            		            
 			      </div>
 			      <div class="modal-body">
       

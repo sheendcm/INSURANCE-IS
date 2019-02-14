@@ -57,7 +57,7 @@
       <ul class="nav nav-pills nav-stacked nav-bracket">
         <li><a href="#"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
         <li><a href="cashiering-policyowner-view.jsp"><i class="fa fa-user"></i> <span>Policyowners</span></a></li>
-        <li><a href="#"><i class="fa fa-plus"></i> <span>Add Payments</span></a></li>
+        <li><a href="cashiering-add-payment.jsp"><i class="fa fa-plus"></i> <span>Add Payments</span></a></li>
         <li><a href="cashiering-payments-view.jsp"><i class="fa fa-money"></i> <span>Payments</span></a></li>
          <li class="active"><a href="cashiering-audit-trail.jsp"><i class="glyphicon glyphicon-list"></i> <span>Audit-Trail</span></a></li>
       </ul>
